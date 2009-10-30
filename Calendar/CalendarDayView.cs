@@ -12,8 +12,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 	{
         #region Variables
         UILabel _label;
-
-        public event EventHandler Clicked;
+        //public event EventHandler Clicked;
         #endregion
 		
 		#region Properties
@@ -95,13 +94,14 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 		void initialize ()
 		{
             BackgroundColor = UIColor.Clear;
-
+                        
 			_isActive   = true;
 			_isToday    = false;
 			_isMarked   = false;
 			_isSelected = false;
 
             Opaque = true;
+            UserInteractionEnabled = false;
 
             _label = new UILabel(new RectangleF( 9, 6, Bounds.Width - 18, 22));
             _label.Text = String.Empty;
@@ -115,12 +115,14 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 		#endregion
 		
 		#region Private methods
+        /*
 		void invokeClickedEvent()
 		{
             Debug.WriteLine("\tCalendarDayView: ClickedEvent {0}.", Day.ToShortDateString());
 			if(null != Clicked)
 				Clicked.Invoke(this, null);
 		}
+         * */
         void drawBackGroundColorAndImage()
         {            
             UIImage img;			
@@ -170,25 +172,28 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         }
 		#endregion
 		
-		#region override method
-        
+		#region override method        
 		public override void Draw (RectangleF rect)
 		{
 			base.Draw (rect);
             //Debug.WriteLine("\tCalendarDayView: Draw() day:{0}.", _day);
             drawBackGroundColorAndImage();            
             drawMarker();
-		} 
+		}
+        /*
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
 			base.TouchesBegan (touches, evt);
+            //NextResponder.TouchesBegan(touches, evt);
 			invokeClickedEvent();
-		}
+		}        
 		public override void TouchesMoved (NSSet touches, UIEvent evt)
 		{
 			base.TouchesMoved (touches, evt);
+            //NextResponder.TouchesMoved(touches, evt);
 			invokeClickedEvent();
 		}
+        */
 		#endregion
 	}
 }

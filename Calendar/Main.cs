@@ -29,25 +29,25 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             var view = new CalendarView(new RectangleF(0, 20, 320, 300));
             //view.FirstDayOfWeek = DayOfWeek.Wednesday;
             view.VisibleMonthChanged += new MonthChangedEventHandler(view_VisibleMonthChanged);
-            view.DaySelected += new EventHandler(view_DaySelected);            
+            view.DaySelected += new EventHandler<DaySelectedEventArgs>(view_DaySelected);            
             _window.Add(view);            
 			_window.MakeKeyAndVisible ();
 			return true;
 		}
-
-        void view_DaySelected(object sender, EventArgs e)
+        void view_DaySelected(object sender, DaySelectedEventArgs e)
         {
-            Debug.WriteLine("DayView is selected. date: {0}.", (sender as CalendarDayView).Day.Day);                        
+            Debug.WriteLine("DayView is selected. date: {0}, mode: {1}.", (sender as CalendarDayView).Day.Day, e.Mode);
         }
 
         void view_VisibleMonthChanged(object sender, MonthChangedEventArgs e)
         {
-            Debug.WriteLine("Visible month changed. new date:{0} prev:{1}.", e.NewDate.ToString("y"), e.PreviousDate.ToString("y"));            
+            Debug.WriteLine("Visible month changed. new date:{0} prev:{1}.", e.NewDate.ToString("y"), e.PreviousDate.ToString("y"));
         }
-        
-		// This method is required in iPhoneOS 3.0
-		public override void OnActivated (UIApplication application)
-		{            
-		}
+
+        // This method is required in iPhoneOS 3.0
+        public override void OnActivated(UIApplication application)
+        {
+        }
+
 	}
 }

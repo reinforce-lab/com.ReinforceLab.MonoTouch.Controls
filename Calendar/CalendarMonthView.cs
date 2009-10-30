@@ -11,7 +11,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 	public class CalendarMonthView : UIView
 	{
 		#region Variables
-        public event EventHandler DaySelected;
+        public event EventHandler<DaySelectedEventArgs> DaySelected;
 
         DateTime  _month;
 		DayOfWeek _firstDayofWeek;
@@ -60,7 +60,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 		}
 		void Initialize ()
 		{            
-            BackgroundColor = UIColor.Clear;
+            BackgroundColor = UIColor.LightGray;
 
             _month          = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             //SelectedDate    = DateTime.MinValue;
@@ -74,7 +74,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         {            
             int days = (7 + (int)_month.DayOfWeek - (int)_firstDayofWeek) % 7;            
             float height=  CalendarView.DAYVIEW_HEIGHT * (float)Math.Ceiling((double)(DateTime.DaysInMonth(_month.Year, _month.Month) + days) / 7);
-            Debug.WriteLine("\tCalendarMonthView: getFrameHeight() height:{0}, days:{1}, _firstDayOfWeek:{2}, _month.DayOfWeek:{3}, _month:{4}.", height, days, (int)_firstDayofWeek, (int)_month.DayOfWeek, _month);            
+            //Debug.WriteLine("\tCalendarMonthView: getFrameHeight() height:{0}, days:{1}, _firstDayOfWeek:{2}, _month.DayOfWeek:{3}, _month:{4}.", height, days, (int)_firstDayofWeek, (int)_month.DayOfWeek, _month);            
             return height;                
         }
         void setFrameHeight()
@@ -125,18 +125,28 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
                 };
                 dayView.IsActive = (days[i].Year == _month.Year) && (days[i].Month == _month.Month);
                 dayView.IsToday  = (days[i].Year == DateTime.Today.Year) && (days[i].Month == DateTime.Today.Month) && (days[i].Day == DateTime.Today.Day);
-                dayView.Clicked += new EventHandler(_dayViewClicked);
+                //dayView.Clicked += new EventHandler(_dayViewClicked);
                 Add(dayView);                
                 dayViews.Add(dayView);
             }
             _dayViews = dayViews.ToArray();            
         }
+        void selectDay(UITouch touch, TouchMode tmode)
+        {            
+            PointF point = touch.LocationInView(this);
+            Debug.WriteLine("\tCalendarMonthView: point: {0}. touch.view: {1}, mode: {2}. exclusible touch:{3}.", point, touch.View.GetType(), tmode, this.ExclusiveTouch);
+            
+            int dx = (int)point.X / (int)CalendarView.DAYVIEW_WIDTH;
+            int dy = (int)point.Y / (int)CalendarView.DAYVIEW_HEIGHT;
+            int index = dx + 7 * dy;
 
-		void _dayViewClicked(Object sender, EventArgs arg)
-		{
-			if(null != DaySelected)
-				DaySelected.Invoke(sender, arg);
-		}
+            if (index < _dayViews.Length)
+            {
+                // invoke day selected event
+                if (null != DaySelected)
+                    DaySelected.Invoke(_dayViews[index], new DaySelectedEventArgs(tmode));
+            }         
+        }
 		#endregion
 		
 		#region override method
@@ -147,7 +157,29 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             if (null == _dayViews)
                 buildDayViews();
         }
-		#endregion
+        public override void TouchesBegan(NSSet touches, UIEvent evt)
+        {
+            base.TouchesBegan(touches, evt);                        
+            selectDay((UITouch) touches.AnyObject, TouchMode.Began);            
+        }
+        public override void  TouchesCancelled(NSSet touches, UIEvent evt)
+        {
+ 	        base.TouchesCancelled(touches, evt);            
+            selectDay((UITouch)touches.AnyObject, TouchMode.Canceled);             
+        }
+        public override void TouchesMoved(NSSet touches, UIEvent evt)
+        {
+            base.TouchesMoved(touches, evt);                        
+            selectDay((UITouch) touches.AnyObject, TouchMode.Moved);
+            //Debug.WriteLine("NextResponder is {0}.", this.NextResponder.GetType());
+            //this.NextResponder.TouchesMoved(touches, evt);
+        }
+        public override void TouchesEnded(NSSet touches, UIEvent evt)
+        {
+            base.TouchesEnded(touches, evt);            
+            selectDay((UITouch) touches.AnyObject, TouchMode.Ended);             
+        }
+        #endregion
 
 	}
 }

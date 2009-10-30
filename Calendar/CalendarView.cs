@@ -21,7 +21,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         public const float DAYVIEW_HEIGHT  = 45f;
 
         const double ANIMATION_DURATION = 0.3;
-        const double ANIMATION_DELAY = 0.1;
+        const double ANIMATION_DELAY    = 0.1;
 
         UILabel   _titleLabel;
         UILabel[] _daysLabel;
@@ -33,7 +33,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         #region Events
         //public event DayRenderEventHandler DayRender;
         //public event EventHandler             SelectionChanged;
-        public event EventHandler DaySelected;
+        public event EventHandler<DaySelectedEventArgs> DaySelected;
         public event MonthChangedEventHandler VisibleMonthChanged;        
         #endregion
 
@@ -98,6 +98,11 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             _monthView = createMonthView(DateTime.Now);
             _scollView = new UIScrollView(new RectangleF(0, TITLE_HEIGHT, MONTHVIEW_WIDTH, _monthView.Frame.Height));
             _scollView.BackgroundColor = UIColor.Clear;
+            //_scollView.UserInteractionEnabled = false;
+            _scollView.ShowsVerticalScrollIndicator = false;
+            _scollView.ShowsHorizontalScrollIndicator = false;
+            _scollView.ScrollEnabled = false;
+            
             Add(_scollView);
             _scollView.Add(_monthView);
 
@@ -155,7 +160,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         {
             var mv = new CalendarMonthView(new RectangleF(0, 0, MONTHVIEW_WIDTH, DAYVIEW_HEIGHT * 6));
             mv.Month = month;            
-            mv.DaySelected +=new EventHandler(_DaySelected);
+            mv.DaySelected +=new EventHandler<DaySelectedEventArgs>(_DaySelected);
             return mv;     
         }
         void updateDayLabels() 
@@ -177,8 +182,10 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         {
             UserInteractionEnabled = false;
 
+            Frame = new RectangleF(Frame.Location, new SizeF(MONTHVIEW_WIDTH, _nextMonthView.Frame.Height + TITLE_HEIGHT));
+
             // animation
-            UIView.BeginAnimations("month view showing");
+            UIView.BeginAnimations("month view scrolling");
             UIView.SetAnimationDuration(ANIMATION_DURATION);
             UIView.SetAnimationDelay(ANIMATION_DELAY);
             UIView.SetAnimationDelegate(this);
@@ -187,11 +194,10 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             _titleLabel.Text     = _nextMonthView.Month.ToString("y");
             _monthView.Frame     = new RectangleF(_monthView.Frame.X, _monthView.Frame.Y + distance, _monthView.Frame.Width, _monthView.Frame.Height);
             _nextMonthView.Frame = new RectangleF(_nextMonthView.Frame.X, _nextMonthView.Frame.Y + distance, _nextMonthView.Frame.Width, _nextMonthView.Frame.Height);            
-            _scollView.Frame     = new RectangleF(_scollView.Frame.Location, new SizeF(MONTHVIEW_WIDTH, _monthView.Frame.Height));
-                       
+            _scollView.Frame     = new RectangleF(_scollView.Frame.Location, new SizeF(MONTHVIEW_WIDTH, _nextMonthView.Frame.Height));            
+           
             UIView.CommitAnimations();
-
-            Frame = new RectangleF(Frame.Location, new SizeF(MONTHVIEW_WIDTH, _scollView.Frame.Height + TITLE_HEIGHT));
+            
             SetNeedsDisplay();                        
             //BringSubviewToFront(monthView);
             //Frame = new RectangleF(Frame.Location, new SizeF(MONTHVIEW_WIDTH, monthView.Frame.Height + TITLE_HEIGHT));
@@ -217,10 +223,10 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 
             _nextMonthView = createMonthView(_monthView.Month.AddMonths(-1));
             _nextMonthView.FirstDayOfWeek = _monthView.FirstDayOfWeek;
-            _nextMonthView.Frame = new RectangleF(_nextMonthView.Frame.X, _nextMonthView.Frame.Y - _monthView.Frame.Height , _nextMonthView.Frame.Width, _nextMonthView.Frame.Height); 
+            _nextMonthView.Frame = new RectangleF(_nextMonthView.Frame.X, _nextMonthView.Frame.Y - _nextMonthView.Frame.Height , _nextMonthView.Frame.Width, _nextMonthView.Frame.Height); 
             _scollView.Add(_nextMonthView);            
 
-            scrollCalendar(_monthView.Frame.Height);
+            scrollCalendar(_nextMonthView.Frame.Height);
 
             invokeVisibleMonthChanged(_monthView.Month, prevMonth);            
         }
@@ -239,10 +245,13 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 
             UserInteractionEnabled = true;
         }        
-        void _DaySelected(object sender, EventArgs e)
+        void _DaySelected(object sender, DaySelectedEventArgs e)
         {
+            if (null != DaySelected)
+                DaySelected.Invoke(sender, e);
+            /*
             var dayView = sender as CalendarDayView;
-            if ( dayView.Day.Month != _monthView.Month.Month)
+            if (dayView.Day.Month != _monthView.Month.Month)
             {
                 if (dayView.Day > _monthView.Month)
                     moveToNextMonth();
@@ -251,18 +260,36 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             }
             else
             {
-                if (null != DaySelected)
-                    DaySelected.Invoke(sender, e);
-            }
+            }*/
         }
         #endregion
-               
+
+        #region Public methods
+        public void MoveToNextMonth()
+        {
+            moveToNextMonth();
+        }
+        public void MoveToPrevMonth()
+        {
+            moveToPrevMonth();
+        }
+        #endregion
+
         #region override methods
         public override void Draw(RectangleF rect)
         {
             base.Draw(rect);
             drawTitle();            
         }
+        /*
+        public override void TouchesMoved(NSSet touches, UIEvent evt)
+        {
+            base.TouchesMoved(touches, evt);
+            //selectDay(touches.ToArray<UITouch>(), TouchMode.Moved);
+            var touch = (UITouch)evt.TouchesForView(this).AnyObject;           
+            //Debug.WriteLine("\tCalendarMonthView: touches moved count {0}.", touches.Count);
+            Debug.WriteLine("\tCalendarView: touches moved {0}.", touch.LocationInView(this));
+        } */ 
         #endregion
     }	
 }
