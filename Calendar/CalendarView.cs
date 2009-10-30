@@ -38,6 +38,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         #endregion
 
         #region Properties        
+        public CalendarMonthView MonthView { get { return _monthView; } }
         public DayOfWeek FirstDayOfWeek 
         {
             get {return _monthView.FirstDayOfWeek;}
@@ -213,22 +214,16 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             _nextMonthView.Frame = new RectangleF(_nextMonthView.Frame.X , _nextMonthView.Frame.Y + _monthView.Frame.Height, _nextMonthView.Frame.Width, _nextMonthView.Frame.Height);
             _scollView.Add(_nextMonthView);            
             
-            scrollCalendar(-1 * _monthView.Frame.Height);
-
-            invokeVisibleMonthChanged(_monthView.Month, prevMonth);            
+            scrollCalendar(-1 * _monthView.Frame.Height);            
         }        
         void moveToPrevMonth()
         {
-            var prevMonth = _monthView.Month;
-
             _nextMonthView = createMonthView(_monthView.Month.AddMonths(-1));
             _nextMonthView.FirstDayOfWeek = _monthView.FirstDayOfWeek;
             _nextMonthView.Frame = new RectangleF(_nextMonthView.Frame.X, _nextMonthView.Frame.Y - _nextMonthView.Frame.Height , _nextMonthView.Frame.Width, _nextMonthView.Frame.Height); 
-            _scollView.Add(_nextMonthView);            
+            _scollView.Add(_nextMonthView);
 
-            scrollCalendar(_nextMonthView.Frame.Height);
-
-            invokeVisibleMonthChanged(_monthView.Month, prevMonth);            
+            scrollCalendar(_nextMonthView.Frame.Height);            
         }
         
         void invokeVisibleMonthChanged(DateTime curDate, DateTime prevDate)
@@ -239,9 +234,13 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         [Export(_ScrollAnimationStoppedHandler)]
         void _AnimationStopped()
         {
+            DateTime prevMonth = _monthView.Month;            
+
             _monthView.RemoveFromSuperview();
             _monthView = _nextMonthView;
             _nextMonthView = null;
+
+            invokeVisibleMonthChanged(_monthView.Month, prevMonth);
 
             UserInteractionEnabled = true;
         }        

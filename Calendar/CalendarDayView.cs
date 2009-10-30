@@ -184,14 +184,16 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
 			base.TouchesBegan (touches, evt);
+            Debug.WriteLine("\tCalendarDayView: TouchesBegan day:{0}.", _day);
             //NextResponder.TouchesBegan(touches, evt);
-			invokeClickedEvent();
+			//invokeClickedEvent();
 		}        
 		public override void TouchesMoved (NSSet touches, UIEvent evt)
 		{
 			base.TouchesMoved (touches, evt);
+            Debug.WriteLine("\tCalendarDayView: TouchesMoved day:{0}.", _day);
             //NextResponder.TouchesMoved(touches, evt);
-			invokeClickedEvent();
+			//invokeClickedEvent();
 		}
         */
 		#endregion

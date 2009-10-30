@@ -20,28 +20,74 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 	[Register("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
-        UIWindow _window;
+        CalendarDayView _currentDay;
+        CalendarView _calendarView;        
+        UIWindow     _window;
 
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			_window = new UIWindow(UIScreen.MainScreen.Bounds);
-            var view = new CalendarView(new RectangleF(0, 20, 320, 300));
+            _calendarView = new CalendarView(new RectangleF(0, 20, 320, 300));
             //view.FirstDayOfWeek = DayOfWeek.Wednesday;
-            view.VisibleMonthChanged += new MonthChangedEventHandler(view_VisibleMonthChanged);
-            view.DaySelected += new EventHandler<DaySelectedEventArgs>(view_DaySelected);            
-            _window.Add(view);            
+            _calendarView.VisibleMonthChanged += new MonthChangedEventHandler(view_VisibleMonthChanged);
+            _calendarView.DaySelected += new EventHandler<DaySelectedEventArgs>(view_DaySelected);            
+            _window.Add(_calendarView);            
 			_window.MakeKeyAndVisible ();
 			return true;
 		}
         void view_DaySelected(object sender, DaySelectedEventArgs e)
         {
-            Debug.WriteLine("DayView is selected. date: {0}, mode: {1}.", (sender as CalendarDayView).Day.Day, e.Mode);
+            Debug.WriteLine("DayView is selected. date: {0}, mode: {1}.", e.DayView.Day.Date, e.Mode);
+            if (e.DayView.Day.Month != e.MonthView.Month.Month)
+            {
+                if (e.Mode == TouchMode.Ended)
+                {
+                    _currentDay = e.DayView;
+                    if (e.DayView.Day.Month > e.MonthView.Month.Month)
+                        _calendarView.MoveToNextMonth();
+                    else
+                        _calendarView.MoveToPrevMonth();
+                }
+            }
+            else
+            {
+                switch (e.Mode)
+                {
+                    case TouchMode.Canceled: break;
+                    case TouchMode.Began: break;
+                    case TouchMode.Ended:
+                        if (null != _currentDay)
+                            _currentDay.IsSelected = false;
+                        e.DayView.IsSelected = true;
+                        _currentDay = e.DayView;
+                        break;
+                    case TouchMode.Moved:
+                        if (null != _currentDay && _currentDay.Day != e.DayView.Day)
+                            _currentDay.IsSelected = false;
+                        e.DayView.IsSelected = true;
+                        _currentDay = e.DayView;
+                        break;
+                }
+            }
         }
 
         void view_VisibleMonthChanged(object sender, MonthChangedEventArgs e)
         {
             Debug.WriteLine("Visible month changed. new date:{0} prev:{1}.", e.NewDate.ToString("y"), e.PreviousDate.ToString("y"));
+            if (null != _currentDay)
+            {
+                var cview = sender as CalendarView;
+                foreach (var day in cview.MonthView.DayViews)
+                {
+                    if (day.Day == _currentDay.Day)
+                    {
+                        day.IsSelected = true;
+                        _currentDay = day;
+                        break;
+                    }
+                }
+            }
         }
 
         // This method is required in iPhoneOS 3.0

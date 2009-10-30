@@ -19,6 +19,8 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 		#endregion
 				
 		#region Properties
+        public CalendarDayView[] DayViews { get { return _dayViews; } }
+
         /// <summary>
         /// get or set month (1st day of the month). This property can be set until this view drawin.
         /// </summary>
@@ -134,7 +136,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         void selectDay(UITouch touch, TouchMode tmode)
         {            
             PointF point = touch.LocationInView(this);
-            Debug.WriteLine("\tCalendarMonthView: point: {0}. touch.view: {1}, mode: {2}. exclusible touch:{3}.", point, touch.View.GetType(), tmode, this.ExclusiveTouch);
+            //Debug.WriteLine("\tCalendarMonthView: point: {0}. touch.view: {1}, mode: {2}. exclusible touch:{3}.", point, touch.View.GetType(), tmode, this.ExclusiveTouch);
             
             int dx = (int)point.X / (int)CalendarView.DAYVIEW_WIDTH;
             int dy = (int)point.Y / (int)CalendarView.DAYVIEW_HEIGHT;
@@ -144,7 +146,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             {
                 // invoke day selected event
                 if (null != DaySelected)
-                    DaySelected.Invoke(_dayViews[index], new DaySelectedEventArgs(tmode));
+                    DaySelected.Invoke(this, new DaySelectedEventArgs(this, _dayViews[index], tmode));
             }         
         }
 		#endregion
@@ -171,8 +173,6 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         {
             base.TouchesMoved(touches, evt);                        
             selectDay((UITouch) touches.AnyObject, TouchMode.Moved);
-            //Debug.WriteLine("NextResponder is {0}.", this.NextResponder.GetType());
-            //this.NextResponder.TouchesMoved(touches, evt);
         }
         public override void TouchesEnded(NSSet touches, UIEvent evt)
         {
