@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
+using MonoTouch.ObjCRuntime;
 
 namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 {
     public class CalendarView : UIView
     {
         #region Variables
+        const String _ScrollAnimationStoppedHandler = "_ScrollAnimationStoppedHandler";
         readonly String[] DayLabels = new String[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
         public const float TITLE_HEIGHT    = 44f;
@@ -24,7 +26,8 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         UILabel   _titleLabel;
         UILabel[] _daysLabel;
         UIButton _leftButton, _rightButton;
-        CalendarMonthView     _monthView;        
+        CalendarMonthView     _monthView, _nextMonthView;
+        UIScrollView _scollView;
         #endregion
 
         #region Events
@@ -91,9 +94,12 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         void initialize()
         {
             BackgroundColor = UIColor.Clear;
-            
+
             _monthView = createMonthView(DateTime.Now);
-            Add(_monthView);
+            _scollView = new UIScrollView(new RectangleF(0, TITLE_HEIGHT, MONTHVIEW_WIDTH, _monthView.Frame.Height));
+            _scollView.BackgroundColor = UIColor.Clear;
+            Add(_scollView);
+            _scollView.Add(_monthView);
 
             buildButtons();
             buildTitleLabel();            
@@ -147,7 +153,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         }
         CalendarMonthView createMonthView(DateTime month)
         {
-            var mv = new CalendarMonthView(new RectangleF(0, TITLE_HEIGHT, MONTHVIEW_WIDTH, DAYVIEW_HEIGHT * 6));
+            var mv = new CalendarMonthView(new RectangleF(0, 0, MONTHVIEW_WIDTH, DAYVIEW_HEIGHT * 6));
             mv.Month = month;            
             mv.DaySelected +=new EventHandler(_DaySelected);
             return mv;     
@@ -159,32 +165,34 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         }
         void updateFrame()
         {
-            Frame = new RectangleF(Frame.Location, new SizeF(MONTHVIEW_WIDTH, _monthView.Frame.Height + TITLE_HEIGHT));
+            _scollView.Frame = new RectangleF(_scollView.Frame.Location, new SizeF( MONTHVIEW_WIDTH, _monthView.Frame.Height));
+            Frame = new RectangleF(Frame.Location, new SizeF(MONTHVIEW_WIDTH, _scollView.Frame.Height + TITLE_HEIGHT));
         }
         void drawTitle()
         {
             var img = UIImage.FromFile("image/topbar.png");
             img.Draw(new PointF(0, 0));
         }
-        void scrollCalendar(CalendarMonthView view, float distance)
+        void scrollCalendar(float distance)
         {
             UserInteractionEnabled = false;
 
-            // animation            
-            UIView.BeginAnimations("next month calendar showing");
+            // animation
+            UIView.BeginAnimations("month view showing");
             UIView.SetAnimationDuration(ANIMATION_DURATION);
             UIView.SetAnimationDelay(ANIMATION_DELAY);
             UIView.SetAnimationDelegate(this);
-            UIView.SetAnimationDidStopSelector(new MonoTouch.ObjCRuntime.Selector("_AnimationStopped"));
+            UIView.SetAnimationDidStopSelector(new Selector(_ScrollAnimationStoppedHandler));
             
-            _titleLabel.Text = view.Month.ToString("y");                        
-            Frame = new RectangleF(Frame.Location, new SizeF(MONTHVIEW_WIDTH, view.Frame.Height + TITLE_HEIGHT));            
-            view.Frame = new RectangleF(view.Frame.X + distance, view.Frame.Y, view.Frame.Width, view.Frame.Height);
-
+            _titleLabel.Text     = _nextMonthView.Month.ToString("y");
+            _monthView.Frame     = new RectangleF(_monthView.Frame.X, _monthView.Frame.Y + distance, _monthView.Frame.Width, _monthView.Frame.Height);
+            _nextMonthView.Frame = new RectangleF(_nextMonthView.Frame.X, _nextMonthView.Frame.Y + distance, _nextMonthView.Frame.Width, _nextMonthView.Frame.Height);            
+            _scollView.Frame     = new RectangleF(_scollView.Frame.Location, new SizeF(MONTHVIEW_WIDTH, _monthView.Frame.Height));
+                       
             UIView.CommitAnimations();
 
-            //FIXME
-            SetNeedsDisplay();
+            Frame = new RectangleF(Frame.Location, new SizeF(MONTHVIEW_WIDTH, _scollView.Frame.Height + TITLE_HEIGHT));
+            SetNeedsDisplay();                        
             //BringSubviewToFront(monthView);
             //Frame = new RectangleF(Frame.Location, new SizeF(MONTHVIEW_WIDTH, monthView.Frame.Height + TITLE_HEIGHT));
            
@@ -194,15 +202,12 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         {
             var prevMonth = _monthView.Month;
 
-            var nextMonth = createMonthView(_monthView.Month.AddMonths(1));            
-            nextMonth.FirstDayOfWeek = _monthView.FirstDayOfWeek;
-            nextMonth.Frame = new RectangleF(nextMonth.Frame.X + MONTHVIEW_WIDTH, nextMonth.Frame.Y, nextMonth.Frame.Width, nextMonth.Frame.Height);
-            Add(nextMonth);
+            _nextMonthView = createMonthView(_monthView.Month.AddMonths(1));                        
+            _nextMonthView.FirstDayOfWeek = _monthView.FirstDayOfWeek;
+            _nextMonthView.Frame = new RectangleF(_nextMonthView.Frame.X , _nextMonthView.Frame.Y + _monthView.Frame.Height, _nextMonthView.Frame.Width, _nextMonthView.Frame.Height);
+            _scollView.Add(_nextMonthView);            
             
-            scrollCalendar(nextMonth, -1 * MONTHVIEW_WIDTH);
-
-            _monthView.RemoveFromSuperview();
-            _monthView = nextMonth;
+            scrollCalendar(-1 * _monthView.Frame.Height);
 
             invokeVisibleMonthChanged(_monthView.Month, prevMonth);            
         }        
@@ -210,15 +215,12 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         {
             var prevMonth = _monthView.Month;
 
-            var nextMonth = createMonthView(_monthView.Month.AddMonths(-1));
-            nextMonth.FirstDayOfWeek = _monthView.FirstDayOfWeek;
-            nextMonth.Frame = new RectangleF(nextMonth.Frame.X - MONTHVIEW_WIDTH, nextMonth.Frame.Y, nextMonth.Frame.Width, nextMonth.Frame.Height); 
-            Add(nextMonth);
-            
-            scrollCalendar(nextMonth, MONTHVIEW_WIDTH);
+            _nextMonthView = createMonthView(_monthView.Month.AddMonths(-1));
+            _nextMonthView.FirstDayOfWeek = _monthView.FirstDayOfWeek;
+            _nextMonthView.Frame = new RectangleF(_nextMonthView.Frame.X, _nextMonthView.Frame.Y - _monthView.Frame.Height , _nextMonthView.Frame.Width, _nextMonthView.Frame.Height); 
+            _scollView.Add(_nextMonthView);            
 
-            _monthView.RemoveFromSuperview();
-            _monthView = nextMonth;
+            scrollCalendar(_monthView.Frame.Height);
 
             invokeVisibleMonthChanged(_monthView.Month, prevMonth);            
         }
@@ -228,9 +230,13 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             if(null != VisibleMonthChanged)
                 VisibleMonthChanged.Invoke(this, new MonthChangedEventArgs(curDate, prevDate));
         }
-        [Export("_AnimationStopped")]
+        [Export(_ScrollAnimationStoppedHandler)]
         void _AnimationStopped()
         {
+            _monthView.RemoveFromSuperview();
+            _monthView = _nextMonthView;
+            _nextMonthView = null;
+
             UserInteractionEnabled = true;
         }        
         void _DaySelected(object sender, EventArgs e)
