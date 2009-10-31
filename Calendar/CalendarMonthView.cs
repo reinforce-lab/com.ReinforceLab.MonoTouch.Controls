@@ -64,8 +64,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 		{            
             BackgroundColor = UIColor.LightGray;
 
-            _month          = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            //SelectedDate    = DateTime.MinValue;
+            _month          = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);            
             _firstDayofWeek = DayOfWeek.Sunday;
             setFrameHeight();
 		}
@@ -121,13 +120,12 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             List<CalendarDayView> dayViews = new List<CalendarDayView>();
             for(int i =0; i < days.Count; i++)
             {
-                var dayView = new CalendarDayView(new RectangleF((i % 7) * CalendarView.DAYVIEW_WIDTH, CalendarView.DAYVIEW_HEIGHT * (int)(i / 7), CalendarView.DAYVIEW_WIDTH, CalendarView.DAYVIEW_HEIGHT)) 
-                {
-                    Day = days[i]
-                };
+                var dayView = CreateDayView(new RectangleF((i % 7) * CalendarView.DAYVIEW_WIDTH, CalendarView.DAYVIEW_HEIGHT * (int)(i / 7), CalendarView.DAYVIEW_WIDTH, CalendarView.DAYVIEW_HEIGHT));
+                
+                dayView.Day      = days[i];
                 dayView.IsActive = (days[i].Year == _month.Year) && (days[i].Month == _month.Month);
                 dayView.IsToday  = (days[i].Year == DateTime.Today.Year) && (days[i].Month == DateTime.Today.Month) && (days[i].Day == DateTime.Today.Day);
-                //dayView.Clicked += new EventHandler(_dayViewClicked);
+                
                 Add(dayView);                
                 dayViews.Add(dayView);
             }
@@ -150,8 +148,15 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             }         
         }
 		#endregion
-		
-		#region override method
+
+        #region protected methods
+        protected virtual CalendarDayView CreateDayView(RectangleF rect)
+        {
+            return new CalendarDayView(rect);
+        }
+        #endregion
+
+        #region public methods
         public override void Draw(RectangleF rect)
         {
             base.Draw(rect); 

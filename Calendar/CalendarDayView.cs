@@ -11,8 +11,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 	public class CalendarDayView : UIView
 	{
         #region Variables
-        UILabel _label;
-        //public event EventHandler Clicked;
+        protected UILabel _label;        
         #endregion
 		
 		#region Properties
@@ -114,16 +113,8 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 		}		
 		#endregion
 		
-		#region Private methods
-        /*
-		void invokeClickedEvent()
-		{
-            Debug.WriteLine("\tCalendarDayView: ClickedEvent {0}.", Day.ToShortDateString());
-			if(null != Clicked)
-				Clicked.Invoke(this, null);
-		}
-         * */
-        void drawBackGroundColorAndImage()
+		#region Protected methods
+        protected virtual void DrawBackGroundColorAndImage()
         {            
             UIImage img;			
 
@@ -154,7 +145,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             }
             img.Draw(new PointF(0, 0));            
         }
-        void drawMarker()
+        protected virtual void DrawMarker()
         {                    
             if (_isMarked)
             {
@@ -175,27 +166,10 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 		#region override method        
 		public override void Draw (RectangleF rect)
 		{
-			base.Draw (rect);
-            //Debug.WriteLine("\tCalendarDayView: Draw() day:{0}.", _day);
-            drawBackGroundColorAndImage();            
-            drawMarker();
+			base.Draw (rect);            
+            DrawBackGroundColorAndImage();
+            DrawMarker();
 		}
-        /*
-		public override void TouchesBegan (NSSet touches, UIEvent evt)
-		{
-			base.TouchesBegan (touches, evt);
-            Debug.WriteLine("\tCalendarDayView: TouchesBegan day:{0}.", _day);
-            //NextResponder.TouchesBegan(touches, evt);
-			//invokeClickedEvent();
-		}        
-		public override void TouchesMoved (NSSet touches, UIEvent evt)
-		{
-			base.TouchesMoved (touches, evt);
-            Debug.WriteLine("\tCalendarDayView: TouchesMoved day:{0}.", _day);
-            //NextResponder.TouchesMoved(touches, evt);
-			//invokeClickedEvent();
-		}
-        */
 		#endregion
 	}
 }

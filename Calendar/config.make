@@ -6,7 +6,6 @@ FILES =  \
 	CalendarMonthView.cs \
 	CalendarSelectionMode.cs \
 	CalendarView.cs \
-	DayRenderEventArgs.cs \
 	DaySelectedEventArgs.cs \
 	Main.cs \
 	MonthChangedEventArgs.cs \
