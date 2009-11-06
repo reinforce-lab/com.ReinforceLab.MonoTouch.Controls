@@ -7,8 +7,9 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 
-namespace net.ReinforceLab.MonoTouch.Controls.Calendar
+namespace net.ReinforceLab.iPhone.Controls.Calendar
 {
+	[Register("CalendarView")]
     public class CalendarView : UIView
     {
         #region Variables
@@ -86,6 +87,10 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         #endregion
 
         #region Constructors
+		public CalendarView(IntPtr handle) : base(handle)
+		{
+			initialize();
+		}
         public CalendarView(RectangleF rect) : base(rect)
         {
             initialize();
@@ -117,12 +122,12 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         void buildButtons()
         {            
             _rightButton = new UIButton(new RectangleF(MONTHVIEW_WIDTH - 56, 0, 44, 42));
-            _rightButton.SetImage(UIImage.FromFile("image/rightarrow.png"), UIControlState.Normal);
+            _rightButton.SetImage(UIImage.FromFile("images/rightarrow.png"), UIControlState.Normal);
             _rightButton.TouchUpInside += delegate { moveToNextMonth(); };
             AddSubview(_rightButton);
 
             _leftButton = new UIButton(new RectangleF(10, 0, 44, 42));
-            _leftButton.SetImage(UIImage.FromFile("image/leftarrow.png"), UIControlState.Normal);
+            _leftButton.SetImage(UIImage.FromFile("images/leftarrow.png"), UIControlState.Normal);
             _leftButton.TouchUpInside += delegate { moveToPrevMonth(); };
             AddSubview(_leftButton);
         }
@@ -166,7 +171,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         }
         void drawTitle()
         {
-            var img = UIImage.FromFile("image/topbar.png");
+            var img = UIImage.FromFile("images/topbar.png");
             img.Draw(new PointF(0, 0));
         }
         void scrollCalendar(float distance)
@@ -194,8 +199,6 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         }
         void moveToNextMonth()
         {
-            var prevMonth = _monthView.Month;
-
             _nextMonthView = CreateMonthView(_monthView.Month.AddMonths(1));                        
             _nextMonthView.FirstDayOfWeek = _monthView.FirstDayOfWeek;
             _nextMonthView.Frame = new RectangleF(_nextMonthView.Frame.X , _nextMonthView.Frame.Y + _monthView.Frame.Height, _nextMonthView.Frame.Width, _nextMonthView.Frame.Height);

@@ -1,0 +1,35 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" ctype="Workspace" />
+  <MonoDevelop.Ide.DebuggingService>
+    <BreakpointStore>
+      <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/RootViewController.cs" line="0" />
+      <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/RootViewController.xib.cs" line="46" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Calendar/CalendarDayView.cs" ctype="Workbench">
+    <Files>
+      <File FileName="アセンブリ ブラウザ" />
+      <File FileName="Calendar/CalendarDayView.cs" Line="138" Column="22" />
+      <File FileName="ControlsDemo/Main.cs" Line="17" Column="1" />
+      <File FileName="ControlsDemo/MainWindow.xib.designer.cs" Line="1" Column="1" />
+      <File FileName="ControlsDemo/DataSource.cs" Line="1" Column="1" />
+      <File FileName="ControlsDemo/RootViewController.xib.cs" Line="44" Column="4" />
+      <File FileName="ControlsDemo/RootViewController.xib.designer.cs" Line="39" Column="75" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Calendar_md" expanded="True" />
+          <Node name="ControlsDemo_md" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="images" selected="True" />
+            <Node name="RootViewController.xib" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

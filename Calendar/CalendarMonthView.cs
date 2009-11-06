@@ -6,7 +6,7 @@ using System.Drawing;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace net.ReinforceLab.MonoTouch.Controls.Calendar
+namespace net.ReinforceLab.iPhone.Controls.Calendar
 {	
 	public class CalendarMonthView : UIView
 	{

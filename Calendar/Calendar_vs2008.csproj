@@ -85,13 +85,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="image\datecell.png" />
-    <Content Include="image\datecellselected.png" />
-    <Content Include="image\leftarrow.png" />
-    <Content Include="image\rightarrow.png" />
-    <Content Include="image\shadow.png" />
-    <Content Include="image\today.png" />
-    <Content Include="image\todayselected.png" />
-    <Content Include="image\topbar.png" />
+    <Content Include="images\datecell.png" />
+    <Content Include="images\datecellselected.png" />
+    <Content Include="images\leftarrow.png" />
+    <Content Include="images\rightarrow.png" />
+    <Content Include="images\shadow.png" />
+    <Content Include="images\today.png" />
+    <Content Include="images\todayselected.png" />
+    <Content Include="images\topbar.png" />
   </ItemGroup>
 </Project>

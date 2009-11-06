@@ -1,42 +1,60 @@
+
 using System;
-using System.IO;
-using System.Text;
-using System.Diagnostics;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System.Diagnostics;
 
-namespace net.ReinforceLab.iPhone.Controls.Calendar
+using net.ReinforceLab.iPhone.Controls.Calendar;
+
+namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
 {
-	public class Application
+	public partial class CalendarController : UIViewController
 	{
-		[STAThread]
-		public static void Main (string[] args)
+		#region Constructors
+
+		// The IntPtr and NSCoder constructors are required for controllers that need 
+		// to be able to be created from a xib rather than from managed code
+
+		public CalendarController (IntPtr handle) : base(handle)
 		{
-            UIApplication.Main(args, null, "AppDelegate");
+			Initialize ();
 		}
-	}
 
-	[Register("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
-        CalendarDayView _currentDay;
-        CalendarView _calendarView;        
-        UIWindow     _window;
-
-		// This method is invoked when the application has loaded its UI and its ready to run
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+		[Export("initWithCoder:")]
+		public CalendarController (NSCoder coder) : base(coder)
 		{
-			_window = new UIWindow(UIScreen.MainScreen.Bounds);
-            _calendarView = new CalendarView(new RectangleF(0, 20, 320, 300));
+			Initialize ();
+		}
+
+		public CalendarController () : base("CalendarController", null)
+		{
+			Initialize ();
+		}
+
+		void Initialize ()
+		{
+		}
+		
+		#endregion
+		
+        CalendarView _calendarView;        
+		CalendarDayView _currentDay;
+
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+			          
+			_calendarView = new CalendarView(new RectangleF(0, 20, 320, 300));
             //view.FirstDayOfWeek = DayOfWeek.Wednesday;
             _calendarView.VisibleMonthChanged += new MonthChangedEventHandler(view_VisibleMonthChanged);
-            _calendarView.DaySelected += new EventHandler<DaySelectedEventArgs>(view_DaySelected);            
-            _window.Add(_calendarView);            
-			_window.MakeKeyAndVisible ();
-			return true;
+            _calendarView.DaySelected += new EventHandler<DaySelectedEventArgs>(view_DaySelected); 
+			
+			this.View.AddSubview(_calendarView);
 		}
+
         void view_DaySelected(object sender, DaySelectedEventArgs e)
         {
             Debug.WriteLine("DayView is selected. date: {0}, mode: {1}.", e.DayView.Day.Date, e.Mode);
@@ -44,7 +62,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
             {
                 if (e.Mode == TouchMode.Ended)
                 {
-                    _currentDay = e.DayView;
+					_currentDay = e.DayView;
                     if (e.DayView.Day.Month > e.MonthView.Month.Month)
                         _calendarView.MoveToNextMonth();
                     else
@@ -89,12 +107,6 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
                     }
                 }
             }
-        }
-
-        // This method is required in iPhoneOS 3.0
-        public override void OnActivated(UIApplication application)
-        {
-        }
-
+		}
 	}
 }

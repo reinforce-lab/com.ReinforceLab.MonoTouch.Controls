@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace net.ReinforceLab.MonoTouch.Controls.Calendar
+namespace net.ReinforceLab.iPhone.Controls.Calendar
 {
 	public class CalendarDayView : UIView
 	{
@@ -121,27 +121,27 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             if (!_isActive)
             {
                 _label.TextColor = UIColor.Gray;
-                img = UIImage.FromFile("image/datecell.png");
+                img = UIImage.FromFile("images/datecell.png");
             }
             else if (_isToday && _isSelected)
             {
                 _label.TextColor = UIColor.White;
-                img = UIImage.FromFile("image/todayselected.png");
+                img = UIImage.FromFile("images/todayselected.png");
             }
             else if (_isToday)
             {
                 _label.TextColor = UIColor.White;
-                img = UIImage.FromFile("image/today.png");
+                img = UIImage.FromFile("images/today.png");
             }
             else if (_isSelected)
             {
                 _label.TextColor = UIColor.White;
-                img = UIImage.FromFile("image/datecellselected.png");
+                img = UIImage.FromFile("images/datecellselected.png");
             }
             else
             {
                 _label.TextColor = UIColor.FromRGB(75, 92, 111);
-                img = UIImage.FromFile("image/datecell.png");
+                img = UIImage.FromFile("images/datecell.png");
             }
             img.Draw(new PointF(0, 0));            
         }
