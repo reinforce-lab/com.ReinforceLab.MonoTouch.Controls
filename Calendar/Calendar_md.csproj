@@ -73,21 +73,10 @@
     <Compile Include="Main.cs" />
     <Compile Include="DaySelectedEventArgs.cs" />
     <Compile Include="CalendarView.cs" />
-    <Compile Include="CalendarSelectionMode.cs" />
     <Compile Include="CalendarMonthView.cs" />
     <Compile Include="CalendarDayView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="images\topbar.png" />
-    <Content Include="images\todayselected.png" />
-    <Content Include="images\today.png" />
-    <Content Include="images\shadow.png" />
-    <Content Include="images\rightarrow.png" />
-    <Content Include="images\leftarrow.png" />
-    <Content Include="images\datecellselected.png" />
-    <Content Include="images\datecell.png" />
   </ItemGroup>
 </Project>

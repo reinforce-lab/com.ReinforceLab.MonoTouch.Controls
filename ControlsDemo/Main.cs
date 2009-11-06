@@ -1,6 +1,4 @@
-
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -9,31 +7,34 @@ namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
 {
 	public class Application
 	{
-		static void Main (string[] args)
+        [STAThread]
+		public static void Main (string[] args)
 		{
-			UIApplication.Main (args);
+			UIApplication.Main (args, null, "AppDelegate");
 		}
 	}
 
-	// The name AppDelegate is referenced in the MainWindow.xib file.
+	[Register("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
-		// This method is invoked when the application has loaded its UI and its ready to run
+        UIWindow               _window;
+        UINavigationController _navCtr;
+        MainViewController     _mainCtr;
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-		{
-			var rvc = new RootViewController();
-			navController.SetViewControllers(new UIViewController[] {rvc}, false);
-			
-			window.AddSubview(navController.View);
-			window.MakeKeyAndVisible ();
+		{                        
+            _mainCtr = new MainViewController();            
+            _navCtr  = new UINavigationController(_mainCtr);
+
+            _window = new UIWindow(UIScreen.MainScreen.Bounds);
+            _window.Add(_navCtr.View);			
+            _window.MakeKeyAndVisible ();
 			
 			return true;
 		}
-
-		// This method is required in iPhoneOS 3.0
+		
 		public override void OnActivated (UIApplication application)
 		{
 		}
-
 	}
 }

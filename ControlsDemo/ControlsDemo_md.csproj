@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>net.ReinforceLab.iPhone.Controls.ControlsDemo</RootNamespace>
-    <MainNibFile>MainWindow.xib</MainNibFile>
+    <!--    <MainNibFile>MainWindow.xib</MainNibFile> -->
     <AssemblyName>ControlsDemo_md</AssemblyName>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -66,27 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
-    <Compile Include="MainWindow.xib.designer.cs">
-      <DependentUpon>MainWindow.xib</DependentUpon>
-    </Compile>
-    <Compile Include="DataSource.cs" />
-    <Compile Include="RootViewController.xib.cs">
-      <DependentUpon>RootViewController.xib</DependentUpon>
-    </Compile>
-    <Compile Include="RootViewController.xib.designer.cs">
-      <DependentUpon>RootViewController.xib</DependentUpon>
-    </Compile>
-    <Compile Include="CalendarController.xib.cs">
-      <DependentUpon>CalendarController.xib</DependentUpon>
-    </Compile>
-    <Compile Include="CalendarController.xib.designer.cs">
-      <DependentUpon>CalendarController.xib</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="MainWindow.xib" />
-    <Page Include="RootViewController.xib" />
-    <Page Include="CalendarController.xib" />
+    <Compile Include="MainViewController.cs" />
+    <Compile Include="ControlList.cs" />
+    <Compile Include="CalendarController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -102,5 +84,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\topbar.png" />
+    <Content Include="images\todayselected.png" />
+    <Content Include="images\today.png" />
+    <Content Include="images\shadow.png" />
+    <Content Include="images\rightarrow.png" />
+    <Content Include="images\leftarrow.png" />
+    <Content Include="images\datecellselected.png" />
+    <Content Include="images\datecell.png" />
   </ItemGroup>
 </Project>

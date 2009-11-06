@@ -11,6 +11,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
 {
 	public class Application
 	{
+        /*
 		[STAThread]
 		public static void Main (string[] args)
 		{
@@ -95,6 +96,6 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
         public override void OnActivated(UIApplication application)
         {
         }
-
+*/
 	}
 }

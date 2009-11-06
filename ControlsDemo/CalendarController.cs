@@ -1,68 +1,38 @@
-
 using System;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using System.Text;
 using System.Diagnostics;
+
+using MonoTouch.UIKit;
+using MonoTouch.Foundation;
 
 using net.ReinforceLab.iPhone.Controls.Calendar;
 
 namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
 {
-	public partial class CalendarController : UIViewController
-	{
-		#region Constructors
+    class CalendarController : UIViewController
+    {
+        #region Variables
+        CalendarView _calendarView;
+        CalendarDayView _currentDay;        
+        #endregion
 
-		// The IntPtr and NSCoder constructors are required for controllers that need 
-		// to be able to be created from a xib rather than from managed code
+        #region Constructor
+        public CalendarController() : base()
+        { }
+        #endregion
 
-		public CalendarController (IntPtr handle) : base(handle)
-		{
-			Initialize ();
-		}
-
-		[Export("initWithCoder:")]
-		public CalendarController (NSCoder coder) : base(coder)
-		{
-			Initialize ();
-		}
-
-		public CalendarController () : base("CalendarController", null)
-		{
-			Initialize ();
-		}
-
-		void Initialize ()
-		{
-		}
-		
-		#endregion
-		
-        CalendarView _calendarView;        
-		CalendarDayView _currentDay;
-
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
-			          
-			_calendarView = new CalendarView(new RectangleF(0, 20, 320, 300));
-            //view.FirstDayOfWeek = DayOfWeek.Wednesday;
-            _calendarView.VisibleMonthChanged += new MonthChangedEventHandler(view_VisibleMonthChanged);
-            _calendarView.DaySelected += new EventHandler<DaySelectedEventArgs>(view_DaySelected); 
-			
-			this.View.AddSubview(_calendarView);
-		}
-
+        #region Private methods        		
         void view_DaySelected(object sender, DaySelectedEventArgs e)
         {
-            Debug.WriteLine("DayView is selected. date: {0}, mode: {1}.", e.DayView.Day.Date, e.Mode);
+            Debug.WriteLine(String.Format("DayView is selected. date: {0}, mode: {1}.", e.DayView.Day.Date, e.Mode));
             if (e.DayView.Day.Month != e.MonthView.Month.Month)
             {
                 if (e.Mode == TouchMode.Ended)
                 {
-					_currentDay = e.DayView;
+                    _currentDay = e.DayView;
                     if (e.DayView.Day.Month > e.MonthView.Month.Month)
                         _calendarView.MoveToNextMonth();
                     else
@@ -93,7 +63,7 @@ namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
 
         void view_VisibleMonthChanged(object sender, MonthChangedEventArgs e)
         {
-            Debug.WriteLine("Visible month changed. new date:{0} prev:{1}.", e.NewDate.ToString("y"), e.PreviousDate.ToString("y"));
+            Debug.WriteLine(String.Format("Visible month changed. new date:{0} prev:{1}.", e.NewDate.ToString("y"), e.PreviousDate.ToString("y")));
             if (null != _currentDay)
             {
                 var cview = sender as CalendarView;
@@ -107,6 +77,28 @@ namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
                     }
                 }
             }
-		}
-	}
+        }   
+        #endregion
+
+        #region Public methods
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            
+            _calendarView = new CalendarView(new RectangleF(0, 0, 320, 200));            
+            _calendarView.VisibleMonthChanged += new MonthChangedEventHandler(view_VisibleMonthChanged);
+            _calendarView.DaySelected += new EventHandler<DaySelectedEventArgs>(view_DaySelected);            
+            
+            View.Add(_calendarView);
+        }
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+        }
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+        }
+        #endregion
+    }
 }
