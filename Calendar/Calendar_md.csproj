@@ -70,7 +70,6 @@
   </ProjectExtensions>
   <ItemGroup>
     <Compile Include="MonthChangedEventArgs.cs" />
-    <Compile Include="Main.cs" />
     <Compile Include="DaySelectedEventArgs.cs" />
     <Compile Include="CalendarView.cs" />
     <Compile Include="CalendarMonthView.cs" />

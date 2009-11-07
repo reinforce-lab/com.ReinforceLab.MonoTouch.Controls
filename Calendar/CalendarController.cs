@@ -12,8 +12,8 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
     public class CalendarController : UIViewController
     {
         #region Variables
-        CalendarView    _calendarView;
-        CalendarDayView _currentDay;
+        protected CalendarView    _calendarView;
+        protected CalendarDayView _currentDay;
         #endregion
 
         #region Constructor
@@ -84,9 +84,16 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
 
             _calendarView = new CalendarView(new RectangleF(0, 0, 320, 200));
             _calendarView.VisibleMonthChanged += new MonthChangedEventHandler(view_VisibleMonthChanged);
-            _calendarView.DaySelected += new EventHandler<DaySelectedEventArgs>(view_DaySelected);
+            _calendarView.DaySelected         += new EventHandler<DaySelectedEventArgs>(view_DaySelected);
 
             View.Add(_calendarView);
+        }
+        public override void ViewDidUnload()
+        {
+            base.ViewDidUnload();
+
+            _calendarView.VisibleMonthChanged -= new MonthChangedEventHandler(view_VisibleMonthChanged);
+            _calendarView.DaySelected         -= new EventHandler<DaySelectedEventArgs>(view_DaySelected);
         }
         public override void ViewWillAppear(bool animated)
         {

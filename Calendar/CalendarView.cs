@@ -236,11 +236,6 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
             UserInteractionEnabled = true;
         }        
         
-        void _DaySelected(object sender, DaySelectedEventArgs e)
-        {
-            if (null != DaySelected)
-                DaySelected.Invoke(sender, e);
-        }
         #endregion
 
         #region Protected methods
@@ -250,6 +245,12 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
             mv.Month = month;
             mv.DaySelected += new EventHandler<DaySelectedEventArgs>(_DaySelected);
             return mv;
+        }
+
+        protected void _DaySelected(object sender, DaySelectedEventArgs e)
+        {
+            if (null != DaySelected)
+                DaySelected.Invoke(sender, e);
         }
         #endregion
 

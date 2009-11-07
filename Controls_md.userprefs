@@ -1,23 +1,25 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" ctype="Workspace" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhoneSimulator" ctype="Workspace" />
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore>
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/RootViewController.cs" line="0" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/CalendarController.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/MainViewController.cs" ctype="Workbench">
     <Files>
       <File FileName="Calendar/CalendarDayView.cs" Line="1" Column="1" />
       <File FileName="ControlsDemo/Main.cs" Line="1" Column="1" />
       <File FileName="Calendar/CalendarView.cs" Line="1" Column="1" />
       <File FileName="Calendar/Main.cs" Line="1" Column="1" />
-      <File FileName="ControlsDemo/MainViewController.cs" Line="1" Column="1" />
-      <File FileName="ControlsDemo/CalendarController.cs" Line="1" Column="1" />
+      <File FileName="ControlsDemo/MainViewController.cs" Line="33" Column="68" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="ControlsDemo_md" selected="True" />
+          <Node name="Calendar_md" expanded="True" />
+          <Node name="ControlsDemo_md" expanded="True">
+            <Node name="MainViewController.cs" selected="True" />
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">
