@@ -75,6 +75,7 @@
     <Compile Include="CalendarView.cs" />
     <Compile Include="CalendarMonthView.cs" />
     <Compile Include="CalendarDayView.cs" />
+    <Compile Include="CalendarController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />

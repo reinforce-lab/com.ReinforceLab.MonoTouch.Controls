@@ -8,7 +8,7 @@
     <ProjectGuid>{85A1C64F-9ED9-4D62-8416-72C2D93758D0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>net.ReinforceLab.MonoTouch.Controls.Calendar</RootNamespace>
+    <RootNamespace>net.ReinforceLab.iPhone.Controls.Calendar</RootNamespace>
     <AssemblyName>Calendar</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalendarController.cs" />
     <Compile Include="CalendarDayView.cs" />
     <Compile Include="CalendarMonthView.cs" />
     <Compile Include="CalendarView.cs" />

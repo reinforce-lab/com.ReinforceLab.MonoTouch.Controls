@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,17 +6,14 @@ using System.Text;
 using System.Diagnostics;
 
 using MonoTouch.UIKit;
-using MonoTouch.Foundation;
 
-using net.ReinforceLab.iPhone.Controls.Calendar;
-
-namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
+namespace net.ReinforceLab.iPhone.Controls.Calendar
 {
-    class CalendarController : UIViewController
+    public class CalendarController : UIViewController
     {
         #region Variables
-        CalendarView _calendarView;
-        CalendarDayView _currentDay;        
+        CalendarView    _calendarView;
+        CalendarDayView _currentDay;
         #endregion
 
         #region Constructor
@@ -24,7 +21,7 @@ namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
         { }
         #endregion
 
-        #region Private methods        		
+        #region Private methods
         void view_DaySelected(object sender, DaySelectedEventArgs e)
         {
             Debug.WriteLine(String.Format("DayView is selected. date: {0}, mode: {1}.", e.DayView.Day.Date, e.Mode));
@@ -77,18 +74,18 @@ namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
                     }
                 }
             }
-        }   
+        }
         #endregion
 
         #region Public methods
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            
-            _calendarView = new CalendarView(new RectangleF(0, 0, 320, 200));            
+
+            _calendarView = new CalendarView(new RectangleF(0, 0, 320, 200));
             _calendarView.VisibleMonthChanged += new MonthChangedEventHandler(view_VisibleMonthChanged);
-            _calendarView.DaySelected += new EventHandler<DaySelectedEventArgs>(view_DaySelected);            
-            
+            _calendarView.DaySelected += new EventHandler<DaySelectedEventArgs>(view_DaySelected);
+
             View.Add(_calendarView);
         }
         public override void ViewWillAppear(bool animated)

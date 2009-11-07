@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +30,7 @@ namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
 
             Title = "ReinforceLab UICatalog";
             _list = new DataSource(this, new ControlItem[] { 
-                new ControlItem() {Title ="Calendar", Controller = new CalendarController() }
+                new ControlItem() {Title ="Calendar", Controller = new net.ReinforceLab.iPhone.Controls.Calendar.CalendarController() }
             });
 
             TableView.Source = _list;

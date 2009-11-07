@@ -16,13 +16,13 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
         const String _ScrollAnimationStoppedHandler = "_ScrollAnimationStoppedHandler";
         readonly String[] DayLabels = new String[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
+        protected double ANIMATION_DURATION = 0.3;
+        protected double ANIMATION_DELAY = 0.1;
+        
         public const float TITLE_HEIGHT    = 44f;
         public const float MONTHVIEW_WIDTH = 320f;
         public const float DAYVIEW_WIDTH   = 46f;
         public const float DAYVIEW_HEIGHT  = 45f;
-
-        const double ANIMATION_DURATION = 0.3;
-        const double ANIMATION_DELAY    = 0.1;
 
         UILabel   _titleLabel;
         UILabel[] _daysLabel;

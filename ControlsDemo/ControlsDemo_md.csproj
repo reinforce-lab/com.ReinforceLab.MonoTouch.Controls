@@ -68,7 +68,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="MainViewController.cs" />
     <Compile Include="ControlList.cs" />
-    <Compile Include="CalendarController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
