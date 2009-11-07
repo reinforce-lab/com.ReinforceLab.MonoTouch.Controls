@@ -1,5 +1,5 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" ctype="Workspace" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" ctype="Workspace" />
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore>
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/RootViewController.cs" line="0" />
@@ -8,11 +8,11 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/CalendarController.cs" ctype="Workbench">
     <Files>
       <File FileName="Calendar/CalendarDayView.cs" Line="1" Column="1" />
-      <File FileName="ControlsDemo/Main.cs" Line="27" Column="41" />
+      <File FileName="ControlsDemo/Main.cs" Line="1" Column="1" />
       <File FileName="Calendar/CalendarView.cs" Line="1" Column="1" />
       <File FileName="Calendar/Main.cs" Line="1" Column="1" />
       <File FileName="ControlsDemo/MainViewController.cs" Line="1" Column="1" />
-      <File FileName="ControlsDemo/CalendarController.cs" Line="88" Column="73" />
+      <File FileName="ControlsDemo/CalendarController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
