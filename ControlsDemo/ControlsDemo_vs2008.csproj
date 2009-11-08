@@ -46,7 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalendarController.cs" />
     <Compile Include="ControlList.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MainViewController.cs" />

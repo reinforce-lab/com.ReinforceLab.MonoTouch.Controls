@@ -70,7 +70,6 @@
     <Compile Include="CalendarMonthView.cs" />
     <Compile Include="CalendarView.cs" />
     <Compile Include="DaySelectedEventArgs.cs" />
-    <Compile Include="Main.cs" />
     <Compile Include="MonthChangedEventArgs.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
