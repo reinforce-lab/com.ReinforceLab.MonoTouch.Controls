@@ -65,13 +65,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalendarController.cs" />
-    <Compile Include="CalendarDayView.cs" />
-    <Compile Include="CalendarMonthView.cs" />
-    <Compile Include="CalendarView.cs" />
-    <Compile Include="DaySelectedEventArgs.cs" />
-    <Compile Include="ICalendarDayView.cs" />
-    <Compile Include="MonthChangedEventArgs.cs" />
+    <Compile Include="AbsDayView.cs" />
+    <Compile Include="ICalendarController.cs" />
+    <Compile Include="IDayViewSource.cs" />
+    <Compile Include="AbsCalendarController.cs" />
+    <Compile Include="Standard\CalendarController.cs" />
+    <Compile Include="Standard\CalendarDayView.cs" />
+    <Compile Include="Standard\CalendarDayViewSource.cs" />
+    <Compile Include="Standard\CalendarMonthView.cs" />
+    <Compile Include="Standard\CalendarView.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

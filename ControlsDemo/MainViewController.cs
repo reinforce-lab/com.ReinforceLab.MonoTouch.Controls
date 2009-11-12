@@ -5,6 +5,8 @@ using System.Text;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
+using  net.ReinforceLab.iPhone.Controls.Calendar.Standard;
+
 namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
 {
     class MainViewController : UITableViewController
@@ -30,7 +32,7 @@ namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
 
             Title = "ReinforceLab UICatalog";
             _list = new DataSource(this, new ControlItem[] { 
-                new ControlItem() {Title ="Calendar", Controller = new net.ReinforceLab.iPhone.Controls.Calendar.CalendarController() }
+                new ControlItem() {Title ="Calendar", Controller = new CalendarController() {Source = new CalendarDayViewSource() }}
             });
 
             TableView.Source = _list;

@@ -69,15 +69,27 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Compile Include="MonthChangedEventArgs.cs" />
-    <Compile Include="DaySelectedEventArgs.cs" />
-    <Compile Include="CalendarView.cs" />
-    <Compile Include="CalendarMonthView.cs" />
-    <Compile Include="CalendarDayView.cs" />
-    <Compile Include="CalendarController.cs" />
-    <Compile Include="ICalendarDayView.cs" />
+    <Compile Include="AbsCalendarController.cs" />
+    <Compile Include="ICalendarController.cs" />
+    <Compile Include="AbsDayView.cs" />
+    <Compile Include="IDayViewSource.cs" />
+    <Compile Include="Standard\CalendarView.cs" />
+    <Compile Include="Standard\CalendarMonthView.cs" />
+    <Compile Include="Standard\CalendarDayView.cs" />
+    <Compile Include="Standard\CalendarController.cs" />
+    <Compile Include="Standard\CalendarDayViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\today.png" />
+    <Content Include="images\todayselected.png" />
+    <Content Include="images\shadow.png" />
+    <Content Include="images\topbar.png" />
+    <Content Include="images\datecell.png" />
+    <Content Include="images\datecellselected.png" />
+    <Content Include="images\rightarrow.png" />
+    <Content Include="images\leftarrow.png" />
   </ItemGroup>
 </Project>
