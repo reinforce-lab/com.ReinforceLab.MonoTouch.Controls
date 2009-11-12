@@ -13,7 +13,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
     {
         #region Variables
         protected CalendarView    _calendarView;
-        protected CalendarDayView _currentDay;
+        protected ICalendarDayView _currentDay;
         #endregion
 
         #region Constructor
@@ -57,7 +57,6 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
                 }
             }
         }
-
         void view_VisibleMonthChanged(object sender, MonthChangedEventArgs e)
         {
             Debug.WriteLine(String.Format("Visible month changed. new date:{0} prev:{1}.", e.NewDate.ToString("y"), e.PreviousDate.ToString("y")));

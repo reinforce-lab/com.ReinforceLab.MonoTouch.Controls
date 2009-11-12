@@ -8,7 +8,7 @@ using MonoTouch.Foundation;
 
 namespace net.ReinforceLab.iPhone.Controls.Calendar
 {
-	public class CalendarDayView : UIView
+	public class CalendarDayView : UIView, ICalendarDayView
 	{
         #region Variables
         protected UILabel _label;        
@@ -99,21 +99,25 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
 			_isMarked   = false;
 			_isSelected = false;
 
-            Opaque = true;
+            //Opaque = true;
             UserInteractionEnabled = false;
 
-            _label = new UILabel(new RectangleF( 9, 6, Bounds.Width - 18, 22));
-            _label.Text = String.Empty;
-            _label.Font = UIFont.BoldSystemFontOfSize(22);
-            _label.TextColor = UIColor.Gray;
-            _label.TextAlignment = UITextAlignment.Center;            
-            _label.BackgroundColor = UIColor.Clear;
-            _label.UserInteractionEnabled = false;
-            Add(_label);
+            initializeTextLabel();
 		}		
 		#endregion
 		
 		#region Protected methods
+        protected virtual void initializeTextLabel()
+        {
+            _label = new UILabel(new RectangleF(9, 6, Bounds.Width - 18, 22));
+            _label.Text = String.Empty;
+            _label.Font = UIFont.BoldSystemFontOfSize(22);
+            _label.TextColor = UIColor.Gray;
+            _label.TextAlignment = UITextAlignment.Center;
+            _label.BackgroundColor = UIColor.Clear;
+            _label.UserInteractionEnabled = false;
+            Add(_label);
+        }
         protected virtual void DrawBackGroundColorAndImage()
         {            
             UIImage img;			
@@ -121,27 +125,27 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
             if (!_isActive)
             {
                 _label.TextColor = UIColor.Gray;
-                img = UIImage.FromFile("images/datecell.png");
+                img = UIImage.FromFile("Images/datecell.png");
             }
             else if (_isToday && _isSelected)
             {
                 _label.TextColor = UIColor.White;
-                img = UIImage.FromFile("images/todayselected.png");
+                img = UIImage.FromFile("Images/todayselected.png");
             }
             else if (_isToday)
             {
                 _label.TextColor = UIColor.White;
-                img = UIImage.FromFile("images/today.png");
+                img = UIImage.FromFile("Images/today.png");
             }
             else if (_isSelected)
             {
                 _label.TextColor = UIColor.White;
-                img = UIImage.FromFile("images/datecellselected.png");
+                img = UIImage.FromFile("Images/datecellselected.png");
             }
             else
             {
                 _label.TextColor = UIColor.FromRGB(75, 92, 111);
-                img = UIImage.FromFile("images/datecell.png");
+                img = UIImage.FromFile("Images/datecell.png");
             }
             img.Draw(new PointF(0, 0));            
         }
@@ -166,7 +170,8 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
 		#region override method        
 		public override void Draw (RectangleF rect)
 		{
-			base.Draw (rect);            
+			base.Draw (rect);  
+          
             DrawBackGroundColorAndImage();
             DrawMarker();
 		}

@@ -15,11 +15,11 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
 
         DateTime  _month;
 		DayOfWeek _firstDayofWeek;
-        CalendarDayView[] _dayViews;
+        ICalendarDayView[] _dayViews;
 		#endregion
 				
 		#region Properties
-        public CalendarDayView[] DayViews { get { return _dayViews; } }
+        public ICalendarDayView[] DayViews { get { return _dayViews; } }
 
         /// <summary>
         /// get or set month (1st day of the month). This property can be set until this view drawin.
@@ -117,7 +117,8 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
                     dt = dt.AddDays(1.0);
                 }
             }
-            List<CalendarDayView> dayViews = new List<CalendarDayView>();
+            
+            var dayViews = new List<ICalendarDayView>();
             for(int i =0; i < days.Count; i++)
             {
                 var dayView = CreateDayView(new RectangleF((i % 7) * CalendarView.DAYVIEW_WIDTH, CalendarView.DAYVIEW_HEIGHT * (int)(i / 7), CalendarView.DAYVIEW_WIDTH, CalendarView.DAYVIEW_HEIGHT));
@@ -126,7 +127,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
                 dayView.IsActive = (days[i].Year == _month.Year) && (days[i].Month == _month.Month);
                 dayView.IsToday  = (days[i].Year == DateTime.Today.Year) && (days[i].Month == DateTime.Today.Month) && (days[i].Day == DateTime.Today.Day);
                 
-                Add(dayView);                
+                Add(dayView as UIView);                
                 dayViews.Add(dayView);
             }
             _dayViews = dayViews.ToArray();            
@@ -150,7 +151,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
 		#endregion
 
         #region protected methods
-        protected virtual CalendarDayView CreateDayView(RectangleF rect)
+        protected virtual ICalendarDayView CreateDayView(RectangleF rect)
         {
             return new CalendarDayView(rect);
         }
@@ -169,7 +170,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
             base.TouchesBegan(touches, evt);                        
             selectDay((UITouch) touches.AnyObject, TouchMode.Began);            
         }
-        public override void  TouchesCancelled(NSSet touches, UIEvent evt)
+        public override void TouchesCancelled(NSSet touches, UIEvent evt)
         {
  	        base.TouchesCancelled(touches, evt);            
             selectDay((UITouch)touches.AnyObject, TouchMode.Canceled);             

@@ -8,19 +8,41 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="128"
-   height="128"
+   width="22"
+   height="22"
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.46"
    version="1.0"
-   sodipodi:docname="PlusIcon_White.svg"
-   inkscape:export-filename="C:\Documents and Settings\rupppau\デスクトップ\PlusIcon_White.png"
-   inkscape:export-xdpi="16.875"
-   inkscape:export-ydpi="16.875"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   sodipodi:docname="CheckBox_UnChecked_Green_22x22.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="Z:\Projects\net.ReinforceLab.MonoTouch.Controls\Images\CheckBox_UnChecked_Green_22x22.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4">
+    <linearGradient
+       id="linearGradient3383">
+      <stop
+         style="stop-color:#7e7e7e;stop-opacity:1;"
+         offset="0"
+         id="stop3385" />
+      <stop
+         style="stop-color:#7e7e7e;stop-opacity:0.49557522;"
+         offset="1"
+         id="stop3387" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3373">
+      <stop
+         style="stop-color:#9f0000;stop-opacity:1;"
+         offset="0"
+         id="stop3375" />
+      <stop
+         style="stop-color:#9f0000;stop-opacity:0;"
+         offset="1"
+         id="stop3377" />
+    </linearGradient>
     <inkscape:perspective
        sodipodi:type="inkscape:persp3d"
        inkscape:vp_x="0 : 526.18109 : 1"
@@ -29,7 +51,7 @@
        inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
        id="perspective10" />
     <inkscape:perspective
-       id="perspective2449"
+       id="perspective2591"
        inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
        inkscape:vp_z="744.09448 : 526.18109 : 1"
        inkscape:vp_y="0 : 1000 : 0"
@@ -46,13 +68,12 @@
      objecttolerance="10"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="45.577139"
-     inkscape:cy="60.59214"
+     inkscape:zoom="11.2"
+     inkscape:cx="-8.0814305"
+     inkscape:cy="16.698946"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
-     showguides="false"
      inkscape:window-width="1920"
      inkscape:window-height="1179"
      inkscape:window-x="-4"
@@ -79,25 +100,13 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="opacity:1;fill:#d6aeae;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.30000019000000040;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:48.00000191000000200;stroke-opacity:1"
-       id="rect2383"
-       width="130"
-       height="135"
-       x="0"
-       y="-2" />
-    <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.30000019000000040;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:48.00000191000000200;stroke-opacity:1"
-       id="rect2455"
-       width="35"
-       height="95"
-       x="45"
-       y="18" />
-    <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.30000019000000040;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:48.00000191000000200;stroke-opacity:1"
-       id="rect2457"
-       width="95"
-       height="35"
-       x="15"
-       y="48" />
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#03ff00;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:48.00000191000000200;stroke-opacity:1"
+       id="rect3381"
+       width="17.601866"
+       height="17.601511"
+       x="2.2161529"
+       y="2.1819963"
+       rx="2.9999998"
+       ry="2.9999995" />
   </g>
 </svg>

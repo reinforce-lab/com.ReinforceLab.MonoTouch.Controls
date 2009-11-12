@@ -10,9 +10,9 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
     {
         public TouchMode Mode { get; private set; }
         public CalendarMonthView MonthView { get; private set; }
-        public CalendarDayView DayView { get; private set; }
+        public ICalendarDayView DayView { get; private set; }
 
-        public DaySelectedEventArgs(CalendarMonthView mv, CalendarDayView dv, TouchMode tmode)
+        public DaySelectedEventArgs(CalendarMonthView mv, ICalendarDayView dv, TouchMode tmode)
         {
             MonthView = mv;
             DayView   = dv;

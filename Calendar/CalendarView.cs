@@ -13,20 +13,21 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
     public class CalendarView : UIView
     {
         #region Variables
+        public const float MONTHVIEW_WIDTH = 320f;
+        public const float DAYVIEW_WIDTH = 46f;
+        public const float DAYVIEW_HEIGHT = 45f;
+
         const String _ScrollAnimationStoppedHandler = "_ScrollAnimationStoppedHandler";
         readonly String[] DayLabels = new String[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
-        protected double ANIMATION_DURATION = 0.3;
-        protected double ANIMATION_DELAY = 0.1;
+        protected float TITLE_HEIGHT = 44f; 
         
-        public const float TITLE_HEIGHT    = 44f;
-        public const float MONTHVIEW_WIDTH = 320f;
-        public const float DAYVIEW_WIDTH   = 46f;
-        public const float DAYVIEW_HEIGHT  = 45f;
+        protected double ANIMATION_DURATION = 0.3;
+        protected double ANIMATION_DELAY = 0.1;       
 
-        UILabel   _titleLabel;
-        UILabel[] _daysLabel;
-        UIButton _leftButton, _rightButton;
+        protected UILabel   _titleLabel;
+        protected UILabel[] _daysLabel;
+        protected UIButton _leftButton, _rightButton;
         CalendarMonthView     _monthView, _nextMonthView;
         UIScrollView _scollView;
         #endregion
@@ -118,47 +119,55 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
         }
         #endregion
 
-        #region private methods
-        void buildButtons()
-        {            
+        #region Protected methods
+        protected virtual void buildButtons()
+        {
             _rightButton = new UIButton(new RectangleF(MONTHVIEW_WIDTH - 56, 0, 44, 42));
-            _rightButton.SetImage(UIImage.FromFile("images/rightarrow.png"), UIControlState.Normal);
+            _rightButton.SetImage(UIImage.FromFile("Images/rightarrow.png"), UIControlState.Normal);
             _rightButton.TouchUpInside += delegate { moveToNextMonth(); };
             AddSubview(_rightButton);
 
             _leftButton = new UIButton(new RectangleF(10, 0, 44, 42));
-            _leftButton.SetImage(UIImage.FromFile("images/leftarrow.png"), UIControlState.Normal);
+            _leftButton.SetImage(UIImage.FromFile("Images/leftarrow.png"), UIControlState.Normal);
             _leftButton.TouchUpInside += delegate { moveToPrevMonth(); };
             AddSubview(_leftButton);
         }
-        void buildTitleLabel()
+        protected virtual void buildTitleLabel()
         {
             // title text            
             _titleLabel = new UILabel(new RectangleF(54, 10, MONTHVIEW_WIDTH - 54 * 2, 20));
-            _titleLabel.Font      = UIFont.BoldSystemFontOfSize(20);
+            _titleLabel.Font = UIFont.BoldSystemFontOfSize(20);
             _titleLabel.TextColor = UIColor.DarkGray;
-            _titleLabel.Text      = String.Empty;
+            _titleLabel.Text = String.Empty;
             _titleLabel.TextAlignment = UITextAlignment.Center;
             _titleLabel.LineBreakMode = UILineBreakMode.WordWrap;
             _titleLabel.BackgroundColor = UIColor.Clear;
             Add(_titleLabel);
         }
-        void buildDayLabels()
+        protected virtual void buildDayLabels()
         {
-            _daysLabel = new UILabel[7];            
+            _daysLabel = new UILabel[7];
             for (int i = 0; i < 7; i++)
             {
                 var label = new UILabel(new RectangleF(i * DAYVIEW_WIDTH, TITLE_HEIGHT - 12, DAYVIEW_WIDTH, 10));
                 label.Font = UIFont.SystemFontOfSize(10);
-                label.Text = String.Empty;                
-                label.TextColor       = UIColor.DarkGray;
-                label.TextAlignment   = UITextAlignment.Center;
-                label.LineBreakMode   = UILineBreakMode.WordWrap;
+                label.Text = String.Empty;
+                label.TextColor = UIColor.DarkGray;
+                label.TextAlignment = UITextAlignment.Center;
+                label.LineBreakMode = UILineBreakMode.WordWrap;
                 label.BackgroundColor = UIColor.Clear;
                 _daysLabel[i] = label;
-                Add(label);                
-            }            
+                Add(label);
+            }
         }
+        protected virtual void drawTitle()
+        {
+            var img = UIImage.FromFile("Images/topbar.png");
+            img.Draw(new PointF(0, 0));
+        }
+        #endregion
+
+        #region private methods
         void updateDayLabels() 
         {                                    
             for (int i = 0; i < 7; i++)
@@ -168,12 +177,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
         {
             _scollView.Frame = new RectangleF(_scollView.Frame.Location, new SizeF( MONTHVIEW_WIDTH, _monthView.Frame.Height));
             Frame = new RectangleF(Frame.Location, new SizeF(MONTHVIEW_WIDTH, _scollView.Frame.Height + TITLE_HEIGHT));
-        }
-        void drawTitle()
-        {
-            var img = UIImage.FromFile("images/topbar.png");
-            img.Draw(new PointF(0, 0));
-        }
+        }                
         void scrollCalendar(float distance)
         {
             UserInteractionEnabled = false;

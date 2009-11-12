@@ -70,6 +70,7 @@
     <Compile Include="CalendarMonthView.cs" />
     <Compile Include="CalendarView.cs" />
     <Compile Include="DaySelectedEventArgs.cs" />
+    <Compile Include="ICalendarDayView.cs" />
     <Compile Include="MonthChangedEventArgs.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -84,13 +85,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\datecell.png" />
-    <Content Include="images\datecellselected.png" />
-    <Content Include="images\leftarrow.png" />
-    <Content Include="images\rightarrow.png" />
-    <Content Include="images\shadow.png" />
-    <Content Include="images\today.png" />
-    <Content Include="images\todayselected.png" />
-    <Content Include="images\topbar.png" />
+    <Content Include="Images\datecell.png" />
+    <Content Include="Images\datecellselected.png" />
+    <Content Include="Images\leftarrow.png" />
+    <Content Include="Images\rightarrow.png" />
+    <Content Include="Images\shadow.png" />
+    <Content Include="Images\today.png" />
+    <Content Include="Images\todayselected.png" />
+    <Content Include="Images\topbar.png" />
   </ItemGroup>
 </Project>
