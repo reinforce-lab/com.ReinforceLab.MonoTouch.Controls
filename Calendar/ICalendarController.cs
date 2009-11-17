@@ -8,24 +8,8 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
 {
     public interface ICalendarController
     {
-        #region Internal methods
-        IDayViewSource Source { get; set; }
-        
-        AbsDayView DequeueReusableView(String cell_id);
-        void       EnqueueReusableView(AbsDayView view);
-        
-        /// <summary>
-        /// view calls this method when day is selected.
-        /// </summary>        
-        void DaySelected(AbsDayView dayView);
+        ViewCache DayViewCache { get; }
+        void DaySelected(DateTime day);
         void MonthChanged(DateTime currentMonth, DateTime previousMonth);
-        #endregion
-
-        #region External methods
-        /// <summary>
-        /// external control method to focus to the date.
-        /// </summary>
-        void FocusToDate(DateTime date, bool activateDay);
-        #endregion
     }
 }

@@ -13,31 +13,22 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
     public class CalendarView : UIView
     {
         #region Variables
-        public const float MONTHVIEW_WIDTH = 320f;
-        public const float DAYVIEW_WIDTH = 46f;
-        public const float DAYVIEW_HEIGHT = 45f;
-        
         const String _ScrollAnimationStoppedHandler = "_ScrollAnimationStoppedHandler";
         readonly String[] DayLabels = new String[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
-
-        float TITLE_HEIGHT = 44f; 
-        
-        double ANIMATION_DURATION = 0.3;
-        double ANIMATION_DELAY = 0.1;
 
         readonly CalendarController _ctr;
         readonly DayOfWeek          _firstDayOfWeek;
 
-        UILabel     _titleLabel;
-        UILabel[]   _daysLabel;
-        UIButton           _leftButton, _rightButton;
-        CalendarMonthView  _monthView, _nextMonthView;
-        UIScrollView       _scollView;
+        UILabel    _titleLabel;
+        UILabel[]  _daysLabel;
+        UIButton   _leftButton, _rightButton;
+        MonthView  _monthView, _nextMonthView;
+        UIScrollView _scollView;
         #endregion
 
         #region Properties        
-        public CalendarMonthView MonthView { get { return _monthView; } }
-        public DayOfWeek         FirstDayOfWeek {get {return _monthView.FirstDayOfWeek;} }        
+        public MonthView MonthView { get { return _monthView; } }
+        public DayOfWeek FirstDayOfWeek {get {return _monthView.FirstDayOfWeek;} }        
         #endregion
 
         #region Constructors
@@ -52,9 +43,9 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
 
             BackgroundColor = UIColor.Clear;
 
-            _monthView = new CalendarMonthView(new RectangleF(0, 0, 320, 320), _ctr, DateTime.Now, _firstDayOfWeek);
+            _monthView = new MonthView(new RectangleF(0, 0, Resources.MONTHVIEW_WIDTH, 300), _ctr, DateTime.Now, _firstDayOfWeek);
 
-            _scollView = new UIScrollView(new RectangleF(0, TITLE_HEIGHT, MONTHVIEW_WIDTH, _monthView.Frame.Height));
+            _scollView = new UIScrollView(new RectangleF(0, Resources.TITLE_HEIGHT, Resources.MONTHVIEW_WIDTH, _monthView.Frame.Height));
             _scollView.BackgroundColor = UIColor.Clear;
             _scollView.ShowsVerticalScrollIndicator = false;
             _scollView.ShowsHorizontalScrollIndicator = false;
@@ -75,20 +66,20 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
         #region Protected methods
         protected virtual void buildButtons()
         {
-            _rightButton = new UIButton(new RectangleF(MONTHVIEW_WIDTH - 56, 0, 44, 42));
-            _rightButton.SetImage(UIImage.FromFile("Images/rightarrow.png"), UIControlState.Normal);
+            _rightButton = new UIButton(new RectangleF(Resources.MONTHVIEW_WIDTH - 56, 0, 44, 42));
+            _rightButton.SetImage(UIImage.FromFile(Resources.RightArrorImage), UIControlState.Normal);
             _rightButton.TouchUpInside += delegate { moveToNextMonth(); };
             AddSubview(_rightButton);
 
             _leftButton = new UIButton(new RectangleF(10, 0, 44, 42));
-            _leftButton.SetImage(UIImage.FromFile("Images/leftarrow.png"), UIControlState.Normal);
+            _leftButton.SetImage(UIImage.FromFile(Resources.LeftArrorImage), UIControlState.Normal);
             _leftButton.TouchUpInside += delegate { moveToPrevMonth(); };
             AddSubview(_leftButton);
         }
         protected virtual void buildTitleLabel()
         {
             // title text            
-            _titleLabel = new UILabel(new RectangleF(54, 10, MONTHVIEW_WIDTH - 54 * 2, 20));
+            _titleLabel = new UILabel(new RectangleF(54, 10, Resources.MONTHVIEW_WIDTH - 54 * 2, 20));
             _titleLabel.Font = UIFont.BoldSystemFontOfSize(20);
             _titleLabel.TextColor = UIColor.DarkGray;
             _titleLabel.Text = String.Empty;
@@ -102,7 +93,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
             _daysLabel = new UILabel[7];
             for (int i = 0; i < 7; i++)
             {
-                var label = new UILabel(new RectangleF(i * DAYVIEW_WIDTH, TITLE_HEIGHT - 12, DAYVIEW_WIDTH, 10));
+                var label = new UILabel(new RectangleF(i * Resources.DAYVIEW_WIDTH, Resources.TITLE_HEIGHT - 12, Resources.DAYVIEW_WIDTH, 10));
                 label.Font = UIFont.SystemFontOfSize(10);
                 label.Text = String.Empty;
                 label.TextColor = UIColor.DarkGray;
@@ -115,7 +106,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
         }
         protected virtual void drawTitle()
         {
-            var img = UIImage.FromFile("Images/topbar.png");
+            var img = UIImage.FromFile(Resources.TopBarImage);
             img.Draw(new PointF(0, 0));
         }
         #endregion
@@ -128,26 +119,26 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
         }
         void updateFrame()
         {
-            _scollView.Frame = new RectangleF(_scollView.Frame.Location, new SizeF( MONTHVIEW_WIDTH, _monthView.Frame.Height));
-            Frame = new RectangleF(Frame.Location, new SizeF(MONTHVIEW_WIDTH, _scollView.Frame.Height + TITLE_HEIGHT));
+            _scollView.Frame = new RectangleF(_scollView.Frame.Location, new SizeF(Resources.MONTHVIEW_WIDTH, _monthView.Frame.Height));
+            Frame = new RectangleF(Frame.Location, new SizeF(Resources.MONTHVIEW_WIDTH, _scollView.Frame.Height + Resources.TITLE_HEIGHT));
         }                
         void scrollCalendar(float distance)
         {
             UserInteractionEnabled = false;
 
-            Frame = new RectangleF(Frame.Location, new SizeF(MONTHVIEW_WIDTH, _nextMonthView.Frame.Height + TITLE_HEIGHT));
+            Frame = new RectangleF(Frame.Location, new SizeF(Resources.MONTHVIEW_WIDTH, _nextMonthView.Frame.Height + Resources.TITLE_HEIGHT));
 
             // animation
             UIView.BeginAnimations("month view scrolling");
-            UIView.SetAnimationDuration(ANIMATION_DURATION);
-            UIView.SetAnimationDelay(ANIMATION_DELAY);
+            UIView.SetAnimationDuration(Resources.ANIMATION_DURATION);
+            UIView.SetAnimationDelay(Resources.ANIMATION_DELAY);
             UIView.SetAnimationDelegate(this);
             UIView.SetAnimationDidStopSelector(new Selector(_ScrollAnimationStoppedHandler));
             
             _titleLabel.Text     = _nextMonthView.Month.ToString("y");
             _monthView.Frame     = new RectangleF(_monthView.Frame.X, _monthView.Frame.Y + distance, _monthView.Frame.Width, _monthView.Frame.Height);
-            _nextMonthView.Frame = new RectangleF(_nextMonthView.Frame.X, _nextMonthView.Frame.Y + distance, _nextMonthView.Frame.Width, _nextMonthView.Frame.Height);            
-            _scollView.Frame     = new RectangleF(_scollView.Frame.Location, new SizeF(MONTHVIEW_WIDTH, _nextMonthView.Frame.Height));            
+            _nextMonthView.Frame = new RectangleF(_nextMonthView.Frame.X, _nextMonthView.Frame.Y + distance, _nextMonthView.Frame.Width, _nextMonthView.Frame.Height);
+            _scollView.Frame = new RectangleF(_scollView.Frame.Location, new SizeF(Resources.MONTHVIEW_WIDTH, _nextMonthView.Frame.Height));            
            
             UIView.CommitAnimations();
             
@@ -157,16 +148,16 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
         void moveToNextMonth()
         {
 
-            _nextMonthView = new CalendarMonthView(RectangleF.Empty, _ctr, _monthView.Month.AddMonths(1), _firstDayOfWeek);            
-            _nextMonthView.Frame = new RectangleF(0, _monthView.Frame.Height, MONTHVIEW_WIDTH, _nextMonthView.Frame.Height);
+            _nextMonthView = new MonthView(RectangleF.Empty, _ctr, _monthView.Month.AddMonths(1), _firstDayOfWeek);
+            _nextMonthView.Frame = new RectangleF(0, _monthView.Frame.Height, Resources.MONTHVIEW_WIDTH, _nextMonthView.Frame.Height);
             _scollView.Add(_nextMonthView);            
             
             scrollCalendar(-1 * _monthView.Frame.Height);            
         }        
         void moveToPrevMonth()
         {
-            _nextMonthView = new CalendarMonthView(RectangleF.Empty, _ctr, _monthView.Month.AddMonths(-1), _firstDayOfWeek);            
-            _nextMonthView.Frame = new RectangleF(0, - _nextMonthView.Frame.Height , MONTHVIEW_WIDTH, _nextMonthView.Frame.Height); 
+            _nextMonthView = new MonthView(RectangleF.Empty, _ctr, _monthView.Month.AddMonths(-1), _firstDayOfWeek);
+            _nextMonthView.Frame = new RectangleF(0, -_nextMonthView.Frame.Height, Resources.MONTHVIEW_WIDTH, _nextMonthView.Frame.Height); 
             _scollView.Add(_nextMonthView);
 
             scrollCalendar(_nextMonthView.Frame.Height);            
@@ -183,7 +174,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
             _monthView = _nextMonthView;            
             _nextMonthView = null;
             
-            _ctr.MonthViewChanged(_monthView.Month, prevMonth);
+            _ctr.MonthChanged(_monthView.Month, prevMonth);
 
             UserInteractionEnabled = true;
         }        

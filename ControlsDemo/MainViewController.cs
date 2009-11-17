@@ -32,7 +32,7 @@ namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
 
             Title = "ReinforceLab UICatalog";
             _list = new DataSource(this, new ControlItem[] { 
-                new ControlItem() {Title ="Calendar", Controller = new CalendarController() {Source = new CalendarDayViewSource() }}
+                new ControlItem() {Title ="Calendar", Controller = new CalendarController() }
             });
 
             TableView.Source = _list;

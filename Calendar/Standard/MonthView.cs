@@ -9,18 +9,18 @@ using MonoTouch.Foundation;
 
 namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
 {	
-	public class CalendarMonthView : UIView
+	public class MonthView : UIView
 	{
 		#region Variables
         readonly DateTime           _month;
 		readonly DayOfWeek          _firstDayofWeek;        
         readonly CalendarController _ctr;
 
-        CalendarDayView[] _dayViews;
+        DayView[] _dayViews;
 		#endregion
 				
 		#region Properties
-        public CalendarDayView[] DayViews { get { return _dayViews; } }
+        public DayView[] DayViews { get { return _dayViews; } }
 
         /// <summary>
         /// get month (1st day of the month). This property can be set until this view drawin.
@@ -39,11 +39,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
 		#endregion
 		
 		#region Constructors
-        /*
-        public CalendarMonthView(IntPtr ptr)
-            : base(ptr)
-        { }*/
-		public CalendarMonthView (RectangleF rect, CalendarController ctr, DateTime month, DayOfWeek firstDayOfWeek) : base(rect)
+		public MonthView (RectangleF rect, CalendarController ctr, DateTime month, DayOfWeek firstDayOfWeek) : base(rect)
 		{
             _ctr = ctr;
             _month = new DateTime(month.Year, month.Month, 1);            
@@ -59,8 +55,8 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
         void setFrame()
         {
             int days = (7 + (int)_month.DayOfWeek - (int)_firstDayofWeek) % 7;
-            float height = CalendarView.DAYVIEW_HEIGHT * (float)Math.Ceiling((double)(DateTime.DaysInMonth(_month.Year, _month.Month) + days) / 7);
-            Frame = new RectangleF(Frame.Location, new SizeF(CalendarView.MONTHVIEW_WIDTH, height));
+            float height = Resources.DAYVIEW_HEIGHT * (float)Math.Ceiling((double)(DateTime.DaysInMonth(_month.Year, _month.Month) + days) / 7);
+            Frame = new RectangleF(Frame.Location, new SizeF(Resources.MONTHVIEW_WIDTH, height));
         }
         void buildDayViews()
         {
@@ -98,14 +94,17 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
                 }
             }
             
-            var dayViews = new List<CalendarDayView>();
+            var dayViews = new List<DayView>();
             for(int i =0; i < days.Count; i++)
             {
-                var rect = new RectangleF((i % 7) * CalendarView.DAYVIEW_WIDTH, CalendarView.DAYVIEW_HEIGHT * (int)(i / 7), CalendarView.DAYVIEW_WIDTH, CalendarView.DAYVIEW_HEIGHT);
-                var dayView = _ctr.Source.GetDayView(_ctr, rect, days[i]) as CalendarDayView;
+                var rect = new RectangleF((i % 7) * Resources.DAYVIEW_WIDTH, Resources.DAYVIEW_HEIGHT * (int)(i / 7), Resources.DAYVIEW_WIDTH, Resources.DAYVIEW_HEIGHT);
+                var dayView = _ctr.DayViewCache.GetView("_cell") as DayView;
+                dayView.Day      = days[i];
+                dayView.Frame    = rect;
                 dayView.IsActive = (days[i].Year == _month.Year) && (days[i].Month == _month.Month);
                 dayView.IsToday  = (days[i].Year == DateTime.Today.Year) && (days[i].Month == DateTime.Today.Month) && (days[i].Day == DateTime.Today.Day);
-                
+                dayView.IsSelected = false;
+
                 Add(dayView as UIView);                
                 dayViews.Add(dayView);
             }
@@ -116,12 +115,12 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
             PointF point = touch.LocationInView(this);
             //Debug.WriteLine("\tCalendarMonthView: point: {0}. touch.view: {1}, mode: {2}. exclusible touch:{3}.", point, touch.View.GetType(), tmode, this.ExclusiveTouch);
             
-            int dx = (int)point.X / (int)CalendarView.DAYVIEW_WIDTH;
-            int dy = (int)point.Y / (int)CalendarView.DAYVIEW_HEIGHT;
+            int dx = (int)point.X / (int)Resources.DAYVIEW_WIDTH;
+            int dy = (int)point.Y / (int)Resources.DAYVIEW_HEIGHT;
             int index = dx + 7 * dy;
 
             if (0<= index && index < _dayViews.Length)
-                _ctr.DaySelected(_dayViews[index]);
+                _ctr.DaySelected(_dayViews[index].Day);
         }
 		#endregion
 
@@ -157,11 +156,9 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
         protected override void Dispose(bool disposing)
         {
             System.Diagnostics.Debug.WriteLine("MonthView: Dispose()");
+            
             foreach (var item in _dayViews)
-            {
-                item.Superview.RemoveFromSuperview();
-                _ctr.EnqueueReusableView(item);
-            }
+                item.RemoveFromSuperview();
 
             base.Dispose(disposing);
         }

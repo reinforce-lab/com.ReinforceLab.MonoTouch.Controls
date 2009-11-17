@@ -7,7 +7,7 @@
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/Main.cs" line="30" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/Main.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/MainViewController.cs" ctype="Workbench">
     <Files>
       <File FileName="ControlsDemo/Main.cs" Line="33" Column="1" />
       <File FileName="ControlsDemo/ControlList.cs" Line="1" Column="1" />
@@ -17,11 +17,10 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Calendar_md" expanded="True" selected="True">
-            <Node name="Images" expanded="True" />
-            <Node name="Standard" expanded="True" />
+          <Node name="Calendar_md" expanded="True" />
+          <Node name="ControlsDemo_md" expanded="True">
+            <Node name="MainViewController.cs" selected="True" />
           </Node>
-          <Node name="ControlsDemo_md" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">

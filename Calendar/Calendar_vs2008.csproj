@@ -65,20 +65,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbsDayView.cs" />
+    <Compile Include="ViewCache.cs" />
     <Compile Include="ICalendarController.cs" />
-    <Compile Include="IDayViewSource.cs" />
-    <Compile Include="AbsCalendarController.cs" />
+    <Compile Include="IViewFactory.cs" />
+    <Compile Include="CacheableView.cs" />
     <Compile Include="Standard\CalendarController.cs" />
-    <Compile Include="Standard\CalendarDayView.cs" />
-    <Compile Include="Standard\CalendarDayViewSource.cs" />
-    <Compile Include="Standard\CalendarMonthView.cs" />
+    <Compile Include="Standard\DayView.cs" />
+    <Compile Include="Standard\ViewFactory.cs" />
+    <Compile Include="Standard\MonthView.cs" />
     <Compile Include="Standard\CalendarView.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Standard\Resources.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

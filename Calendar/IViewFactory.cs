@@ -8,8 +8,8 @@ using MonoTouch.UIKit;
 
 namespace net.ReinforceLab.iPhone.Controls.Calendar
 {
-    public interface IDayViewSource
+    public interface IViewFactory
     {
-        AbsDayView GetDayView(ICalendarController ctr, RectangleF rect, DateTime date); 
+        CacheableView Create(String cell_id); 
     }
 }
