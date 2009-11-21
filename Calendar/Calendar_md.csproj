@@ -79,6 +79,9 @@
     <Compile Include="Standard\DayView.cs" />
     <Compile Include="Standard\ViewFactory.cs" />
     <Compile Include="Standard\Resources.cs" />
+    <Compile Include="AbsWeekView.cs" />
+    <Compile Include="AbsMonthView.cs" />
+    <Compile Include="IDayView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

@@ -8,7 +8,7 @@ using MonoTouch.Foundation;
 
 namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
 {
-	public class DayView : CacheableView
+	public class DayView : CacheableView, IDayView
 	{
         #region Variables
         protected UILabel _label; 

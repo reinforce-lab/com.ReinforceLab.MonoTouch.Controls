@@ -9,7 +9,7 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
     public interface ICalendarController
     {
         ViewCache DayViewCache { get; }
-        void DaySelected(DateTime day);
+        void DaySelected(DateTime day);        
         void MonthChanged(DateTime currentMonth, DateTime previousMonth);
     }
 }

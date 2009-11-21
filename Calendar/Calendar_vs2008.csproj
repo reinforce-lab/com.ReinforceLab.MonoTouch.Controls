@@ -65,6 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbsMonthView.cs" />
+    <Compile Include="IDayView.cs" />
     <Compile Include="ViewCache.cs" />
     <Compile Include="ICalendarController.cs" />
     <Compile Include="IViewFactory.cs" />
@@ -80,6 +82,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Standard\Resources.cs" />
+    <Compile Include="AbsWeekView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
