@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbsCalendarView.cs" />
     <Compile Include="AbsMonthView.cs" />
     <Compile Include="IDayView.cs" />
     <Compile Include="ViewCache.cs" />

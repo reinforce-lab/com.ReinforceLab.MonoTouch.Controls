@@ -38,28 +38,25 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
         public CalendarView(RectangleF rect, CalendarController ctr, DayOfWeek firstDayOfWeek)
             : base(rect)
         {
-            _ctr = ctr;
+            _ctr = ctr;            
             _firstDayOfWeek = firstDayOfWeek;
-
-            BackgroundColor = UIColor.Clear;
 
             _monthView = new MonthView(new RectangleF(0, 0, Resources.MONTHVIEW_WIDTH, 300), _ctr, DateTime.Now, _firstDayOfWeek);
 
             _scollView = new UIScrollView(new RectangleF(0, Resources.TITLE_HEIGHT, Resources.MONTHVIEW_WIDTH, _monthView.Frame.Height));
-            _scollView.BackgroundColor = UIColor.Clear;
-            _scollView.ShowsVerticalScrollIndicator = false;
-            _scollView.ShowsHorizontalScrollIndicator = false;
             _scollView.ScrollEnabled = false;
-            Add(_scollView);
-
-            _scollView.Add(_monthView);
+            _scollView.Add(_monthView); 
+            Add(_scollView);            
 
             buildButtons();
             buildTitleLabel();
             buildDayLabels();
-            updateDayLabels(); 
+            updateDayLabels();
+            updateFrame();
 
-            _titleLabel.Text = _monthView.Month.ToString("y");            
+            _titleLabel.Text = _monthView.Month.ToString("y");
+
+            //Frame = new RectangleF(Frame.Location, new SizeF(Resources.MONTHVIEW_WIDTH, _monthView.Frame.Height + Resources.TITLE_HEIGHT));
         }
         #endregion
 
@@ -147,7 +144,6 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
         }
         void moveToNextMonth()
         {
-
             _nextMonthView = new MonthView(RectangleF.Empty, _ctr, _monthView.Month.AddMonths(1), _firstDayOfWeek);
             _nextMonthView.Frame = new RectangleF(0, _monthView.Frame.Height, Resources.MONTHVIEW_WIDTH, _nextMonthView.Frame.Height);
             _scollView.Add(_nextMonthView);            
@@ -190,7 +186,6 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
         {
             moveToPrevMonth();
         }
-
         public override void Draw(RectangleF rect)
         {
             base.Draw(rect);

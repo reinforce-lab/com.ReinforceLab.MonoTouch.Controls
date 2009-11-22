@@ -1,0 +1,5 @@
+Z:\Projects\net.ReinforceLab.MonoTouch.Controls\Images\bin\Debug\Images_vs2008.dll
+Z:\Projects\net.ReinforceLab.MonoTouch.Controls\Images\bin\Debug\Images_vs2008.pdb
+Z:\Projects\net.ReinforceLab.MonoTouch.Controls\Images\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\net.ReinforceLab.MonoTouch.Controls\Images\obj\Debug\Images_vs2008.dll
+Z:\Projects\net.ReinforceLab.MonoTouch.Controls\Images\obj\Debug\Images_vs2008.pdb

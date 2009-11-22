@@ -9,22 +9,17 @@ using MonoTouch.Foundation;
 
 namespace net.ReinforceLab.iPhone.Controls.Calendar
 {	
-	public abstract class AbsWeekView<T> : UIView 
-        where T: UIView, IDayView
+	public abstract class AbsWeekView<T> : AbsCalendarView<T>
+         where T : UIView, IDayView	
 	{
 		#region Variables
         protected float _DayViewHeight = 45f;
         protected float _DayViewWidth  = 46f;
 
-        protected readonly DateTime            _firstDayOfWeek;		
-        protected readonly ICalendarController _ctr;
-
-        protected T[] _dayViews;
+        protected readonly DateTime            _firstDayOfWeek;		        
 		#endregion
 				
 		#region Properties
-        public T[] DayViews { get { return _dayViews; } }
-
         /// <summary>
         /// get the 1st day of a week. This property can be set until this view drawin.
         /// </summary>
@@ -35,9 +30,8 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
 		#endregion
 		
 		#region Constructors
-		public AbsWeekView (RectangleF rect, ICalendarController ctr, DateTime dow) : base(rect)
-		{
-            _ctr = ctr;
+		public AbsWeekView (RectangleF rect, ICalendarController ctr, DateTime dow) : base(rect, ctr)
+		{            
             _firstDayOfWeek = new DateTime(dow.Year, dow.Month, dow.Day);
             initialize();                
 		}
@@ -72,59 +66,18 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
             }
             _dayViews = dayViews.ToArray();            
         }
-        void selectDay(UITouch touch)
-        {
-            PointF point = touch.LocationInView(this);
-            
-            int index = (int)point.X / (int)_DayViewWidth;
-
-            if (0<= index && index < _dayViews.Length)
-                _ctr.DaySelected(_dayViews[index].Day);
-        }
 		#endregion
 
         #region protected methods
-        protected virtual T createDayView(RectangleF rect, DateTime date)
-        {
-            var dayView = _ctr.DayViewCache.GetView("_cell") as T;
-            dayView.Day = date;
-            return dayView;
+        protected override T hitTestDayView(PointF point)
+        {            
+            int index = (int)point.X / (int)_DayViewWidth;
+            if (0 <= index && index < _dayViews.Length)
+                return _dayViews[index];
+            else
+                return null;
         }
         #endregion
 
-        #region public methods
-        public override void Draw(RectangleF rect)
-        {
-            base.Draw(rect); 
-        }
-        public override void TouchesBegan(NSSet touches, UIEvent evt)
-        {
-            base.TouchesBegan(touches, evt);                                    
-            selectDay((UITouch)touches.AnyObject);
-        }
-        public override void TouchesCancelled(NSSet touches, UIEvent evt)
-        {
- 	        base.TouchesCancelled(touches, evt);
-            selectDay((UITouch)touches.AnyObject);             
-        }
-        public override void TouchesMoved(NSSet touches, UIEvent evt)
-        {
-            base.TouchesMoved(touches, evt);
-            selectDay((UITouch)touches.AnyObject); 
-        }
-        public override void TouchesEnded(NSSet touches, UIEvent evt)
-        {
-            base.TouchesEnded(touches, evt);
-            selectDay((UITouch)touches.AnyObject); 
-        }        
-        protected override void Dispose(bool disposing)
-        {
-            //System.Diagnostics.Debug.WriteLine("MonthView: Dispose()");            
-            foreach (var item in _dayViews)
-                item.RemoveFromSuperview();
-
-            base.Dispose(disposing);
-        }
-        #endregion
     }
 }

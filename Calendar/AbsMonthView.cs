@@ -9,23 +9,18 @@ using MonoTouch.Foundation;
 
 namespace net.ReinforceLab.iPhone.Controls.Calendar
 {	
-	public abstract class AbsMonthView<T> : UIView 
-        where T: UIView, IDayView
+	public abstract class AbsMonthView<T> : AbsCalendarView<T>
+         where T : UIView, IDayView
 	{
 		#region Variables
         protected float _DayViewHeight = 45f;
         protected float _DayViewWidth  = 46f;
 
-        protected readonly DateTime            _month;
-		protected readonly DayOfWeek           _firstDayofWeek;        
-        protected readonly ICalendarController _ctr;
-
-        protected T[] _dayViews;
+        protected readonly DateTime _month;
+        protected readonly DayOfWeek _firstDayofWeek;                
 		#endregion
 				
 		#region Properties
-        public T[] DayViews { get { return _dayViews; } }
-
         /// <summary>
         /// get month (1st day of the month). This property can be set until this view drawin.
         /// </summary>
@@ -43,26 +38,26 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
 		#endregion
 		
 		#region Constructors
-		public AbsMonthView (RectangleF rect, ICalendarController ctr, DateTime month, DayOfWeek firstDayOfWeek) : base(rect)
+		public AbsMonthView (RectangleF rect, ICalendarController ctr, DateTime month, DayOfWeek firstDayOfWeek) : base(rect, ctr)
 		{
-            _ctr = ctr;
             _month = new DateTime(month.Year, month.Month, 1);            
             _firstDayofWeek = firstDayOfWeek;
+
             initialize();
-		}
+        }
         protected virtual void initialize()
         {
             setFrame();
             buildDayViews();
         }
-		#endregion	
+        #endregion	
 		
 		#region Private methods		
         void setFrame()
         {
             int days = (7 + (int)_month.DayOfWeek - (int)_firstDayofWeek) % 7;
             float height = _DayViewHeight * (float)Math.Ceiling((double)(DateTime.DaysInMonth(_month.Year, _month.Month) + days) / 7);
-            Frame = new RectangleF(Frame.Location, new SizeF(_DayViewWidth, height));                
+            Frame = new RectangleF(Frame.Location, new SizeF(_DayViewWidth * 7, height));                
         }
         List<DateTime> buildDaysInMonthView()
         {
@@ -116,62 +111,20 @@ namespace net.ReinforceLab.iPhone.Controls.Calendar
             }
             _dayViews = dayViews.ToArray();            
         }
-        void selectDay(UITouch touch)
+		#endregion
+
+        #region protected methods
+        protected override T hitTestDayView(PointF point)
         {
-            PointF point = touch.LocationInView(this);
-            //Debug.WriteLine("\tCalendarMonthView: point: {0}. touch.view: {1}, mode: {2}. exclusible touch:{3}.", point, touch.View.GetType(), tmode, this.ExclusiveTouch);
-            
             int dx = (int)point.X / (int)_DayViewWidth;
             int dy = (int)point.Y / (int)_DayViewHeight;
             int index = dx + 7 * dy;
 
-            if (0<= index && index < _dayViews.Length)
-                _ctr.DaySelected(_dayViews[index].Day);
-        }
-		#endregion
-
-        #region protected methods
-        protected virtual T createDayView(RectangleF rect, DateTime date)
-        {
-            var dayView = _ctr.DayViewCache.GetView("_cell") as T;
-            dayView.Day = date;
-            return dayView;
-        }
-        #endregion
-
-        #region public methods
-        public override void Draw(RectangleF rect)
-        {
-            base.Draw(rect); 
-        }
-        public override void TouchesBegan(NSSet touches, UIEvent evt)
-        {
-            base.TouchesBegan(touches, evt);                                    
-            selectDay((UITouch)touches.AnyObject);
-        }
-        public override void TouchesCancelled(NSSet touches, UIEvent evt)
-        {
- 	        base.TouchesCancelled(touches, evt);
-            selectDay((UITouch)touches.AnyObject);             
-        }
-        public override void TouchesMoved(NSSet touches, UIEvent evt)
-        {
-            base.TouchesMoved(touches, evt);
-            selectDay((UITouch)touches.AnyObject); 
-        }
-        public override void TouchesEnded(NSSet touches, UIEvent evt)
-        {
-            base.TouchesEnded(touches, evt);
-            selectDay((UITouch)touches.AnyObject); 
+            if (0 <= index && index < _dayViews.Length)
+                return _dayViews[index];
+            else
+                return null;
         }        
-        protected override void Dispose(bool disposing)
-        {
-            //System.Diagnostics.Debug.WriteLine("MonthView: Dispose()");            
-            foreach (var item in _dayViews)
-                item.RemoveFromSuperview();
-
-            base.Dispose(disposing);
-        }
-        #endregion
+        #endregion       
     }
 }

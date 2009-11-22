@@ -4,22 +4,24 @@
     <BreakpointStore>
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/RootViewController.cs" line="0" />
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/Calendar/Standard/CalendarView.cs" line="205" />
-      <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/Main.cs" line="30" />
+      <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/Calendar/AbsMonthView.cs" line="119" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/MainViewController.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../net.ReinforceLab.iPhone.SmileDays/Calendar/AbsMonthView.cs" ctype="Workbench">
     <Files>
-      <File FileName="ControlsDemo/Main.cs" Line="1" Column="1" />
-      <File FileName="ControlsDemo/ControlList.cs" Line="1" Column="1" />
-      <File FileName="Calendar/Standard/CalendarView.cs" Line="1" Column="1" />
-      <File FileName="ControlsDemo/MainViewController.cs" Line="1" Column="1" />
+      <File FileName="Calendar/AbsCalendarView.cs" Line="18" Column="17" />
+      <File FileName="Calendar/AbsMonthView.cs" Line="18" Column="1" />
+      <File FileName="ControlsDemo/Main.cs" Line="30" Column="1" />
+      <File FileName="../net.ReinforceLab.iPhone.SmileDays/Calendar/AbsMonthView.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Calendar_md" expanded="True" />
+          <Node name="Calendar_md" expanded="True">
+            <Node name="Standard" expanded="True" />
+          </Node>
           <Node name="ControlsDemo_md" expanded="True">
-            <Node name="MainViewController.cs" selected="True" />
+            <Node name="Main.cs" selected="True" />
           </Node>
         </State>
       </Pad>
