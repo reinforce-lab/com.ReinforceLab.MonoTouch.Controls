@@ -1,0 +1,13 @@
+﻿# Abstract #
+This SQLitePersistence library is an minimal library to store data in SQLite 3 database. 
+This project is derived from http://code.google.com/p/sqlite-net/ but entirely re-written to fit with Mono.Data.SQLite.
+
+# How to use #
+A example project is in SQLitePersistence.Test project directory. Procedures to use this library is :
+- First,  write a interface of a value object,
+- Second, write a data access class that inheritetes the value object interace,
+-- In the data acess class, use datarow to hold values. 
+--- DataRow has a column data type of Int64 to store an integer with a length of 1~8 bytes (byte, int16, int32), 
+--- therefore use System.Convert.ToXXX method insted of type casting. (ex: int IntValue { get{ return System.Convert.ToInt32(row["IntValue"]);}} )
+- At last, write your own database access method.
+-- PrimitiveTypeTest.cs is a good starting point (maybe ;-)

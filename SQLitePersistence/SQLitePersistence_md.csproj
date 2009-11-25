@@ -5,23 +5,20 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CB66A80A-63C6-4B83-8F5D-ADD65F31CBAC}</ProjectGuid>
+    <ProjectGuid>{4EC3D63C-760A-430E-9748-C540E8C438BE}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>net.ReinforceLab.iPhone.Controls.ControlsDemo</RootNamespace>
-    <!--    <MainNibFile>MainWindow.xib</MainNibFile> -->
-    <AssemblyName>ControlsDemo_md</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>net.ReinforceLab.iPhone.Utils.SQLitePersistence</RootNamespace>
+    <AssemblyName>SQLitePersistence_md</AssemblyName>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <BundleDisplayName>ControlsDemo</BundleDisplayName>
-    <StartupObject>net.ReinforceLab.iPhone.Controls.ControlsDemo.Application</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
+    <DefineConstants>DEBUG MONO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
@@ -35,17 +32,17 @@
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>False</MtouchDebug>
     <MtouchLink>None</MtouchLink>
+    <DefineConstants>MONO</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
+    <DefineConstants>DEBUG MONO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchLink>None</MtouchLink>
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -55,19 +52,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>False</MtouchDebug>
-    <MtouchLink>None</MtouchLink>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <DefineConstants>MONO</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Main.cs" />
-    <Compile Include="MainViewController.cs" />
-    <Compile Include="ControlList.cs" />
+    <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -76,23 +70,12 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <ProjectReference Include="..\Calendar\Calendar_md.csproj">
-      <Project>{948C167F-E236-4AB8-91CC-EC23F76089DC}</Project>
-      <Name>Calendar_md</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SQLitePersistence\SQLitePersistence_md.csproj">
-      <Project>{4EC3D63C-760A-430E-9748-C540E8C438BE}</Project>
-      <Name>SQLitePersistence_md</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\today.png" />
-    <Content Include="Images\todayselected.png" />
-    <Content Include="Images\shadow.png" />
-    <Content Include="Images\topbar.png" />
-    <Content Include="Images\datecell.png" />
-    <Content Include="Images\datecellselected.png" />
-    <Content Include="Images\rightarrow.png" />
-    <Content Include="Images\leftarrow.png" />
+    <Compile Include="AutoIncrementAttribute.cs" />
+    <Compile Include="IndexedAttribute.cs" />
+    <Compile Include="MaxLengthAttribute.cs" />
+    <Compile Include="PrimaryKeyAttribute.cs" />
+    <Compile Include="Connection.cs" />
+    <Compile Include="Orm.cs" />
+    <Compile Include="IgnoreAttribute.cs" />
   </ItemGroup>
 </Project>

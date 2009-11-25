@@ -7,21 +7,23 @@
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/Calendar/AbsMonthView.cs" line="119" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="../net.ReinforceLab.iPhone.SmileDays/Calendar/AbsMonthView.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SQLitePersistence/Connection.cs" ctype="Workbench">
     <Files>
-      <File FileName="Calendar/AbsCalendarView.cs" Line="18" Column="17" />
-      <File FileName="Calendar/AbsMonthView.cs" Line="18" Column="1" />
-      <File FileName="ControlsDemo/Main.cs" Line="30" Column="1" />
-      <File FileName="../net.ReinforceLab.iPhone.SmileDays/Calendar/AbsMonthView.cs" Line="1" Column="1" />
+      <File FileName="../net.ReinforceLab.iPhone.SmileDays/Calendar/AbsMonthView.cs" Line="22" Column="5" />
+      <File FileName="Calendar/AbsCalendarView.cs" Line="1" Column="1" />
+      <File FileName="Calendar/AbsMonthView.cs" Line="1" Column="1" />
+      <File FileName="ControlsDemo/Main.cs" Line="1" Column="1" />
+      <File FileName="SQLitePersistence/Connection.cs" Line="5" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Calendar_md" expanded="True">
-            <Node name="Standard" expanded="True" />
+          <Node name="ControlsDemo_md" expanded="True" />
+          <Node name="SQLitePersistence.Test_md" expanded="True" selected="True">
+            <Node name="References" expanded="True" />
           </Node>
-          <Node name="ControlsDemo_md" expanded="True">
-            <Node name="Main.cs" selected="True" />
+          <Node name="SQLitePersistence_md" expanded="True">
+            <Node name="References" expanded="True" />
           </Node>
         </State>
       </Pad>
