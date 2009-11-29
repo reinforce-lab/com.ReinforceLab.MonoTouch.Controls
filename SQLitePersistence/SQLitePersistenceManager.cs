@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +8,10 @@ using System.Data;
 #if SD_SQLITE
 using System.Data.SQLite;
 #else
-using Mono.Data.SQLite;
+using Mono.Data.Sqlite;
 #endif
 
-namespace net.ReinforceLab.iPhone.Utils.SQLitePersistence
+namespace net.ReinforceLab.SQLitePersistence
 {
     public class SQLitePersistenceManager : AbsPersistenceManager
     {        
@@ -26,11 +26,11 @@ namespace net.ReinforceLab.iPhone.Utils.SQLitePersistence
         #endregion
 
         #region Properties
-        public SQLiteConnection Connection { get; private set; }
+        public SqliteConnection Connection { get; private set; }
         #endregion
 
         #region Constructor
-        public SQLitePersistenceManager(SQLiteConnection connection)
+        public SQLitePersistenceManager(SqliteConnection connection)
             : base()
         {
             Connection = connection;         
@@ -57,9 +57,9 @@ namespace net.ReinforceLab.iPhone.Utils.SQLitePersistence
         #endregion
 
         #region Private methods
-        SQLiteCommand buildCommand(String commandText, Type type)
+       SqliteCommand buildCommand(String commandText, Type type)
         {
-            var command = new SQLiteCommand(Connection);
+            var command = new SqliteCommand(Connection);
             command.CommandText = commandText;
             foreach (var pinfo in getColumns(type))
             {
@@ -116,10 +116,10 @@ namespace net.ReinforceLab.iPhone.Utils.SQLitePersistence
             command.ExecuteNonQuery();
         }
 
-        public SQLiteDataAdapter GetAdapter<T>(string commandText)
+        public SqliteDataAdapter GetAdapter<T>(string commandText)
         {
             Type type = typeof(T);
-            var adapter = new SQLiteDataAdapter(commandText, Connection);
+            var adapter = new SqliteDataAdapter(commandText, Connection);
             adapter.InsertCommand = buildCommand(GetInsertCommandText(type), type);
             adapter.UpdateCommand = buildCommand(GetUpdateCommandText(type), type);
             adapter.DeleteCommand = buildCommand(GetDeleteCommandText(type), type);            

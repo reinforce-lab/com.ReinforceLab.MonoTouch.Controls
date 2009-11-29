@@ -7,7 +7,7 @@ using System.Drawing;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
+namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
 {	
 	public class MonthView : AbsMonthView<DayView>
 	{			

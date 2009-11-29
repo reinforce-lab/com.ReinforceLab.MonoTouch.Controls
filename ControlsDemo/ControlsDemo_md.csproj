@@ -8,7 +8,7 @@
     <ProjectGuid>{CB66A80A-63C6-4B83-8F5D-ADD65F31CBAC}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>net.ReinforceLab.iPhone.Controls.ControlsDemo</RootNamespace>
+    <RootNamespace>net.ReinforceLab.MonoTouch.Controls.ControlsDemo</RootNamespace>
     <!--    <MainNibFile>MainWindow.xib</MainNibFile> -->
     <AssemblyName>ControlsDemo_md</AssemblyName>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>

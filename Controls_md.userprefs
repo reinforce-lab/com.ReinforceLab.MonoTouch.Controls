@@ -1,5 +1,5 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" ctype="Workspace" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" ctype="Workspace" />
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore>
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/RootViewController.cs" line="0" />
@@ -7,24 +7,23 @@
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/Calendar/AbsMonthView.cs" line="119" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="SQLitePersistence/Connection.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/MainViewController.cs" ctype="Workbench">
     <Files>
-      <File FileName="../net.ReinforceLab.iPhone.SmileDays/Calendar/AbsMonthView.cs" Line="22" Column="5" />
-      <File FileName="Calendar/AbsCalendarView.cs" Line="1" Column="1" />
-      <File FileName="Calendar/AbsMonthView.cs" Line="1" Column="1" />
+      <File FileName="Calendar/AbsCalendarView.cs" Line="10" Column="55" />
+      <File FileName="Calendar/AbsMonthView.cs" Line="10" Column="55" />
       <File FileName="ControlsDemo/Main.cs" Line="1" Column="1" />
-      <File FileName="SQLitePersistence/Connection.cs" Line="5" Column="9" />
+      <File FileName="SQLitePersistence/SQLitePersistenceManager.cs" Line="127" Column="13" />
+      <File FileName="SQLitePersistence/AbsPersistenceManager.cs" Line="8" Column="39" />
+      <File FileName="ControlsDemo/MainViewController.cs" Line="8" Column="34" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="ControlsDemo_md" expanded="True" />
-          <Node name="SQLitePersistence.Test_md" expanded="True" selected="True">
-            <Node name="References" expanded="True" />
+          <Node name="Calendar_md" expanded="True" />
+          <Node name="ControlsDemo_md" expanded="True">
+            <Node name="References" expanded="True" selected="True" />
           </Node>
-          <Node name="SQLitePersistence_md" expanded="True">
-            <Node name="References" expanded="True" />
-          </Node>
+          <Node name="SQLitePersistence_md" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">

@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MonoTouch.UIKit;
 
-namespace net.ReinforceLab.iPhone.Controls.Calendar
+namespace net.ReinforceLab.MonoTouch.Controls.Calendar
 {
     public interface ICalendarController
     {

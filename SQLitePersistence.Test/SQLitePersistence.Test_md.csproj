@@ -8,7 +8,7 @@
     <ProjectGuid>{BA98F05F-C905-4CBC-B051-6754A5A68FC7}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>net.ReinforceLab.iPhone.Utils.SQLitePersistence.Test</RootNamespace>
+    <RootNamespace>net.ReinforceLab.SQLitePersistence.Test</RootNamespace>
     <AssemblyName>SQLitePersistence.Test_md</AssemblyName>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>

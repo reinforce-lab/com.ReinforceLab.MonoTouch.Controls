@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
+namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
 {
     public class ViewFactory : IViewFactory
     {

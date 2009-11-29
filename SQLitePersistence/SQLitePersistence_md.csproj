@@ -8,7 +8,7 @@
     <ProjectGuid>{4EC3D63C-760A-430E-9748-C540E8C438BE}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>net.ReinforceLab.iPhone.Utils.SQLitePersistence</RootNamespace>
+    <RootNamespace>net.ReinforceLab.SQLitePersistence</RootNamespace>
     <AssemblyName>SQLitePersistence_md</AssemblyName>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -71,11 +71,11 @@
   </ProjectExtensions>
   <ItemGroup>
     <Compile Include="AutoIncrementAttribute.cs" />
-    <Compile Include="IndexedAttribute.cs" />
     <Compile Include="MaxLengthAttribute.cs" />
     <Compile Include="PrimaryKeyAttribute.cs" />
-    <Compile Include="Connection.cs" />
-    <Compile Include="Orm.cs" />
     <Compile Include="IgnoreAttribute.cs" />
+    <Compile Include="SQLitePersistenceManager.cs" />
+    <Compile Include="AbsPersistenceManager.cs" />
+    <Compile Include="ColumnConstraintAttribute.cs" />
   </ItemGroup>
 </Project>

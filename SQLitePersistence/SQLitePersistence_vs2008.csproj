@@ -8,7 +8,7 @@
     <ProjectGuid>{1EC90436-90DF-4073-824A-D8D963AC5666}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>net.ReinforceLab.iPhone.Utils.SQLitePersistence</RootNamespace>
+    <RootNamespace>net.ReinforceLab.SQLitePersistence</RootNamespace>
     <AssemblyName>SQLitePersistence</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

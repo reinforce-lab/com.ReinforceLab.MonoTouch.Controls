@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Collections.Generic;
 
-namespace net.ReinforceLab.iPhone.Utils.SQLitePersistence
+namespace net.ReinforceLab.SQLitePersistence
 {
     public abstract class AbsPersistenceManager
     {

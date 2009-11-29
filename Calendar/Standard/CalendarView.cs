@@ -7,7 +7,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 
-namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
+namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
 {
 	[Register("CalendarView")]
     public class CalendarView : UIView

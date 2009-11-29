@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace net.ReinforceLab.iPhone.Controls.Calendar.Standard
+namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
 {
 	public class DayView : CacheableView, IDayView
 	{

@@ -5,7 +5,7 @@ using System.Text;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-using  net.ReinforceLab.iPhone.Controls.Calendar.Standard;
+using  net.ReinforceLab.MonoTouch.Controls.Calendar.Standard;
 
 namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
 {
