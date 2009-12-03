@@ -5,11 +5,11 @@ using System.Text;
 
 using net.ReinforceLab.iPhone.Utils.SQLitePersistence;
 
-namespace net.ReinforceLab.iPhone.Utils.SQLitePersistence.Test
+namespace net.ReinforceLab.SQLitePersistence.Test
 {
     public enum ArbEnumType { One, Two, Three }
 
-    public interface IPrimitiveValues
+    public interface IPrimitiveValues : net.ReinforceLab.SQLitePersistence.IStorable
     {
         [PrimaryKey]
         [AutoIncrement]

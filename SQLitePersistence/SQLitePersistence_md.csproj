@@ -77,5 +77,7 @@
     <Compile Include="SQLitePersistenceManager.cs" />
     <Compile Include="AbsPersistenceManager.cs" />
     <Compile Include="ColumnConstraintAttribute.cs" />
+    <Compile Include="IStorable.cs" />
+    <Compile Include="AbsStorable.cs" />
   </ItemGroup>
 </Project>

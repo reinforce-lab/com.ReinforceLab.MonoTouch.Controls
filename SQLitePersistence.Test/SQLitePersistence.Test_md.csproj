@@ -65,10 +65,4 @@
       <Properties InternalTargetFrameworkVersion="IPhone" />
     </MonoDevelop>
   </ProjectExtensions>
-  <ItemGroup>
-    <ProjectReference Include="..\SQLitePersistence\SQLitePersistence_md.csproj">
-      <Project>{4EC3D63C-760A-430E-9748-C540E8C438BE}</Project>
-      <Name>SQLitePersistence_md</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

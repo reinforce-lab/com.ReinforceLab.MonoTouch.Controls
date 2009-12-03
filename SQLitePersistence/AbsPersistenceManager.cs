@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace net.ReinforceLab.SQLitePersistence
 {
@@ -11,13 +12,15 @@ namespace net.ReinforceLab.SQLitePersistence
     {
         #region Variables
         readonly Dictionary<Type, PropertyInfo[]> _pinfo;
+        protected readonly DbConnection _connection;
 
         protected int _DefaultStringLength = 140;        
         #endregion
 
         #region Constructor
-        public AbsPersistenceManager()
+        public AbsPersistenceManager(DbConnection connection)
         {
+            _connection = connection;
             _pinfo = new Dictionary<Type, PropertyInfo[]>();
         }
         #endregion
@@ -25,6 +28,13 @@ namespace net.ReinforceLab.SQLitePersistence
         #region Abstract methods
         protected abstract string SqlDecl(PropertyInfo pinfo);
         protected abstract string SqlType(PropertyInfo pinfo);
+
+        protected abstract String GetCreateTebleCommandText<T>();
+        protected abstract String GetInsertCommandText<T>();
+        protected abstract String GetUpdateCommandText<T>();
+        protected abstract String GetDeleteCommandText<T>();
+        protected abstract DbCommand BuildCommand<T>(String commandText,T source);
+        protected abstract DbCommand GetLastRowIDCommand();
         #endregion
 
         #region Protected methods
@@ -58,6 +68,10 @@ namespace net.ReinforceLab.SQLitePersistence
         {
             var attrs = pinfo.GetCustomAttributes(typeof(AutoIncrementAttribute), true);
             return attrs.Length > 0;
+        }
+        protected bool isAutoIncPrimaryKey(PropertyInfo pinfo)
+        {
+            return isAutoInc(pinfo) && isPrimaryKey(pinfo);
         }
         protected bool isIgnored(PropertyInfo pinfo)
         {
@@ -94,13 +108,148 @@ namespace net.ReinforceLab.SQLitePersistence
 
             return null;
         }
+        protected int ExecuteNonQuery<T>(String cmdtxt, T obj)
+        {
+            var cmd = BuildCommand<T>(cmdtxt, obj);
+
+            _connection.Open();
+            int cnt = cmd.ExecuteNonQuery();
+            _connection.Close();
+
+            return cnt;
+        }
+        protected T Read<T>(DbDataReader reader) where T : new()
+        {            
+            T inst = Activator.CreateInstance<T>();            
+            foreach (var pinfo in getColumns(typeof(T)))
+                pinfo.SetValue(inst, Convert.ChangeType(reader[pinfo.Name], pinfo.PropertyType), null);
+            
+            return inst;
+        }
         #endregion
 
         #region Public methods
-        public abstract String GetCreateTebleCommandText(Type type);
-        public abstract String GetInsertCommandText(Type type);
-        public abstract String GetUpdateCommandText(Type type);
-        public abstract String GetDeleteCommandText(Type type);
+        public IEnumerable<T> Read<T>(String select_cmdtxt, T template) where T : IStorable, new()
+        {            
+            var rows = new List<T>();
+            // FIXME maximum row length should be set here.
+            _connection.Open();
+            using (var cmd = BuildCommand<T>(select_cmdtxt, template))
+            {
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        var row = Read<T>(rdr);
+                        (row as IStorable).State = DataRowState.Unchanged;
+                        rows.Add(row);
+                    }
+                }
+            }
+            _connection.Close();
+
+            return rows;
+        }
+        public int AcceptChanges<T>(IEnumerable<T> objs) where T : IStorable
+        {
+            var updateItems = from item in objs where item.State == DataRowState.Modified select item;
+            var insertItems = from item in objs where item.State == DataRowState.Added    select item;
+            var deteteItems = from item in objs where item.State == DataRowState.Deleted  select item;
+
+            int cnt = 0;
+            var type = typeof(T);
+            var pkinfo = getPrimaryKey(type);
+            bool isAutoIncPrimaryKey = isAutoInc(pkinfo);
+
+            _connection.Open();
+            using (var tran = _connection.BeginTransaction())
+            {
+                // insert
+                var insertCmdTxt = GetInsertCommandText<T>();
+                foreach (var obj in insertItems)
+                {
+                    var cmd  = BuildCommand<T>(insertCmdTxt, obj);
+                    var rows = cmd.ExecuteNonQuery();
+                    cnt += rows;
+                    // set last inserted row id
+                    if (isAutoIncPrimaryKey)
+                    {
+                        cmd = GetLastRowIDCommand();
+                        int rowid = cmd.ExecuteNonQuery();                        
+
+                        pkinfo.SetValue(obj, Convert.ChangeType(rowid, pkinfo.PropertyType), null);
+                    }
+                    (obj as IStorable).State = DataRowState.Unchanged;
+                }
+                // update
+                var updateCmdTxt = GetUpdateCommandText<T>();
+                foreach (var obj in updateItems)
+                {
+                    var cmd = BuildCommand<T>(updateCmdTxt, obj);
+                    var rows = cmd.ExecuteNonQuery();
+                    cnt += rows;
+                    (obj as IStorable).State = DataRowState.Unchanged;
+                }
+                // delete
+                var deleteCmdTxt = GetDeleteCommandText<T>();
+                foreach (var obj in updateItems)
+                {
+                    var cmd = BuildCommand<T>(deleteCmdTxt, obj);
+                    var rows = cmd.ExecuteNonQuery();
+                    cnt += rows;
+                    (obj as IStorable).State = DataRowState.Deleted;
+                }
+
+                tran.Commit();
+            }
+            _connection.Close();
+
+            return cnt;
+        }
+        public void CreateTeble<T>()
+        {
+            var command         = _connection.CreateCommand();
+            command.CommandText = GetCreateTebleCommandText<T>();
+            
+            _connection.Open();
+            command.ExecuteNonQuery();
+            _connection.Close();
+        }
+        public int Insert<T>(T obj) where T : IStorable
+        {            
+            int cnt = ExecuteNonQuery<T>(GetInsertCommandText<T>(), obj);
+
+            // set last inserted row id
+            var pkinfo = getPrimaryKey(typeof(T));
+            if (isAutoInc(pkinfo))
+            {
+                var cmd = GetLastRowIDCommand();
+                _connection.Open();
+                int rowid = cmd.ExecuteNonQuery();
+                _connection.Close();
+
+                pkinfo.SetValue(obj, Convert.ChangeType(rowid, pkinfo.PropertyType), null);
+            }
+            (obj as IStorable).State = DataRowState.Unchanged;
+
+            return cnt;
+        }
+        public int Update<T>(T obj) where T : IStorable
+        {
+            int cnt = ExecuteNonQuery<T>(GetUpdateCommandText<T>(), obj);
+            
+            (obj as IStorable).State = DataRowState.Unchanged;
+
+            return cnt;
+        }
+        public int Delete<T>(T obj)
+        {
+            int cnt = ExecuteNonQuery<T>(GetDeleteCommandText<T>(), obj);
+            
+            (obj as IStorable).State = DataRowState.Deleted;
+            
+            return cnt;
+        }
         #endregion       
     }
 }
