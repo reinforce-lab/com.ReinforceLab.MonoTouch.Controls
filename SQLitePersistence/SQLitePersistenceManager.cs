@@ -6,7 +6,11 @@ using System.Text;
 using System.Data;
 using System.Data.Common;
 
+#if VS_ENV
+using System.Data.SQLite;
+#else
 using Mono.Data.Sqlite;
+#endif
 
 namespace net.ReinforceLab.SQLitePersistence
 {
@@ -23,12 +27,27 @@ namespace net.ReinforceLab.SQLitePersistence
         #endregion
 
         #region Properties
-        public SqliteConnection Connection { get { return (SqliteConnection)_connection; } }
+#if VS_ENV
+        public SQLiteConnection Connection
+        {
+            get { return (SQLiteConnection)_connection; }
+        }
+#else
+        public SqliteConnection Connection 
+        { 
+            get {return (SqliteConnection)_connection; }
+        }
+#endif
         #endregion
 
         #region Constructor
-        public SQLitePersistenceManager(SqliteConnection connection)
-            : base(connection)
+        public SQLitePersistenceManager(
+#if VS_ENV
+            SQLiteConnection connection
+#else
+            SqliteConnection connection
+#endif
+            ) : base(connection)
         {
             _sqlType = new Dictionary<Type, string>();
 
@@ -51,7 +70,11 @@ namespace net.ReinforceLab.SQLitePersistence
         }
         #endregion
 
-        #region Private methods       
+        #region Private methods
+        DbCommand createCommand()
+        {
+            return Connection.CreateCommand();
+        }
         #endregion
 
         #region Protected methods
@@ -127,7 +150,7 @@ namespace net.ReinforceLab.SQLitePersistence
         }
         protected override DbCommand BuildCommand<T>(String commandText, T src)
         {
-            var command = new SqliteCommand(Connection);
+            var command = createCommand();
             command.CommandText = commandText;
             command.CommandType = CommandType.Text;
             if (null != src)
@@ -145,7 +168,7 @@ namespace net.ReinforceLab.SQLitePersistence
         }
         protected override DbCommand GetLastRowIDCommand()
         {
-            var cmd         = new SqliteCommand(Connection);
+            var cmd = createCommand();
             cmd.CommandText = "SELECT last_insert_rowid();";
             cmd.CommandType = CommandType.Text;
             return cmd;

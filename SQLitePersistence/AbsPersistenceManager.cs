@@ -107,23 +107,42 @@ namespace net.ReinforceLab.SQLitePersistence
                 if (isPrimaryKey(p)) return p;
 
             return null;
-        }
-        protected int ExecuteNonQuery<T>(String cmdtxt, T obj)
+        }             
+        #endregion
+
+        #region Private methods 
+        int ExecuteNonQuery<T>(String cmdtxt, T obj, bool setAutoIncPrimaryKey)
         {
             var cmd = BuildCommand<T>(cmdtxt, obj);
 
             _connection.Open();
             int cnt = cmd.ExecuteNonQuery();
+            if (setAutoIncPrimaryKey)
+            {
+                // set last inserted row id
+                var pkinfo = getPrimaryKey(typeof(T));
+                if (isAutoInc(pkinfo))
+                {
+                    cmd = GetLastRowIDCommand();
+                    var rowid = cmd.ExecuteScalar();
+                    pkinfo.SetValue(obj, Convert.ChangeType(rowid, pkinfo.PropertyType), null);
+                }
+            }
             _connection.Close();
 
             return cnt;
         }
-        protected T Read<T>(DbDataReader reader) where T : new()
+
+        T Read<T>(DbDataReader reader) where T : new()
         {            
-            T inst = Activator.CreateInstance<T>();            
+            T inst = Activator.CreateInstance<T>();
             foreach (var pinfo in getColumns(typeof(T)))
-                pinfo.SetValue(inst, Convert.ChangeType(reader[pinfo.Name], pinfo.PropertyType), null);
-            
+            {                       
+                if (pinfo.PropertyType.IsEnum)                    
+                    pinfo.SetValue(inst, System.Enum.Parse(pinfo.PropertyType, reader[pinfo.Name].ToString() ), null);
+                else
+                    pinfo.SetValue(inst, Convert.ChangeType(reader[pinfo.Name], pinfo.PropertyType), null);
+            }            
             return inst;
         }
         #endregion
@@ -217,26 +236,15 @@ namespace net.ReinforceLab.SQLitePersistence
         }
         public int Insert<T>(T obj) where T : IStorable
         {            
-            int cnt = ExecuteNonQuery<T>(GetInsertCommandText<T>(), obj);
+            int cnt = ExecuteNonQuery<T>(GetInsertCommandText<T>(), obj, true);
 
-            // set last inserted row id
-            var pkinfo = getPrimaryKey(typeof(T));
-            if (isAutoInc(pkinfo))
-            {
-                var cmd = GetLastRowIDCommand();
-                _connection.Open();
-                int rowid = cmd.ExecuteNonQuery();
-                _connection.Close();
-
-                pkinfo.SetValue(obj, Convert.ChangeType(rowid, pkinfo.PropertyType), null);
-            }
             (obj as IStorable).State = DataRowState.Unchanged;
 
             return cnt;
         }
         public int Update<T>(T obj) where T : IStorable
         {
-            int cnt = ExecuteNonQuery<T>(GetUpdateCommandText<T>(), obj);
+            int cnt = ExecuteNonQuery<T>(GetUpdateCommandText<T>(), obj, false);
             
             (obj as IStorable).State = DataRowState.Unchanged;
 
@@ -244,7 +252,7 @@ namespace net.ReinforceLab.SQLitePersistence
         }
         public int Delete<T>(T obj)
         {
-            int cnt = ExecuteNonQuery<T>(GetDeleteCommandText<T>(), obj);
+            int cnt = ExecuteNonQuery<T>(GetDeleteCommandText<T>(), obj, false);
             
             (obj as IStorable).State = DataRowState.Deleted;
             
