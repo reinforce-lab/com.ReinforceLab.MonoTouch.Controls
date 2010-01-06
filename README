@@ -1,1 +1,6 @@
-A MonoTouch UI Control collection of ReinforceLab. You can use a MonoDevelop solution file ( ./ControlsDemo_md.sln ) to build a demonstration program.
+A MonoTouch UI Control collection. 
+You can use a MonoDevelop solution file ( ./ControlsDemo_md.sln ) to build a demonstration program.
+
+Copyright (C) 2010 Akihiro UEHARA ( u-akihiro@reinforce-lab.com ).
+This library is released under the New BSD Licnese ( http://www.opensource.org/licenses/bsd-license.php ).
+
