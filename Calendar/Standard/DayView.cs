@@ -21,6 +21,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
             set { 
                 _day = value;            
                 _label.Text = _day.Day.ToString();
+                SetNeedsDisplay();
             }
 		}
 		

@@ -44,7 +44,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
             _selectedView = dv;
             if (null != dv)
                 _ctr.DaySelected(dv.Day);            
-        }
+        }       
         protected virtual T createDayView(RectangleF rect, DateTime date)
         {
             var dayView = _ctr.DayViewCache.GetView("_cell") as T;
@@ -54,6 +54,25 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
         #endregion
 
         #region public methods
+        public void SelectDay(DateTime day)
+        {
+            T dv = null;
+            foreach (var item in _dayViews)
+            {
+                if (item.Day == day)
+                {
+                    dv = item;
+                    break;
+                }
+            }
+            if (dv == _selectedView) return;
+
+            dayViewSelected(dv, _selectedView);
+            _selectedView = dv;
+            if (null != dv)
+                _ctr.DaySelected(dv.Day);
+        }
+
         public override void Draw(RectangleF rect)
         {
             base.Draw(rect);

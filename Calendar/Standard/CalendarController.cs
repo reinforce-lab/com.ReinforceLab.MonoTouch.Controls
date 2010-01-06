@@ -64,7 +64,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
             _currentDay = day;
         }
 
-        public void MonthChanged(DateTime currentMonth, DateTime previousMonth)
+        public void CalendarViewChanged(DateTime currentMonth, DateTime previousMonth)
         {
             Debug.WriteLine(String.Format("Visible month changed. new date:{0} prev:{1}.", currentMonth.ToString("y"), previousMonth.ToString("y")));
             foreach (var day in _calendarView.MonthView.DayViews)

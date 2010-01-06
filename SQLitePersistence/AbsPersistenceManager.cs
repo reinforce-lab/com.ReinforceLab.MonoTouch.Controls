@@ -234,26 +234,35 @@ namespace net.ReinforceLab.SQLitePersistence
             command.ExecuteNonQuery();
             _connection.Close();
         }
-        public int Insert<T>(T obj) where T : IStorable
-        {            
-            int cnt = ExecuteNonQuery<T>(GetInsertCommandText<T>(), obj, true);
-
-            (obj as IStorable).State = DataRowState.Unchanged;
-
-            return cnt;
-        }
         public int Update<T>(T obj) where T : IStorable
         {
-            int cnt = ExecuteNonQuery<T>(GetUpdateCommandText<T>(), obj, false);
-            
-            (obj as IStorable).State = DataRowState.Unchanged;
+            if (null == obj) return 0;
 
-            return cnt;
+            int cnt = 0;
+            switch (obj.State)
+            { 
+                case DataRowState.Added:
+                    cnt = ExecuteNonQuery<T>(GetInsertCommandText<T>(), obj, true);
+                    obj.State = DataRowState.Unchanged;
+                    break;
+                case DataRowState.Deleted:
+                case DataRowState.Detached:
+                    cnt = ExecuteNonQuery<T>(GetDeleteCommandText<T>(), obj, false);
+                    break;
+                case DataRowState.Modified:
+                    cnt = ExecuteNonQuery<T>(GetUpdateCommandText<T>(), obj, false);
+                    obj.State = DataRowState.Unchanged;
+                    break;
+                case DataRowState.Unchanged:
+                    break;
+                default:
+                    break;
+            }
+            return cnt;   
         }
         public int Delete<T>(T obj)
         {
             int cnt = ExecuteNonQuery<T>(GetDeleteCommandText<T>(), obj, false);
-            
             (obj as IStorable).State = DataRowState.Deleted;
             
             return cnt;

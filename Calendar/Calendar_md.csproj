@@ -83,6 +83,7 @@
     <Compile Include="AbsMonthView.cs" />
     <Compile Include="IDayView.cs" />
     <Compile Include="AbsCalendarView.cs" />
+    <Compile Include="DayOfWeekView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

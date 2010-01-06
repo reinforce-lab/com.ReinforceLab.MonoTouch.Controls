@@ -170,7 +170,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
             _monthView = _nextMonthView;            
             _nextMonthView = null;
             
-            _ctr.MonthChanged(_monthView.Month, prevMonth);
+            _ctr.CalendarViewChanged(_monthView.Month, prevMonth);
 
             UserInteractionEnabled = true;
         }        

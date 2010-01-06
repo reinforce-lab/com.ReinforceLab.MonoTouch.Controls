@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="AbsCalendarView.cs" />
     <Compile Include="AbsMonthView.cs" />
+    <Compile Include="DayOfWeekView.cs" />
     <Compile Include="IDayView.cs" />
     <Compile Include="ViewCache.cs" />
     <Compile Include="ICalendarController.cs" />
