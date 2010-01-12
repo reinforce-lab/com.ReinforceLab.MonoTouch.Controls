@@ -1,5 +1,5 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" ctype="Workspace" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" ctype="Workspace" />
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore>
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/RootViewController.cs" line="0" />
@@ -9,25 +9,32 @@
   </MonoDevelop.Ide.DebuggingService>
   <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/MainViewController.cs" ctype="Workbench">
     <Files>
-      <File FileName="Calendar/AbsCalendarView.cs" Line="10" Column="55" />
-      <File FileName="Calendar/AbsMonthView.cs" Line="10" Column="55" />
+      <File FileName="Calendar/AbsCalendarView.cs" Line="1" Column="1" />
+      <File FileName="Calendar/AbsMonthView.cs" Line="1" Column="1" />
       <File FileName="ControlsDemo/Main.cs" Line="1" Column="1" />
-      <File FileName="SQLitePersistence/SQLitePersistenceManager.cs" Line="127" Column="13" />
-      <File FileName="SQLitePersistence/AbsPersistenceManager.cs" Line="8" Column="39" />
-      <File FileName="ControlsDemo/MainViewController.cs" Line="8" Column="34" />
+      <File FileName="SQLitePersistence/SQLitePersistenceManager.cs" Line="1" Column="1" />
+      <File FileName="SQLitePersistence/AbsPersistenceManager.cs" Line="1" Column="1" />
+      <File FileName="ControlsDemo/MainViewController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Calendar_md" expanded="True" />
           <Node name="ControlsDemo_md" expanded="True">
-            <Node name="References" expanded="True" selected="True" />
+            <Node name="Images" expanded="True" />
+            <Node name="ControlList.cs" selected="True" />
           </Node>
+          <Node name="SQLitePersistence.Test_md" expanded="True" />
           <Node name="SQLitePersistence_md" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

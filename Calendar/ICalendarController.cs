@@ -10,6 +10,6 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar
     {
         ViewCache DayViewCache { get; }
         void DaySelected(DateTime day);        
-        void CalendarViewChanged(DateTime currentDate, DateTime previousDate);
+        void CalendarViewChanged(DateTime currentDate, DateTime previousDate);        
     }
 }

@@ -13,6 +13,7 @@ namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
     {
         #region Variables
         DataSource _list;
+        CalendarController _calendarCtr;
         #endregion
 
         #region Constructor
@@ -30,9 +31,12 @@ namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
         {
             base.ViewDidLoad();
 
-            Title = "ReinforceLab UICatalog";
+            Title = "ReinforceLab UICatalog";            
+            _calendarCtr = new CalendarController();
+            _calendarCtr.DaySelectionChanged += new EventHandler<EventArgs>(daySelectionChanged);
+
             _list = new DataSource(this, new ControlItem[] { 
-                new ControlItem() {Title ="Calendar", Controller = new CalendarController() }
+                new ControlItem() {Title ="Calendar", Controller = _calendarCtr }
             });
 
             TableView.Source = _list;
@@ -41,8 +45,15 @@ namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
         }
         #endregion
 
+        #region Event hander
+        void daySelectionChanged(Object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Calendar day selection changed: current date {0}.", ((CalendarController)sender).CurrentDay.ToShortDateString());
+        }
+        #endregion
+
         #region Data source
-    	class ControlItem {public String Title; public UIViewController Controller;}
+        class ControlItem {public String Title; public UIViewController Controller;}
 
         class DataSource : UITableViewSource
         {

@@ -33,7 +33,7 @@
   <ItemGroup>
     <Reference Include="monotouch, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\monotouch.dll</HintPath>
+      <HintPath>..\Calendar\monotouch.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
 {
-    class Resources
+    public class Resources
     {
         public const float MONTHVIEW_WIDTH = 320f;
         public const float DAYVIEW_WIDTH = 46f;

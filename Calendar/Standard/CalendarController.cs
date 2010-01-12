@@ -15,6 +15,13 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
         readonly ViewCache _dayViewCache;
         CalendarView _calendarView;
         DateTime _currentDay;
+
+        public EventHandler<EventArgs> DaySelectionChanged;
+        #endregion
+
+        #region Properties 
+        public CalendarView CalendarView { get { return _calendarView; } }
+        public DateTime CurrentDay { get { return _currentDay; } }
         #endregion
 
         #region Constructor
@@ -40,7 +47,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
 
         public void DaySelected(DateTime day)
         {
-            Debug.WriteLine(String.Format("DayView is selected. date: {0}.", day.Day));
+            Debug.WriteLine(String.Format("DayView is selected. date: {0}.", day.ToString("d")));
 
             if (_calendarView.MonthView.Month.Month != day.Month)
             {
@@ -49,7 +56,6 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
                     _calendarView.MoveToNextMonth();
                 else
                     _calendarView.MoveToPrevMonth();
-
             }
             if (_currentDay != day)
             {
@@ -62,6 +68,12 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
                 }
             }            
             _currentDay = day;
+
+            // Invoke dayselectionchanged event 
+            if (null != DaySelectionChanged)
+            {
+                DaySelectionChanged.Invoke(this, null);
+            }
         }
 
         public void CalendarViewChanged(DateTime currentMonth, DateTime previousMonth)
@@ -75,7 +87,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
                     return;
                 }
             }
-            _currentDay = DateTime.MinValue; 
+            //_currentDay = DateTime.MinValue; 
         }
         #endregion
     }
