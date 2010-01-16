@@ -65,12 +65,12 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
         {
             _rightButton = new UIButton(new RectangleF(Resources.MONTHVIEW_WIDTH - 56, 0, 44, 42));
             _rightButton.SetImage(UIImage.FromFile(Resources.RightArrorImage), UIControlState.Normal);
-            _rightButton.TouchUpInside += delegate { moveToNextMonth(); };
+            _rightButton.TouchUpInside += delegate { moveToNextMonth(_monthView.Month.AddMonths(1) ); };
             AddSubview(_rightButton);
 
             _leftButton = new UIButton(new RectangleF(10, 0, 44, 42));
             _leftButton.SetImage(UIImage.FromFile(Resources.LeftArrorImage), UIControlState.Normal);
-            _leftButton.TouchUpInside += delegate { moveToPrevMonth(); };
+            _leftButton.TouchUpInside += delegate { moveToPrevMonth(_monthView.Month.AddMonths(-1) ); };
             AddSubview(_leftButton);
         }
         protected virtual void buildTitleLabel()
@@ -142,17 +142,17 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
             SetNeedsDisplay();                                   
             //Debug.WriteLine("\tCalendarView: Frame after monthview updated: {0}.", Frame);
         }
-        void moveToNextMonth()
+        void moveToNextMonth(DateTime nextMonth)
         {
-            _nextMonthView = new MonthView(RectangleF.Empty, _ctr, _monthView.Month.AddMonths(1), _firstDayOfWeek);
+            _nextMonthView = new MonthView(RectangleF.Empty, _ctr, nextMonth, _firstDayOfWeek);
             _nextMonthView.Frame = new RectangleF(0, _monthView.Frame.Height, Resources.MONTHVIEW_WIDTH, _nextMonthView.Frame.Height);
             _scollView.Add(_nextMonthView);            
             
             scrollCalendar(-1 * _monthView.Frame.Height);            
         }        
-        void moveToPrevMonth()
+        void moveToPrevMonth(DateTime prevMonth )
         {
-            _nextMonthView = new MonthView(RectangleF.Empty, _ctr, _monthView.Month.AddMonths(-1), _firstDayOfWeek);
+            _nextMonthView = new MonthView(RectangleF.Empty, _ctr, prevMonth, _firstDayOfWeek);
             _nextMonthView.Frame = new RectangleF(0, -_nextMonthView.Frame.Height, Resources.MONTHVIEW_WIDTH, _nextMonthView.Frame.Height); 
             _scollView.Add(_nextMonthView);
 
@@ -178,13 +178,13 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
         #endregion
 
         #region Public methods
-        public void MoveToNextMonth()
+        public void MoveToNextMonth(DateTime nextMonth)
         {
-            moveToNextMonth();
+            moveToNextMonth(new DateTime(nextMonth.Year, nextMonth.Month,1) );
         }
-        public void MoveToPrevMonth()
+        public void MoveToPrevMonth(DateTime prevMonth )
         {
-            moveToPrevMonth();
+            moveToPrevMonth(new DateTime(prevMonth.Year, prevMonth.Month, 1));
         }
         public override void Draw(RectangleF rect)
         {

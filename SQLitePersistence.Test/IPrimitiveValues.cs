@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using net.ReinforceLab.iPhone.Utils.SQLitePersistence;
+using net.ReinforceLab.SQLitePersistence;
 
 namespace net.ReinforceLab.SQLitePersistence.Test
 {

@@ -7,7 +7,7 @@
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/Calendar/AbsMonthView.cs" line="119" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/MainViewController.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Calendar/Standard/CalendarView.cs" ctype="Workbench">
     <Files>
       <File FileName="Calendar/AbsCalendarView.cs" Line="1" Column="1" />
       <File FileName="Calendar/AbsMonthView.cs" Line="1" Column="1" />
@@ -15,16 +15,16 @@
       <File FileName="SQLitePersistence/SQLitePersistenceManager.cs" Line="1" Column="1" />
       <File FileName="SQLitePersistence/AbsPersistenceManager.cs" Line="1" Column="1" />
       <File FileName="ControlsDemo/MainViewController.cs" Line="1" Column="1" />
+      <File FileName="Calendar/Standard/CalendarView.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="ControlsDemo_md" expanded="True">
-            <Node name="Images" expanded="True" />
-            <Node name="ControlList.cs" selected="True" />
+          <Node name="Calendar_md" expanded="True">
+            <Node name="Standard" expanded="True">
+              <Node name="CalendarView.cs" selected="True" />
+            </Node>
           </Node>
-          <Node name="SQLitePersistence.Test_md" expanded="True" />
-          <Node name="SQLitePersistence_md" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
