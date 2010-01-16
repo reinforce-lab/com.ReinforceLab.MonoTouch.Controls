@@ -17,11 +17,13 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
         DateTime _currentDay;
 
         public EventHandler<EventArgs> DaySelectionChanged;
+		public EventHandler<EventArgs> MonthSelectionChanged;
         #endregion
 
         #region Properties 
         public CalendarView CalendarView { get { return _calendarView; } }
         public DateTime CurrentDay { get { return _currentDay; } }
+		public DateTime CurrentMonth;
         #endregion
 
         #region Constructor
@@ -68,6 +70,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
                 }
             }            
             _currentDay = day;
+			HighlightDayView(day);
 
             // Invoke dayselectionchanged event 
             if (null != DaySelectionChanged)
@@ -75,11 +78,45 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
                 DaySelectionChanged.Invoke(this, null);
             }
         }
+		
+		public void HighlightDayView(DateTime currentDay) //RJG 1/9/10
+		{
 
+   			var highlightDay = new DateTime(currentDay.Year, currentDay.Month, currentDay.Day);
+
+  			foreach (var day in _calendarView.MonthView.DayViews)
+            {
+                if (day.Day == highlightDay)
+                {
+                    day.IsSelected = true;
+                }
+                else
+                {
+                   day.IsSelected = false;
+                }
+            }  
+		}	
+
+		public void MarkDay(DateTime day)
+		{
+			foreach (var view in _calendarView.MonthView.DayViews)
+                {
+                    if (view.Day == day)
+					{
+                        	view.IsMarked = true; 
+					}
+					else
+					{
+						view.IsMarked = false;
+					}
+                }
+		}
+		
         public void CalendarViewChanged(DateTime currentMonth, DateTime previousMonth)
         {
             Debug.WriteLine(String.Format("Visible month changed. new date:{0} prev:{1}.", currentMonth.ToString("y"), previousMonth.ToString("y")));
-            foreach (var day in _calendarView.MonthView.DayViews)
+            CurrentMonth = currentMonth;
+			foreach (var day in _calendarView.MonthView.DayViews)
             {
                 if (day.Day == _currentDay)
                 {
@@ -88,6 +125,11 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
                 }
             }
             //_currentDay = DateTime.MinValue; 
+			            // Invoke dayselectionchanged event 
+            if (null != MonthSelectionChanged)
+            {
+                MonthSelectionChanged.Invoke(this, null);
+            }
         }
         #endregion
     }
