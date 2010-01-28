@@ -79,13 +79,13 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <ProjectReference Include="..\Calendar\Calendar_md.csproj">
+    <ProjectReference Include="..\Calendar\Calendar.csproj">
       <Project>{948C167F-E236-4AB8-91CC-EC23F76089DC}</Project>
-      <Name>Calendar_md</Name>
+      <Name>Calendar</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SQLitePersistence\SQLitePersistence_md.csproj">
+    <ProjectReference Include="..\SQLitePersistence\SQLitePersistence.csproj">
       <Project>{4EC3D63C-760A-430E-9748-C540E8C438BE}</Project>
-      <Name>SQLitePersistence_md</Name>
+      <Name>SQLitePersistence</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

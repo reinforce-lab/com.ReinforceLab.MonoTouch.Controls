@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A5DBB069-8A23-438F-BEC2-CD3594EB4FE9}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{13D95C32-BCA3-4FF0-9209-96D8CEDF83DF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>net.ReinforceLab.iPhone.Controls.Images</RootNamespace>
-    <AssemblyName>Images_vs2008</AssemblyName>
+    <RootNamespace>net.ReinforceLab.iPhone.Controls.ControlsDemo</RootNamespace>
+    <AssemblyName>ControlsDemo</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,35 +31,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="monotouch, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\monotouch.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImageFiles.cs" />
+    <Compile Include="ControlList.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="MainViewController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ButtonPlain_DarkBlue_45x30.png" />
-    <Content Include="datecell.png" />
-    <Content Include="datecellselected.png" />
-    <Content Include="leftarrow.png" />
-    <Content Include="PlusIcon_WhiteAndDarkBlue_33x30.png" />
-    <Content Include="rightarrow.png" />
-    <Content Include="shadow.png" />
-    <Content Include="today.png" />
-    <Content Include="todayselected.png" />
-    <Content Include="topbar.png" />
-    <Content Include="TopBar_DarkBlue_320x44.png" />
+    <ProjectReference Include="..\Calendar\Calendar_vs.csproj">
+      <Project>{85A1C64F-9ED9-4D62-8416-72C2D93758D0}</Project>
+      <Name>Calendar_vs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
