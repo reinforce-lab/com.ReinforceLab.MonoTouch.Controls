@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 using MonoTouch.UIKit;
 
-namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
+namespace com.ReinforceLab.MonoTouch.Controls.Calendar.Standard
 {
     public class CalendarController : UIViewController, ICalendarController
     {
@@ -58,17 +58,48 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
                 }
             }
         }
+        /// <summary>
+        /// Setting a marker on a specified date.
+        /// </summary>
+        /// <param name="day">date to set marker</param>
         public void MarkDay(DateTime day)
+        {
+            SetDayMark(day, true);
+        }
+        /// <summary>
+        /// Setting a marker on/off of a specified date.
+        /// </summary>        
+        public void SetDayMark(DateTime day, bool isMarked)
         {
             foreach (var view in _calendarView.MonthView.DayViews)
             {
                 if (view.Day == day)
                 {
-                    view.IsMarked = true;
+                    view.IsMarked = isMarked;
+                    return;
+                }
+            }
+        }
+        /// <summary>
+        /// Setting markers of days. Markers of days not specified in a argument are cleared.
+        /// </summary>        
+        public void MarkDay(DateTime [] days)
+        {
+            Dictionary<DateTime, bool> marking = new Dictionary<DateTime, bool>();
+            // building a hash table
+            foreach (var day in days)
+                marking[day.Date] = true;
+
+            // marker setting
+            foreach (var view in _calendarView.MonthView.DayViews)
+            {
+                if (!marking.ContainsKey(view.Day))
+                {
+                    view.IsMarked = false; 
                 }
                 else
                 {
-                    view.IsMarked = false;
+                    view.IsMarked = marking[view.Day];
                 }
             }
         }

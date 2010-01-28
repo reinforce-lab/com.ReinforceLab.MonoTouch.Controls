@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Properties {
+namespace com.ReinforceLab.MonoTouch.Controls.Calendar.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("net.ReinforceLab.MonoTouch.Controls.Calendar.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("com.ReinforceLab.MonoTouch.Controls.Calendar.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

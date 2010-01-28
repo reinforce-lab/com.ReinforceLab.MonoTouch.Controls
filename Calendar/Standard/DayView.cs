@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
+namespace com.ReinforceLab.MonoTouch.Controls.Calendar.Standard
 {
 	public class DayView : CacheableView, IDayView
 	{
@@ -84,17 +84,19 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
 		#region Constructors
         public DayView(IntPtr ptr)
             : base(ptr)
-        { }
+        {
+            initialize();
+        }
 		public DayView (RectangleF rect) : base(rect)
 		{
-            BackgroundColor = UIColor.Clear;
-
-            _isActive = true;
-            _isToday = false;
-            _isMarked = false;
-            _isSelected = false;
+            initialize();
+		}
+        void initialize()
+        {
+            initialize_variables();
 
             Opaque = true;
+            BackgroundColor        = UIColor.Clear;            
             UserInteractionEnabled = false;
 
             _label = new UILabel(new RectangleF(9, 6, Bounds.Width - 18, 22));
@@ -105,7 +107,15 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
             _label.BackgroundColor = UIColor.Clear;
             _label.UserInteractionEnabled = false;
             Add(_label);            
-		}
+        }
+        void initialize_variables()
+        {
+            _day      = DateTime.MinValue;
+            _isActive = true;
+            _isToday  = false;
+            _isMarked = false;
+            _isSelected = false;
+        }
 		#endregion
 		
 		#region Private methods
@@ -166,6 +176,14 @@ namespace net.ReinforceLab.MonoTouch.Controls.Calendar.Standard
             drawBackGroundColorAndImage();
             drawMarker();
 		}
+        /// <summary>
+        /// initializing all variables to re-use this view
+        /// </summary>
+        public override void RemoveFromSuperview()
+        {
+            base.RemoveFromSuperview();
+            initialize_variables();           
+        }
 		#endregion
 	}
 }

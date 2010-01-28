@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using MonoTouch.UIKit;
 
-namespace net.ReinforceLab.MonoTouch.Controls.Calendar
+namespace com.ReinforceLab.MonoTouch.Controls.Calendar
 {
     public interface ICalendarController
     {

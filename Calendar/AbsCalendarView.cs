@@ -7,7 +7,7 @@ using System.Drawing;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace net.ReinforceLab.MonoTouch.Controls.Calendar
+namespace com.ReinforceLab.MonoTouch.Controls.Calendar
 {	
 	public abstract class AbsCalendarView<T> : UIView 
         where T: UIView, IDayView

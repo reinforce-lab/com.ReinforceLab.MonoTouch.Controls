@@ -8,8 +8,7 @@
     <ProjectGuid>{4EC3D63C-760A-430E-9748-C540E8C438BE}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>net.ReinforceLab.SQLitePersistence</RootNamespace>
-    <AssemblyName>SQLitePersistence_md</AssemblyName>
+    <RootNamespace>com.ReinforceLab.SQLitePersistence</RootNamespace>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -23,6 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
+    <AssemblyName>com.ReinforceLab.SQLitePersistence</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -33,6 +33,7 @@
     <MtouchDebug>False</MtouchDebug>
     <MtouchLink>None</MtouchLink>
     <DefineConstants>MONO</DefineConstants>
+    <AssemblyName>com.ReinforceLab.SQLitePersistence</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +45,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>True</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <AssemblyName>SQLitePersistence_md</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -54,6 +56,7 @@
     <MtouchDebug>False</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
     <DefineConstants>MONO</DefineConstants>
+    <AssemblyName>SQLitePersistence_md</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

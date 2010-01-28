@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using net.ReinforceLab.SQLitePersistence;
+using com.ReinforceLab.SQLitePersistence;
 
-namespace net.ReinforceLab.SQLitePersistence.Test
+namespace com.ReinforceLab.SQLitePersistence.Test
 {
     public enum ArbEnumType { One, Two, Three }
 
-    public interface IPrimitiveValues : net.ReinforceLab.SQLitePersistence.IStorable
+    public interface IPrimitiveValues : com.ReinforceLab.SQLitePersistence.IStorable
     {
         [PrimaryKey]
         [AutoIncrement]

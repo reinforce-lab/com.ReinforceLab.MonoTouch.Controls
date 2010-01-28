@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Data.Common;
 
-namespace net.ReinforceLab.SQLitePersistence
+namespace com.ReinforceLab.SQLitePersistence
 {
     public abstract class AbsPersistenceManager
     {

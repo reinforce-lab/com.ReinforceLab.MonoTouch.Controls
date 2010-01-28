@@ -12,7 +12,7 @@ using System.Data.SQLite;
 using Mono.Data.Sqlite;
 #endif
 
-namespace net.ReinforceLab.SQLitePersistence
+namespace com.ReinforceLab.SQLitePersistence
 {
     public class SQLitePersistenceManager : AbsPersistenceManager
     {        

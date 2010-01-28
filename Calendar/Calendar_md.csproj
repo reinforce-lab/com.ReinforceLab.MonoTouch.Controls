@@ -8,7 +8,7 @@
     <ProjectGuid>{948C167F-E236-4AB8-91CC-EC23F76089DC}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>net.ReinforceLab.MonoTouch.Controls.Calendar</RootNamespace>
+    <RootNamespace>com.ReinforceLab.MonoTouch.Controls.Calendar</RootNamespace>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -22,7 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <AssemblyName>Calendar</AssemblyName>
+    <AssemblyName>com.ReinforceLab.MonoTouch.Controls.Calendar</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlsDemo_vs2008", "Cont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLitePersistence_vs2008", "SQLitePersistence\SQLitePersistence_vs2008.csproj", "{1EC90436-90DF-4073-824A-D8D963AC5666}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLitePersistence.Test_vs2008", "SQLitePersistence.Test\SQLitePersistence.Test_vs2008.csproj", "{C9C987E4-89D0-4DA8-904E-DB61D38F194F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,12 +32,6 @@ Global
 		{1EC90436-90DF-4073-824A-D8D963AC5666}.DebugiPhone|Any CPU.Build.0 = Debug|Any CPU
 		{1EC90436-90DF-4073-824A-D8D963AC5666}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EC90436-90DF-4073-824A-D8D963AC5666}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9C987E4-89D0-4DA8-904E-DB61D38F194F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9C987E4-89D0-4DA8-904E-DB61D38F194F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9C987E4-89D0-4DA8-904E-DB61D38F194F}.DebugiPhone|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9C987E4-89D0-4DA8-904E-DB61D38F194F}.DebugiPhone|Any CPU.Build.0 = Debug|Any CPU
-		{C9C987E4-89D0-4DA8-904E-DB61D38F194F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9C987E4-89D0-4DA8-904E-DB61D38F194F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

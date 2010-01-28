@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 
-namespace net.ReinforceLab.SQLitePersistence
+namespace com.ReinforceLab.SQLitePersistence
 {
     public interface IStorable
     {

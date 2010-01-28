@@ -7,10 +7,10 @@ using System.Data;
 
 using NUnit.Framework;
 
-using net.ReinforceLab.SQLitePersistence;
+using com.ReinforceLab.SQLitePersistence;
 using Mono.Data.Sqlite;
 
-namespace net.ReinforceLab.SQLitePersistence.Test
+namespace com.ReinforceLab.SQLitePersistence.Test
 {
     [TestFixture]
     public class PrimitiveTypeTest

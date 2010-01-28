@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 
-namespace net.ReinforceLab.SQLitePersistence.Test
+namespace com.ReinforceLab.SQLitePersistence.Test
 {
     public class PrimitiveValuesDAO : AbsStorable, IPrimitiveValues
     {

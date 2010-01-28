@@ -5,9 +5,9 @@ using System.Text;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-using  net.ReinforceLab.MonoTouch.Controls.Calendar.Standard;
+using  com.ReinforceLab.MonoTouch.Controls.Calendar.Standard;
 
-namespace net.ReinforceLab.iPhone.Controls.ControlsDemo
+namespace com.ReinforceLab.iPhone.Controls.ControlsDemo
 {
     class MainViewController : UITableViewController
     {

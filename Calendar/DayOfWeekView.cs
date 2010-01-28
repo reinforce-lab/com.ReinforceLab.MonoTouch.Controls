@@ -7,7 +7,7 @@ using System.Text;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace net.ReinforceLab.MonoTouch.Controls.Calendar
+namespace com.ReinforceLab.MonoTouch.Controls.Calendar
 {
     public class DayOfWeekView : UIView
     {
