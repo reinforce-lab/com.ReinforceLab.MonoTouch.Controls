@@ -1,5 +1,5 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" ctype="Workspace" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" ctype="Workspace" />
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore>
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/RootViewController.cs" line="0" />
@@ -7,12 +7,18 @@
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/Calendar/AbsMonthView.cs" line="119" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/MainViewController.cs" ctype="Workbench">
+    <Files>
+      <File FileName="ControlsDemo/MainViewController.cs" Line="78" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="ArgumentedRealityBase" expanded="True">
-            <Node name="References" expanded="True" selected="True" />
+          <Node name="AugmentedRealityBase" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+          <Node name="ControlsDemo" expanded="True">
+            <Node name="MainViewController.cs" selected="True" />
           </Node>
         </State>
       </Pad>

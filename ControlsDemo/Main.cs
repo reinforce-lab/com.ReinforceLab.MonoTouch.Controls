@@ -36,5 +36,13 @@ namespace com.ReinforceLab.iPhone.Controls.ControlsDemo
 		public override void OnActivated (UIApplication application)
 		{
 		}
+
+        /// <summary>
+        /// GC is nessessary due to periodical memory alloc/free in camera capturing class.
+        /// </summary>        
+        public override void ReceiveMemoryWarning(UIApplication application)
+        {
+            System.GC.Collect();
+        }
 	}
 }

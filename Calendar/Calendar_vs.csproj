@@ -51,7 +51,7 @@
   <ItemGroup>
     <Reference Include="monotouch, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\monotouch.dll</HintPath>
+      <HintPath>..\monotouch.dll</HintPath>
     </Reference>
     <Reference Include="System, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

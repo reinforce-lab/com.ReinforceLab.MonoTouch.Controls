@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArgumentedRealityBase", "ArgumentedRealityBase\ArgumentedRealityBase.csproj", "{9A0EA306-22E3-4B72-9449-908E08D9F12A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar", "Calendar\Calendar.csproj", "{948C167F-E236-4AB8-91CC-EC23F76089DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlsDemo", "ControlsDemo\ControlsDemo.csproj", "{CB66A80A-63C6-4B83-8F5D-ADD65F31CBAC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLitePersistence", "SQLitePersistence\SQLitePersistence.csproj", "{4EC3D63C-760A-430E-9748-C540E8C438BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AugmentedRealityBase", "AugmentedRealityBase\AugmentedRealityBase.csproj", "{9A0EA306-22E3-4B72-9449-908E08D9F12A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

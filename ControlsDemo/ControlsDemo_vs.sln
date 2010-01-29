@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Images_vs", "..\Images\Imag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlsDemo_vs", "ControlsDemo_vs.csproj", "{13D95C32-BCA3-4FF0-9209-96D8CEDF83DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArgumentedRealityBase_vs", "..\ArgumentedRealityBase\ArgumentedRealityBase_vs.csproj", "{ED0E43E2-EBB6-425B-80BA-913B32E3A51B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AugmentedRealityBase_vs", "..\ArgumentedRealityBase\AugmentedRealityBase_vs.csproj", "{ED0E43E2-EBB6-425B-80BA-913B32E3A51B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLitePersistence_vs", "..\SQLitePersistence\SQLitePersistence_vs.csproj", "{1EC90436-90DF-4073-824A-D8D963AC5666}"
 EndProject

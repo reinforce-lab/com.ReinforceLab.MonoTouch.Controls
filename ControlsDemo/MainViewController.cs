@@ -6,6 +6,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
 using  com.ReinforceLab.MonoTouch.Controls.Calendar.Standard;
+using com.ReinforceLab.iPhone.Controls.AugmentedRealityBase;
 
 namespace com.ReinforceLab.iPhone.Controls.ControlsDemo
 {
@@ -14,6 +15,7 @@ namespace com.ReinforceLab.iPhone.Controls.ControlsDemo
         #region Variables
         DataSource _list;
         CalendarController _calendarCtr;
+		ARViewController _arCtr;
         #endregion
 
         #region Constructor
@@ -35,8 +37,11 @@ namespace com.ReinforceLab.iPhone.Controls.ControlsDemo
             _calendarCtr = new CalendarController();
             _calendarCtr.DaySelectionChanged += new EventHandler<EventArgs>(daySelectionChanged);
 
+			_arCtr = new ARViewController();
+			
             _list = new DataSource(this, new ControlItem[] { 
-                new ControlItem() {Title ="Calendar", Controller = _calendarCtr }
+                new ControlItem() {Title ="Calendar", Controller = _calendarCtr },
+				new ControlItem() {Title ="AugmentedReality", Controller = _arCtr }
             });
 
             TableView.Source = _list;
@@ -90,7 +95,15 @@ namespace com.ReinforceLab.iPhone.Controls.ControlsDemo
             }
             public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
             {
+				var ctr = _controlItems[indexPath.Row].Controller;
+				if(ctr is UIImagePickerController)
+				{
+					_mvc.PresentModalViewController(ctr, true);
+				} 
+				else
+				{
                 _mvc.NavigationController.PushViewController(_controlItems[indexPath.Row].Controller, true);
+				}
             }
         } 
         #endregion
