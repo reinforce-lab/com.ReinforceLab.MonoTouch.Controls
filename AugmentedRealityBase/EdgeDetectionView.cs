@@ -84,12 +84,19 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
                     // if we draw to this pixel replace it with the average of the surrounding pixels
                     for (int y = 1; y < height-1; y++)
                     {
+                        var scan0 = width * (y -1);
+                        var scan1 = width * y;
+                        var scan2 = width * (y +1);
                         for (int x = 1; x < width-1; x++)
-                        {                            
-                            if (drawnPtr[x+ width * y] != 0)
+                        {
+                            ++scan0;
+                            ++scan1;
+                            ++scan2;
+
+                            if (drawnPtr[scan1] != 0)
                             {
-                                var val = ((byte)bufPtr[x + width * (y - 1)] + (byte)bufPtr[x + width * (y + 1)] + (byte)bufPtr[x - 1 + width * y] + (byte)bufPtr[x + 1 + width * y]) / 4;
-                                bufPtr[x + width * y] = (byte)val;                                
+                                var val = (bufPtr[scan0] + bufPtr[scan2] + bufPtr[scan1 -1] + bufPtr[scan1 + 1]) / 4;
+                                bufPtr[scan1] = (Byte)val;                                
                             }
                         }
                     }
@@ -122,9 +129,11 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
                 var width    = _buffer.Width;
                 for (int y = 0; y < height - 1; y++)
                 {
+                    var scan0 = width * y;
+                    var scan1 = width * (y + 1);
                     for (int x = 0; x < width - 1; x++)
                     {
-                        int edge = (Math.Abs(bufPtr[x + width * y] - bufPtr[x + 1 + width * y]) + Math.Abs(bufPtr[x + width * y] - bufPtr[x + width * (y + 1)])) / 2;
+                        int edge = (Math.Abs(bufPtr[scan0] - bufPtr[scan0 + 1]) + Math.Abs(bufPtr[scan0] - bufPtr[scan1])) / 2;
                         if (edge > 10)
                         {
                             int dist = (int)(Math.Pow(x - lastX, 2) + Math.Pow(y - lastY, 2));
@@ -140,6 +149,8 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
                                 lastY = y;
                             }
                         }
+                        ++scan0;
+                        ++scan1;
                     }
                 }
             }

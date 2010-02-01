@@ -12,6 +12,7 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
         #region Variables
         IntPtr _buffer;
         unsafe byte* _buffer_ptr;
+        //unsafe Int32* _buffer_ptr;
         CGBitmapContext _context;
         #endregion
 
@@ -23,6 +24,7 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
 
 
         public unsafe byte* BaseAddress { get { unsafe { return _buffer_ptr; } } }
+        /*public unsafe Int32* BaseAddress { get { unsafe { return _buffer_ptr; } } }*/
         #endregion
 
         #region Constructor
@@ -31,6 +33,7 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
             _buffer = Marshal.AllocHGlobal(width * height);
             unsafe {
 				_buffer_ptr =  (byte*)((void *) _buffer);
+                //_buffer_ptr = (Int32*)((void*)_buffer);
 			}            
             var colorSpace = CGColorSpace.CreateDeviceGray();
             _context = new CGBitmapContext(
