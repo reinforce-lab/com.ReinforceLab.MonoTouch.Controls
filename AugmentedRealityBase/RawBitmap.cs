@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 using MonoTouch.CoreGraphics;
 
-namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
+namespace com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase
 {
     // gray-scale raw bitmap class
     public class RawBitmap : IDisposable

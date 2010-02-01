@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLitePersistence", "SQLite
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AugmentedRealityBase", "AugmentedRealityBase\AugmentedRealityBase.csproj", "{9A0EA306-22E3-4B72-9449-908E08D9F12A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoCaptureSample", "VideoCaptureSample\VideoCaptureSample.csproj", "{093B80BE-5863-4A1B-954F-692694C3291D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -17,6 +19,14 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{093B80BE-5863-4A1B-954F-692694C3291D}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{093B80BE-5863-4A1B-954F-692694C3291D}.Debug|iPhone.Build.0 = Debug|iPhone
+		{093B80BE-5863-4A1B-954F-692694C3291D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{093B80BE-5863-4A1B-954F-692694C3291D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{093B80BE-5863-4A1B-954F-692694C3291D}.Release|iPhone.ActiveCfg = Release|iPhone
+		{093B80BE-5863-4A1B-954F-692694C3291D}.Release|iPhone.Build.0 = Release|iPhone
+		{093B80BE-5863-4A1B-954F-692694C3291D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{093B80BE-5863-4A1B-954F-692694C3291D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{4EC3D63C-760A-430E-9748-C540E8C438BE}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{4EC3D63C-760A-430E-9748-C540E8C438BE}.Debug|iPhone.Build.0 = Debug|iPhone
 		{4EC3D63C-760A-430E-9748-C540E8C438BE}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator

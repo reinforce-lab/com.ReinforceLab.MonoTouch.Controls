@@ -6,7 +6,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using MonoTouch.CoreGraphics;
 
-namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
+namespace com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase
 {
     class EdgeDetectionView : UIView
     {

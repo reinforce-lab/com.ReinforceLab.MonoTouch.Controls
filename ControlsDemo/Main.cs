@@ -3,7 +3,7 @@ using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace com.ReinforceLab.iPhone.Controls.ControlsDemo
+namespace com.ReinforceLab.MonoTouch.Controls.ControlsDemo
 {
 	public class Application
 	{

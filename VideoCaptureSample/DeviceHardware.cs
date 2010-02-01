@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using MonoTouch.Foundation;
+
 using Constants = MonoTouch.Constants;
 
-namespace com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase
+namespace com.ReinforceLab.MonoTouch.Controls.VideoCaptureSample
 {
     /// <summary>
     /// This code source is:

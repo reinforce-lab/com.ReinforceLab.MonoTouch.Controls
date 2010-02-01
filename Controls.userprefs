@@ -1,5 +1,5 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" ctype="Workspace" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" ctype="Workspace" />
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore>
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/RootViewController.cs" line="0" />
@@ -7,18 +7,19 @@
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/Calendar/AbsMonthView.cs" line="119" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="AugmentedRealityBase/EdgeDetectionView.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/MainViewController.cs" ctype="Workbench">
     <Files>
-      <File FileName="ControlsDemo/MainViewController.cs" Line="1" Column="1" />
-      <File FileName="AugmentedRealityBase/EdgeDetectionView.cs" Line="19" Column="30" />
+      <File FileName="ControlsDemo/MainViewController.cs" Line="44" Column="135" />
+      <File FileName="AugmentedRealityBase/DeviceHardware.cs" Line="31" Column="30" />
+      <File FileName="VideoCaptureSample/DeviceHardware.cs" Line="1" Column="1" />
+      <File FileName="VideoCaptureSample/VCViewController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="AugmentedRealityBase" expanded="True">
-            <Node name="References" expanded="True" />
-          </Node>
+          <Node name="AugmentedRealityBase" expanded="True" />
           <Node name="ControlsDemo" expanded="True" selected="True" />
+          <Node name="VideoCaptureSample" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">

@@ -5,10 +5,10 @@ using System.Text;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-using  com.ReinforceLab.MonoTouch.Controls.Calendar.Standard;
-using com.ReinforceLab.iPhone.Controls.AugmentedRealityBase;
+using com.ReinforceLab.MonoTouch.Controls.Calendar.Standard;
+using com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase;
 
-namespace com.ReinforceLab.iPhone.Controls.ControlsDemo
+namespace com.ReinforceLab.MonoTouch.Controls.ControlsDemo
 {
     class MainViewController : UITableViewController
     {
@@ -40,8 +40,9 @@ namespace com.ReinforceLab.iPhone.Controls.ControlsDemo
 			_arCtr = new ARViewController();
 			
             _list = new DataSource(this, new ControlItem[] { 
+				new ControlItem() {Title ="AugmentedReality", Controller = _arCtr },
+				new ControlItem() {Title ="CameraCaptureSample", Controller = new com.ReinforceLab.MonoTouch.Controls.VideoCaptureSample.VCViewController() },
                 new ControlItem() {Title ="Calendar", Controller = _calendarCtr },
-				new ControlItem() {Title ="AugmentedReality", Controller = _arCtr }
             });
 
             TableView.Source = _list;
