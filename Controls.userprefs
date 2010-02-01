@@ -10,7 +10,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="AugmentedRealityBase/EdgeDetectionView.cs" ctype="Workbench">
     <Files>
       <File FileName="ControlsDemo/MainViewController.cs" Line="1" Column="1" />
-      <File FileName="AugmentedRealityBase/EdgeDetectionView.cs" Line="12" Column="6" />
+      <File FileName="AugmentedRealityBase/EdgeDetectionView.cs" Line="19" Column="30" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
