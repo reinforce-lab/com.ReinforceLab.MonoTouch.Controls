@@ -11,20 +11,27 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
     {
         #region Variables
         IntPtr _buffer;
+        unsafe byte* _buffer_ptr;
         CGBitmapContext _context;
         #endregion
 
-        #region Properties
+        #region Properties        
         public CGBitmapContext Context { get { return _context; } }
 
         public int Width { get { return _context.Width; } }
         public int Height { get { return _context.Height; } }
+
+
+        public unsafe byte* BaseAddress { get { unsafe { return _buffer_ptr; } } }
         #endregion
 
         #region Constructor
         public RawBitmap(int width, int height)
         {
             _buffer = Marshal.AllocHGlobal(width * height);
+            unsafe {
+				_buffer_ptr =  (byte*)((void *) _buffer);
+			}            
             var colorSpace = CGColorSpace.CreateDeviceGray();
             _context = new CGBitmapContext(
                            _buffer, width, height,
@@ -50,6 +57,7 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
         public void WritePixel(int x, int y, byte val)
         {
             System.Runtime.InteropServices.Marshal.WriteByte(_buffer, x + y * _context.Width, val);
+
         }
         #endregion
 

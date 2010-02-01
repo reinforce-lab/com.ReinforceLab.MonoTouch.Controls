@@ -12,8 +12,12 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
     {
         #region Variables
         CGPath  _path;
+        int _fps;
+        DateTime _lastFpsCheckedAt;
+
         NSTimer _timer;
         RawBitmap _drawnImage, _buffer;
+        CGImage _maskImage;
         #endregion
 
         #region Constructor
@@ -24,6 +28,9 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
         }
         void initialize()
         {
+            _fps = 0;
+            _lastFpsCheckedAt = DateTime.Now;
+
             _path = null;
 
             Frame = new System.Drawing.RectangleF(0, 0, 320, 480 - 44);
@@ -37,7 +44,21 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
             for (int y = 0; y < _drawnImage.Height; y++)
                 for (int x = 0; x < _drawnImage.Width; x++)
                     _drawnImage.WritePixel(x, y, 0);
-        }
+            
+            // creating checkerboard mask image
+            using (var checkerBoardImage = new RawBitmap((int)Frame.Width, (int)Frame.Height))
+            { 
+                for(int y =0; y < checkerBoardImage.Height; y++)
+                {                    
+                    for(int x=0; x<checkerBoardImage.Width; x++)
+                    {
+                        var val = ((y%2 == 0 && x%2 == 0) || (y%2 == 1 && x%2==1)) ? 255 : 0;                        
+                        checkerBoardImage.WritePixel(x, y, (Byte)val);
+                    }
+                }                
+                _maskImage = checkerBoardImage.Context.ToImage();
+			}
+		}
         #endregion
 
         #region Private methods
@@ -50,7 +71,31 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
                 _buffer.Draw(screenImage);
             }
 
-            // process the image to remove our drawing - WARNING the edge pixels of the image are not processed                
+            // process the image to remove our drawing - WARNING the edge pixels of the image are not processed 
+            if (null != _drawnImage)
+            {
+                // TODO use OpenTK FBO to get hardware acceleration
+                unsafe
+                {
+                    var bufPtr   = _buffer.BaseAddress;
+                    var drawnPtr = _drawnImage.BaseAddress;
+                    var height   = _buffer.Height;
+                    var width    = _buffer.Width;
+                    // if we draw to this pixel replace it with the average of the surrounding pixels
+                    for (int y = 1; y < height-1; y++)
+                    {
+                        for (int x = 1; x < width-1; x++)
+                        {                            
+                            if (drawnPtr[x+ width * y] != 0)
+                            {
+                                var val = ((byte)bufPtr[x + width * (y - 1)] + (byte)bufPtr[x + width * (y + 1)] + (byte)bufPtr[x - 1 + width * y] + (byte)bufPtr[x + 1 + width * y]) / 4;
+                                bufPtr[x + width * y] = (byte)val;                                
+                            }
+                        }
+                    }
+                }
+            }
+            /* trial 1, marshaling, ~0.5fps
             if (null != _drawnImage)
             {
                 for (int y = 1; y < _buffer.Height; y++)
@@ -66,9 +111,41 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
                     }
                 }
             }
+            */
 
             var path = new CGPath();
             int lastX = -1000, lastY = -1000;
+            unsafe
+            {                    
+                var bufPtr   = _buffer.BaseAddress;                                        
+                var height   = _buffer.Height;                    
+                var width    = _buffer.Width;
+                for (int y = 0; y < height - 1; y++)
+                {
+                    for (int x = 0; x < width - 1; x++)
+                    {
+                        int edge = (Math.Abs(bufPtr[x + width * y] - bufPtr[x + 1 + width * y]) + Math.Abs(bufPtr[x + width * y] - bufPtr[x + width * (y + 1)])) / 2;
+                        if (edge > 10)
+                        {
+                            int dist = (int)(Math.Pow(x - lastX, 2) + Math.Pow(y - lastY, 2));
+                            if (dist > 50)
+                            {
+                                lastX = x;
+                                lastY = y;
+                            }
+                            else if (dist > 10)
+                            {
+                                path.AddLines(new PointF[] { new PointF(lastX, lastY), new PointF(x, y) });
+                                lastX = x;
+                                lastY = y;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            /* trial 1, marshaling, ~0.5fps
             for (int y = 0; y < _buffer.Height - 1; y++)
             {
                 for (int x = 0; x < _buffer.Width - 1; x++)
@@ -90,7 +167,7 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
                         }
                     }
                 }
-            }
+            }*/
 
             _path = path;
             SetNeedsDisplay();
@@ -102,8 +179,7 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
         {
             // starting timer
             if (null == _timer)
-            {
-                // 50msec
+            {                
                 _timer = NSTimer.CreateRepeatingTimer(new TimeSpan(10000L * 50), delegate { worker(); }); 
                 NSRunLoop.Current.AddTimer(_timer, "NSDefaultRunLoopMode");
             }
@@ -128,11 +204,11 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
             // drawing a path
             if (null != _path)
             {
-                System.Diagnostics.Debug.WriteLine("\tupdating path.");
+                //System.Diagnostics.Debug.WriteLine("\tupdating path.");
                 // we're going to draw into an image using our checkerboard mask
                 UIGraphics.BeginImageContext(this.Bounds.Size);
                 var context = UIGraphics.GetCurrentContext();
-                //context.ClipToMask(this.Bounds, _maskImage);
+                context.ClipToMask(this.Bounds, _maskImage);
                 // do your drawing here                
                 context.SetLineWidth(2);
                 context.SetStrokeColorWithColor(UIColor.Green.CGColor);
@@ -155,6 +231,18 @@ namespace com.ReinforceLab.iPhone.Controls.AugmentedRealityBase
 
                 _path.Dispose();
                 _path = null;
+
+                _fps++;
+                if (_fps >= 20)
+                {
+                    var dtnow = DateTime.Now;
+                    var span  = dtnow - _lastFpsCheckedAt;
+                    _lastFpsCheckedAt = dtnow;
+                    var fps = (int)((float)_fps * 1000f / (float)span.Milliseconds);
+                    System.Diagnostics.Debug.WriteLine(String.Format("{0} Fps.", fps));
+
+                    _fps = 0;
+                }
             }
         }
         protected override void Dispose(bool disposing)
