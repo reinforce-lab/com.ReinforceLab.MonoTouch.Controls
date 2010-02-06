@@ -5,16 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CB66A80A-63C6-4B83-8F5D-ADD65F31CBAC}</ProjectGuid>
+    <ProjectGuid>{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>com.ReinforceLab.MonoTouch.Controls.ControlsDemo</RootNamespace>
-    <!--    <MainNibFile>MainWindow.xib</MainNibFile> -->
+    <OutputType>Library</OutputType>
+    <RootNamespace>com.ReinforceLab.MonoTouch.Controls.MjpegStreamingSample</RootNamespace>
+    <AssemblyName>MjpegStreamingSample</AssemblyName>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <BundleDisplayName>ControlsDemo</BundleDisplayName>
-    <StartupObject>com.ReinforceLab.MonoTouch.Controls.ControlsDemo.Application</StartupObject>
-    <BundleIdentifier>com.reinforce-lab.sample</BundleIdentifier>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,8 +23,6 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <AssemblyName>com.ReinforceLab.MonoTouch.Controls.ControlsDemo</AssemblyName>
-    <MtouchI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -37,7 +32,6 @@
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>False</MtouchDebug>
     <MtouchLink>None</MtouchLink>
-    <AssemblyName>com.ReinforceLab.MonoTouch.Controls.ControlsDemo</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,9 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchLink>None</MtouchLink>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <AssemblyName>ControlsDemo_md</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -59,20 +51,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>False</MtouchDebug>
-    <MtouchLink>None</MtouchLink>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <AssemblyName>ControlsDemo_md</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Main.cs" />
-    <Compile Include="MainViewController.cs" />
-    <Compile Include="ControlList.cs" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -81,35 +70,13 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <ProjectReference Include="..\Calendar\Calendar.csproj">
-      <Project>{948C167F-E236-4AB8-91CC-EC23F76089DC}</Project>
-      <Name>Calendar</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SQLitePersistence\SQLitePersistence.csproj">
-      <Project>{4EC3D63C-760A-430E-9748-C540E8C438BE}</Project>
-      <Name>SQLitePersistence</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AugmentedRealityBase\AugmentedRealityBase.csproj">
-      <Project>{9A0EA306-22E3-4B72-9449-908E08D9F12A}</Project>
-      <Name>AugmentedRealityBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VideoCaptureSample\VideoCaptureSample.csproj">
-      <Project>{093B80BE-5863-4A1B-954F-692694C3291D}</Project>
-      <Name>VideoCaptureSample</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MjpegStreamingSample\MjpegStreamingSample.csproj">
-      <Project>{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}</Project>
-      <Name>MjpegStreamingSample</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\today.png" />
-    <Content Include="Images\todayselected.png" />
-    <Content Include="Images\shadow.png" />
-    <Content Include="Images\topbar.png" />
-    <Content Include="Images\datecell.png" />
-    <Content Include="Images\datecellselected.png" />
-    <Content Include="Images\rightarrow.png" />
-    <Content Include="Images\leftarrow.png" />
+    <Compile Include="CameraImageSource.cs" />
+    <Compile Include="CameraViewController.cs" />
+    <Compile Include="DeviceHardware.cs" />
+    <Compile Include="IImageSource.cs" />
+    <Compile Include="IMjpegStreamingService.cs" />
+    <Compile Include="IStreamingController.cs" />
+    <Compile Include="MjpegStreamingService.cs" />
+    <Compile Include="StreamingController.cs" />
   </ItemGroup>
 </Project>
