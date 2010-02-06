@@ -27,20 +27,20 @@ namespace com.ReinforceLab.MonoTouch.Controls.VideoCaptureSample
         }
         void initialize()
         {            
-            Frame = new RectangleF(0, 0, 320, 480 - 44);
+            Frame = new RectangleF(0, 0, 320, 480 - 54);
             // important - it needs to be transparent so the camera preview shows through!
             Opaque = false;
             BackgroundColor = UIColor.Clear;
 
             _fpsCount = 0;
             // loading subviews
-            _frameView = new UIView(new RectangleF(10, 286, 100, 140)) { Opaque = true, BackgroundColor = UIColor.White };
+            _frameView = new UIView(new RectangleF(10, 276, 100, 140)) { Opaque = true, BackgroundColor = UIColor.White };
             Add(_frameView);
 
             _imageView = new UIImageView(new Rectangle(5, 5, 90, 130)) { Opaque = true };            
             _frameView.Add(_imageView);
 
-            _fpsText = new UILabel(new RectangleF(110, 400, 100, 26))
+            _fpsText = new UILabel(new RectangleF(110, 390, 100, 26))
             {
                 Opaque = true,
                 TextColor = UIColor.Black,
@@ -51,7 +51,7 @@ namespace com.ReinforceLab.MonoTouch.Controls.VideoCaptureSample
             };
             Add(_fpsText);
 
-            _fpsLabel = new UILabel(new RectangleF(210, 400, 100, 26))
+            _fpsLabel = new UILabel(new RectangleF(210, 390, 100, 26))
             {
                 Opaque = true,
                 TextColor = UIColor.Black,
@@ -75,7 +75,10 @@ namespace com.ReinforceLab.MonoTouch.Controls.VideoCaptureSample
                 // without disposing this uiimage instance, app fails within a minute.
                 if (null != _imageView.Image)
                     _imageView.Image.Dispose();
-                _imageView.Image = UIImage.FromImage(screenImage);                
+                _imageView.Image = UIImage.FromImage(screenImage);
+                /*
+                var jpgimg = _imageView.Image.AsPNG();
+                jpgimg.Dispose();*/
             }
 
             _fpsCount++;

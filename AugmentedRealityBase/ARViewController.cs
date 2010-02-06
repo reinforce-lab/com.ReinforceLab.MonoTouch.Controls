@@ -67,7 +67,7 @@ namespace com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase
                 CameraOverlayView = _overlayView;
             }
             // Setting tool bar
-            var toolBar = new UIToolbar(new RectangleF(0, 480 - 44, 320, 44));
+            var toolBar = new UIToolbar(new RectangleF(0, 480 - 54, 320, 54));
             toolBar.Items = new UIBarButtonItem[] { 
                 new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
                 new UIBarButtonItem(UIBarButtonSystemItem.Done, new EventHandler(doneButton_Clicked))

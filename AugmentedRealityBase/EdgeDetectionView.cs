@@ -8,12 +8,21 @@ using MonoTouch.CoreGraphics;
 
 namespace com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase
 {
+    /// <summary>
+    /// TODO: 
+    /// changing (byte *) to (Int32 *). Accessing 4-pixel at once saves memory bandwidth. Endian can be determined from ahead at compling message.
+    /// System.BitConverter.GetBytes(value),
+    /// CFByteOrderGetCurrent,
+    /// (iPhone is little endian.)
+    /// 
+    /// replace variable (width -1) to fixed value: Use pre-calculated value in for-loops of image processing method.
+    /// </summary>
     class EdgeDetectionView : UIView
     {
         #region Variables
         CGPath  _path;
         int _fps;
-        DateTime _lastFpsCheckedAt;
+        NSDate _start, _end;
 
         NSTimer _timer;
         RawBitmap _drawnImage, _buffer;
@@ -28,23 +37,25 @@ namespace com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase
         }
         void initialize()
         {
-            _fps = 0;
-            _lastFpsCheckedAt = DateTime.Now;
-
+            _fps = 0;            
             _path = null;
 
-            Frame = new System.Drawing.RectangleF(0, 0, 320, 480 - 44);
+            Frame = new System.Drawing.RectangleF(0, 0, 320, 480 - 54);
             // important - it needs to be transparent so the camera preview shows through!
             Opaque = false;
             BackgroundColor = UIColor.Clear;
 
             // allocating bitmap buffer
-            _buffer = new RawBitmap((int)Frame.Width, (int)Frame.Height);
             _drawnImage = new RawBitmap((int)Frame.Width, (int)Frame.Height);
-            for (int y = 0; y < _drawnImage.Height; y++)
-                for (int x = 0; x < _drawnImage.Width; x++)
+            for (int y = 0; y < _drawnImage.Context.Height; y++)
+            {
+                for (int x = 0; x < _drawnImage.Context.Width; x++)
+                {
                     _drawnImage.WritePixel(x, y, 0);
-            
+                }
+            }
+
+            _buffer = new RawBitmap((int)Frame.Width, (int)Frame.Height);
             // creating checkerboard mask image
             using (var checkerBoardImage = new RawBitmap((int)Frame.Width, (int)Frame.Height))
             { 
@@ -52,7 +63,8 @@ namespace com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase
                 {                    
                     for(int x=0; x<checkerBoardImage.Width; x++)
                     {
-                        var val = ((y%2 == 0 && x%2 == 0) || (y%2 == 1 && x%2==1)) ? 255 : 0;                        
+                        var val = ((x == 0 || x == (checkerBoardImage.Width-1)) || (y == 0 || y == (checkerBoardImage.Height -1))) ? 0 :
+                            ((y%2 == 0 && x%2 == 0) || (y%2 == 1 && x%2==1)) ? 255 : 0;
                         checkerBoardImage.WritePixel(x, y, (Byte)val);
                     }
                 }                
@@ -244,13 +256,18 @@ namespace com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase
                 _path = null;
 
                 _fps++;
-                if (_fps >= 20)
+                if (_fps >= 10)
                 {
-                    var dtnow = DateTime.Now;
-                    var span  = dtnow - _lastFpsCheckedAt;
-                    _lastFpsCheckedAt = dtnow;
-                    var fps = (int)((float)_fps * 1000f / (float)span.Milliseconds);
-                    System.Diagnostics.Debug.WriteLine(String.Format("{0} Fps.", fps));
+                    _end = NSDate.Now;
+                    if(null != _start && null != _end)
+                    {
+                        var secs = _end.SecondsSinceReferenceDate - _start.SecondsSinceReferenceDate;
+                        var fps  =10 / secs;
+                        System.Diagnostics.Debug.WriteLine("FPS: " + fps.ToString("00.0"));
+                    }
+                    if(null != _start)
+                        _start.Dispose();
+                    _start = _end;
 
                     _fps = 0;
                 }
