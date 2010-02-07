@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AugmentedRealityBase", "Aug
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoCaptureSample", "VideoCaptureSample\VideoCaptureSample.csproj", "{093B80BE-5863-4A1B-954F-692694C3291D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MjpegStreamingSample", "MjpegStreamingSample\MjpegStreamingSample.csproj", "{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -29,14 +27,6 @@ Global
 		{093B80BE-5863-4A1B-954F-692694C3291D}.Release|iPhone.Build.0 = Release|iPhone
 		{093B80BE-5863-4A1B-954F-692694C3291D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{093B80BE-5863-4A1B-954F-692694C3291D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}.Debug|iPhone.Build.0 = Debug|iPhone
-		{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}.Release|iPhone.ActiveCfg = Release|iPhone
-		{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}.Release|iPhone.Build.0 = Release|iPhone
-		{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{4EC3D63C-760A-430E-9748-C540E8C438BE}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{4EC3D63C-760A-430E-9748-C540E8C438BE}.Debug|iPhone.Build.0 = Debug|iPhone
 		{4EC3D63C-760A-430E-9748-C540E8C438BE}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator

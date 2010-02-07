@@ -46,28 +46,25 @@ namespace com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase
             BackgroundColor = UIColor.Clear;
 
             // allocating bitmap buffer
+            _buffer     = new RawBitmap((int)Frame.Width, (int)Frame.Height);
             _drawnImage = new RawBitmap((int)Frame.Width, (int)Frame.Height);
-            for (int y = 0; y < _drawnImage.Context.Height; y++)
-            {
-                for (int x = 0; x < _drawnImage.Context.Width; x++)
-                {
-                    _drawnImage.WritePixel(x, y, 0);
-                }
-            }
-
-            _buffer = new RawBitmap((int)Frame.Width, (int)Frame.Height);
             // creating checkerboard mask image
-            using (var checkerBoardImage = new RawBitmap((int)Frame.Width, (int)Frame.Height))
-            { 
-                for(int y =0; y < checkerBoardImage.Height; y++)
-                {                    
-                    for(int x=0; x<checkerBoardImage.Width; x++)
+            using (var checkerBoardImage = new RawBitmap((int)Bounds.Size.Width, (int)Bounds.Size.Height))
+            {
+                for (int y = 0; y < checkerBoardImage.Height; y += 2)
+                {
+                    for (int x = 0; x < checkerBoardImage.Width; x += 2)
                     {
-                        var val = ((x == 0 || x == (checkerBoardImage.Width-1)) || (y == 0 || y == (checkerBoardImage.Height -1))) ? 0 :
-                            ((y%2 == 0 && x%2 == 0) || (y%2 == 1 && x%2==1)) ? 255 : 0;
-                        checkerBoardImage.WritePixel(x, y, (Byte)val);
+                        checkerBoardImage.WritePixel(x, y, 255);                        
                     }
-                }                
+                }
+                for (int y = 1; y < checkerBoardImage.Height; y += 2)
+                {
+                    for (int x = 1; x < checkerBoardImage.Width; x += 2)
+                    {
+                        checkerBoardImage.WritePixel(x, y, 255);
+                    }
+                }
                 _maskImage = checkerBoardImage.Context.ToImage();
 			}
 		}
@@ -77,16 +74,14 @@ namespace com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase
         // image processing method
         void worker()
         {            
-            // turn screen image into gray-scale raw bitmap byte-stream
-            using (var screenImage = CGImage.ScreenImage.WithImageInRect(Frame))
-            {
-                _buffer.Draw(screenImage);
-            }
+            // turn screen image into gray-scale raw bitmap byte-stream            
+            using (var screenImage = CGImage.ScreenImage)
+                using(var rectImage = screenImage.WithImageInRect(Frame))
+                    _buffer.Draw(rectImage);
 
             // process the image to remove our drawing - WARNING the edge pixels of the image are not processed 
             if (null != _drawnImage)
-            {
-                // TODO use OpenTK FBO to get hardware acceleration
+            {                
                 unsafe
                 {
                     var bufPtr   = _buffer.BaseAddress;
@@ -242,8 +237,8 @@ namespace com.ReinforceLab.MonoTouch.Controls.AugmentedRealityBase
 
                 // now do the actual drawing of the image
                 var drawContext = UIGraphics.GetCurrentContext();
-                drawContext.ScaleCTM(1, -1); // upside down
-                drawContext.TranslateCTM(1, -1 * Frame.Height); // Set O()
+                drawContext.TranslateCTM(0f, Bounds.Size.Height);
+                drawContext.ScaleCTM(1.0f, -1.0f);
                 // very important to switch these off - we don't wnat our grid pattern to be disturbed in any way
                 drawContext.InterpolationQuality = CGInterpolationQuality.None;
                 drawContext.SetAllowsAntialiasing(false);

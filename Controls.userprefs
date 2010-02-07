@@ -7,19 +7,17 @@
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/Calendar/AbsMonthView.cs" line="119" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="アセンブリ ブラウザ" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/MainViewController.cs" ctype="Workbench">
     <Files>
-      <File FileName="MjpegStreamingSample/MjpegStreamingService.cs" Line="12" Column="5" />
-      <File FileName="アセンブリ ブラウザ" />
+      <File FileName="MjpegStreamingSample/MjpegStreamingService.cs" Line="12" Column="6" />
+      <File FileName="ControlsDemo/MainViewController.cs" Line="43" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="AugmentedRealityBase" expanded="True" />
-          <Node name="ControlsDemo" expanded="True" />
-          <Node name="MjpegStreamingSample" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="StreamingController.cs" selected="True" />
+          <Node name="ControlsDemo" expanded="True">
+            <Node name="MainViewController.cs" selected="True" />
           </Node>
           <Node name="VideoCaptureSample" expanded="True" />
         </State>

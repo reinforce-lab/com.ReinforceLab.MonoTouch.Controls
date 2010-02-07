@@ -97,10 +97,6 @@
       <Project>{093B80BE-5863-4A1B-954F-692694C3291D}</Project>
       <Name>VideoCaptureSample</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MjpegStreamingSample\MjpegStreamingSample.csproj">
-      <Project>{35CDA37E-2EDA-49DA-8DA9-C2E3C5F43E8F}</Project>
-      <Name>MjpegStreamingSample</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\today.png" />
