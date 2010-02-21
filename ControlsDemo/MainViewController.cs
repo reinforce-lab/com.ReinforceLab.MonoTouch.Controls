@@ -42,6 +42,7 @@ namespace com.ReinforceLab.MonoTouch.Controls.ControlsDemo
             _list = new DataSource(this, new ControlItem[] { 
 //                new ControlItem() {Title ="Mjpeg streaming sample", Controller = new com.ReinforceLab.MonoTouch.Controls.MjpegStreamingSample.CameraViewController() },
 				new ControlItem() {Title ="AugmentedReality", Controller = _arCtr },
+                new ControlItem() {Title ="Bluetooth device inqury sample", Controller = new com.ReinforceLab.iPhone.Controls.AlphaRexRemoteController.BTInquiryViewController() },
 				new ControlItem() {Title ="CameraCaptureSample", Controller = new com.ReinforceLab.MonoTouch.Controls.VideoCaptureSample.VCViewController() },
                 new ControlItem() {Title ="Calendar", Controller = _calendarCtr },
             });

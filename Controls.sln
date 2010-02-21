@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AugmentedRealityBase", "Aug
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoCaptureSample", "VideoCaptureSample\VideoCaptureSample.csproj", "{093B80BE-5863-4A1B-954F-692694C3291D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaRexRemoteController", "AlphaRexRemoteController\AlphaRexRemoteController.csproj", "{F674DBAC-9193-4C44-B263-192AB9E80C1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -59,15 +61,24 @@ Global
 		{CB66A80A-63C6-4B83-8F5D-ADD65F31CBAC}.Release|iPhone.Build.0 = Release|iPhone
 		{CB66A80A-63C6-4B83-8F5D-ADD65F31CBAC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{CB66A80A-63C6-4B83-8F5D-ADD65F31CBAC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{F674DBAC-9193-4C44-B263-192AB9E80C1C}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{F674DBAC-9193-4C44-B263-192AB9E80C1C}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F674DBAC-9193-4C44-B263-192AB9E80C1C}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{F674DBAC-9193-4C44-B263-192AB9E80C1C}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F674DBAC-9193-4C44-B263-192AB9E80C1C}.Release|iPhone.ActiveCfg = Release|iPhone
+		{F674DBAC-9193-4C44-B263-192AB9E80C1C}.Release|iPhone.Build.0 = Release|iPhone
+		{F674DBAC-9193-4C44-B263-192AB9E80C1C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{F674DBAC-9193-4C44-B263-192AB9E80C1C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ControlsDemo\ControlsDemo.csproj
-		Policies = $0
-		$0.DotNetNamingPolicy = $1
-		$1.DirectoryNamespaceAssociation = None
-		$1.ResourceNamePolicy = FileFormatDefault
-		$0.StandardHeader = $2
-		$2.Text = 
-		$2.inheritsSet = MITX11License
+		StartupItems = $0
+		$0.Item = ControlsDemo\ControlsDemo.csproj
+		Policies = $1
+		$1.DotNetNamingPolicy = $2
+		$2.DirectoryNamespaceAssociation = None
+		$2.ResourceNamePolicy = FileFormatDefault
+		$1.StandardHeader = $3
+		$3.Text = 
+		$3.inheritsSet = MITX11License
 	EndGlobalSection
 EndGlobal

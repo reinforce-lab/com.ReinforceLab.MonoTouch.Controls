@@ -97,6 +97,10 @@
       <Project>{093B80BE-5863-4A1B-954F-692694C3291D}</Project>
       <Name>VideoCaptureSample</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AlphaRexRemoteController\AlphaRexRemoteController.csproj">
+      <Project>{F674DBAC-9193-4C44-B263-192AB9E80C1C}</Project>
+      <Name>AlphaRexRemoteController</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\today.png" />
