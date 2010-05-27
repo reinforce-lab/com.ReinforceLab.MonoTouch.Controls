@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlsDemo_vs", "Controls
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaRexRemoteController_vs", "..\AlphaRexRemoteController\AlphaRexRemoteController_vs.csproj", "{B382C788-868A-4C76-A2BD-C957A676C253}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToneGen_vs", "ToneGenerator\ToneGen_vs.csproj", "{54F58C9D-897D-47F3-BC77-4C45B906B453}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,12 @@ Global
 		{B382C788-868A-4C76-A2BD-C957A676C253}.DebugiPhone|Any CPU.Build.0 = Debug|Any CPU
 		{B382C788-868A-4C76-A2BD-C957A676C253}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B382C788-868A-4C76-A2BD-C957A676C253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54F58C9D-897D-47F3-BC77-4C45B906B453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54F58C9D-897D-47F3-BC77-4C45B906B453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54F58C9D-897D-47F3-BC77-4C45B906B453}.DebugiPhone|Any CPU.ActiveCfg = Debug|Any CPU
+		{54F58C9D-897D-47F3-BC77-4C45B906B453}.DebugiPhone|Any CPU.Build.0 = Debug|Any CPU
+		{54F58C9D-897D-47F3-BC77-4C45B906B453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54F58C9D-897D-47F3-BC77-4C45B906B453}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

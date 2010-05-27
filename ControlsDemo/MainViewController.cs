@@ -45,6 +45,7 @@ namespace com.ReinforceLab.MonoTouch.Controls.ControlsDemo
                 new ControlItem() {Title ="Bluetooth device inqury sample", Controller = new com.ReinforceLab.iPhone.Controls.AlphaRexRemoteController.BTInquiryViewController() },
 				new ControlItem() {Title ="CameraCaptureSample", Controller = new com.ReinforceLab.MonoTouch.Controls.VideoCaptureSample.VCViewController() },
                 new ControlItem() {Title ="Calendar", Controller = _calendarCtr },
+                new ControlItem() {Title ="Audio tone generator", Controller = new  com.ReinforceLab.iPhone.Controls.ToneGenerator.ToneGeneratorViewController() },
             });
 
             TableView.Source = _list;

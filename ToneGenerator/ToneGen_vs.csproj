@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{13D95C32-BCA3-4FF0-9209-96D8CEDF83DF}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{54F58C9D-897D-47F3-BC77-4C45B906B453}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>net.ReinforceLab.iPhone.Controls.ControlsDemo</RootNamespace>
-    <AssemblyName>ControlsDemo</AssemblyName>
+    <RootNamespace>com.ReinforceLab.iPhone.Controls.ToneGenerator</RootNamespace>
+    <AssemblyName>com.ReinforceLab.iPhone.Controls.ToneGenerator</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,49 +34,25 @@
   <ItemGroup>
     <Reference Include="monotouch, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\monotouch.dll</HintPath>
+      <HintPath>..\..\..\monotouch.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlList.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="MainViewController.cs" />
+    <Compile Include="AudioQueueSynth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\AlphaRexRemoteController\AlphaRexRemoteController_vs.csproj">
-      <Project>{B382C788-868A-4C76-A2BD-C957A676C253}</Project>
-      <Name>AlphaRexRemoteController_vs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AugmentedRealityBase\AugmentedRealityBase_vs.csproj">
-      <Project>{ED0E43E2-EBB6-425B-80BA-913B32E3A51B}</Project>
-      <Name>AugmentedRealityBase_vs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Calendar\Calendar_vs.csproj">
-      <Project>{85A1C64F-9ED9-4D62-8416-72C2D93758D0}</Project>
-      <Name>Calendar_vs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SQLitePersistence\SQLitePersistence_vs.csproj">
-      <Project>{1EC90436-90DF-4073-824A-D8D963AC5666}</Project>
-      <Name>SQLitePersistence_vs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ToneGenerator\ToneGen_vs.csproj">
-      <Project>{54F58C9D-897D-47F3-BC77-4C45B906B453}</Project>
-      <Name>ToneGen_vs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VideoCaptureSample\VideoCaptureSample_vs.csproj">
-      <Project>{04F1BF0C-7DB7-4A60-AC31-D1D6ABD6A737}</Project>
-      <Name>VideoCaptureSample_vs</Name>
-    </ProjectReference>
+    <Compile Include="ToneGeneratorViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

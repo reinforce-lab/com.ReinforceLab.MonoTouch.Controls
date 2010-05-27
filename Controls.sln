@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoCaptureSample", "Video
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaRexRemoteController", "AlphaRexRemoteController\AlphaRexRemoteController.csproj", "{F674DBAC-9193-4C44-B263-192AB9E80C1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToneGen", "ToneGenerator\ToneGen.csproj", "{436F431C-8244-4B09-9271-24E7A44703F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -29,6 +31,14 @@ Global
 		{093B80BE-5863-4A1B-954F-692694C3291D}.Release|iPhone.Build.0 = Release|iPhone
 		{093B80BE-5863-4A1B-954F-692694C3291D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{093B80BE-5863-4A1B-954F-692694C3291D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{436F431C-8244-4B09-9271-24E7A44703F3}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{436F431C-8244-4B09-9271-24E7A44703F3}.Debug|iPhone.Build.0 = Debug|iPhone
+		{436F431C-8244-4B09-9271-24E7A44703F3}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{436F431C-8244-4B09-9271-24E7A44703F3}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{436F431C-8244-4B09-9271-24E7A44703F3}.Release|iPhone.ActiveCfg = Release|iPhone
+		{436F431C-8244-4B09-9271-24E7A44703F3}.Release|iPhone.Build.0 = Release|iPhone
+		{436F431C-8244-4B09-9271-24E7A44703F3}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{436F431C-8244-4B09-9271-24E7A44703F3}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{4EC3D63C-760A-430E-9748-C540E8C438BE}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{4EC3D63C-760A-430E-9748-C540E8C438BE}.Debug|iPhone.Build.0 = Debug|iPhone
 		{4EC3D63C-760A-430E-9748-C540E8C438BE}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
@@ -71,14 +81,13 @@ Global
 		{F674DBAC-9193-4C44-B263-192AB9E80C1C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItems = $0
-		$0.Item = ControlsDemo\ControlsDemo.csproj
-		Policies = $1
-		$1.DotNetNamingPolicy = $2
-		$2.DirectoryNamespaceAssociation = None
-		$2.ResourceNamePolicy = FileFormatDefault
-		$1.StandardHeader = $3
-		$3.Text = 
-		$3.inheritsSet = MITX11License
+		StartupItem = ControlsDemo\ControlsDemo.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.StandardHeader = $2
+		$2.Text = 
+		$2.inheritsSet = Apache2License
 	EndGlobalSection
 EndGlobal

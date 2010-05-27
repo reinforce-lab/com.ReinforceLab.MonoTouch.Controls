@@ -12,6 +12,7 @@
     <AssemblyName>VideoCaptureSample</AssemblyName>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <MtouchMinimumOS>3.0</MtouchMinimumOS>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
