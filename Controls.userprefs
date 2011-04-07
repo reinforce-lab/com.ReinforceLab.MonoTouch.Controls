@@ -1,5 +1,5 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" ctype="Workspace" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore>
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/RootViewController.cs" line="0" />
@@ -7,21 +7,15 @@
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/Calendar/AbsMonthView.cs" line="119" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="ToneGenerator/MainPanel.xib.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ControlsDemo/Main.cs">
     <Files>
-      <File FileName="ControlsDemo/Main.cs" Line="1" Column="1" />
-      <File FileName="ToneGenerator/MainPanel.xib.cs" Line="8" Column="34" />
-      <File FileName="ToneGenerator/MainPanel.xib.designer.cs" Line="104" Column="1" />
+      <File FileName="ControlsDemo/Main.cs" Line="20" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="ControlsDemo" expanded="True">
-            <Node name="References" expanded="True" />
-          </Node>
-          <Node name="ToneGen" expanded="True" selected="True">
-            <Node name="MainPanel.xib" expanded="True" />
-          </Node>
+          <Node name="ControlsDemo" expanded="True" selected="True" />
+          <Node name="ToneGen" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
@@ -32,7 +26,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <AuthorInfo Name="Akihiro Uehara" Email="u-akihiro@reinforce-lab.com" Copyright="2010 ReinforceLab. ( http://www.reinforce-lab.com )" ctype="AuthorInformation" />
+  <AuthorInfo Name="Akihiro Uehara" Email="u-akihiro@reinforce-lab.com" Copyright="2010 ReinforceLab. ( http://www.reinforce-lab.com )" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/ControlsDemo/RootViewController.cs" line="0" />
@@ -40,5 +34,5 @@
       <Breakpoint file="/Users/rupppau/Projects/net.ReinforceLab.MonoTouch.Controls/Calendar/AbsMonthView.cs" line="119" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches ctype="PinnedWatchStore" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

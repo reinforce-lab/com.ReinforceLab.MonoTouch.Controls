@@ -28,7 +28,10 @@
     <MtouchDebug>True</MtouchDebug>
     <AssemblyName>com.ReinforceLab.MonoTouch.Controls.ControlsDemo</AssemblyName>
     <MtouchI18n />
-    <MtouchSdkVersion>3.2</MtouchSdkVersion>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -39,7 +42,11 @@
     <MtouchDebug>False</MtouchDebug>
     <MtouchLink>None</MtouchLink>
     <AssemblyName>com.ReinforceLab.MonoTouch.Controls.ControlsDemo</AssemblyName>
-    <MtouchSdkVersion>3.0</MtouchSdkVersion>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,8 +60,11 @@
     <MtouchLink>None</MtouchLink>
     <CodesignKey>iPhone Developer</CodesignKey>
     <AssemblyName>ControlsDemo_md</AssemblyName>
-    <MtouchSdkVersion>3.2</MtouchSdkVersion>
     <MtouchI18n />
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -66,7 +76,11 @@
     <MtouchLink>None</MtouchLink>
     <CodesignKey>iPhone Developer</CodesignKey>
     <AssemblyName>ControlsDemo_md</AssemblyName>
-    <MtouchSdkVersion>3.0</MtouchSdkVersion>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchI18n />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -78,12 +92,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="MainViewController.cs" />
     <Compile Include="ControlList.cs" />
-    <Compile Include="..\ToneGenerator\MainPanel.xib.designer.cs">
-      <DependentUpon>MainPanel.xib</DependentUpon>
-    </Compile>
-    <Compile Include="..\ToneGenerator\MainPanel.xib.cs">
-      <DependentUpon>MainPanel.xib</DependentUpon>
-    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -128,8 +136,6 @@
     <Content Include="Images\leftarrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="..\ToneGenerator\MainPanel.xib">
-      <Link>MainPanel.xib</Link>
-    </Page>
+    <None Include="Info.plist" />
   </ItemGroup>
 </Project>

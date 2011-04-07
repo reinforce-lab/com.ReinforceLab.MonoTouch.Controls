@@ -89,5 +89,12 @@ Global
 		$0.StandardHeader = $2
 		$2.Text = 
 		$2.inheritsSet = Apache2License
+		$0.VersionControlPolicy = $3
+		$3.inheritsSet = Mono
+		$0.ChangeLogPolicy = $4
+		$4.UpdateMode = None
+		$4.MessageStyle = $5
+		$5.LineAlign = 0
+		$4.inheritsSet = Mono
 	EndGlobalSection
 EndGlobal

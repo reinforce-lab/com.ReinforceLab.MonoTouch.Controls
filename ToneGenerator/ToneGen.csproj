@@ -23,10 +23,13 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <MtouchDebug>True</MtouchDebug>
     <MtouchLink>None</MtouchLink>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -35,9 +38,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>False</MtouchDebug>
-    <PlatformTarget>x86</PlatformTarget>
     <MtouchLink>None</MtouchLink>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,10 +53,13 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <MtouchDebug>True</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -59,9 +68,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>False</MtouchDebug>
-    <PlatformTarget>x86</PlatformTarget>
     <CodesignKey>iPhone Developer</CodesignKey>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -24,6 +24,10 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
     <AssemblyName>com.ReinforceLab.MonoTouch.Controls.Calendar</AssemblyName>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -34,6 +38,10 @@
     <MtouchDebug>False</MtouchDebug>
     <MtouchLink>None</MtouchLink>
     <AssemblyName>Calendar</AssemblyName>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,6 +54,10 @@
     <MtouchDebug>True</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
     <AssemblyName>Calendar_md</AssemblyName>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -56,6 +68,10 @@
     <MtouchDebug>False</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
     <AssemblyName>Calendar_md</AssemblyName>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
